@@ -1,5 +1,6 @@
 package com.grownited.entity;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
@@ -14,19 +15,36 @@ public class SavedListingEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer wishlist_id;
-//	customer_id;
-//	listing_id;
-//	added_at;
-
-	public Integer getWishlist_id() {
-		return wishlist_id;
+	private Integer wishlistId;
+	private Integer userId;
+	private Integer listingId;
+	private Date addedAt;
+	public Integer getWishlistId() {
+		return wishlistId;
+	}
+	public void setWishlistId(Integer wishlistId) {
+		this.wishlistId = wishlistId;
+	}
+	public Integer getUserId() {
+		return userId;
+	}
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+	public Integer getListingId() {
+		return listingId;
+	}
+	public void setListingId(Integer listingId) {
+		this.listingId = listingId;
+	}
+	public Date getAddedAt() {
+		return addedAt;
+	}
+	public void setAddedAt(Date addedAt) {
+		this.addedAt = addedAt;
 	}
 
-	public void setWishlist_id(Integer wishlist_id) {
-		this.wishlist_id = wishlist_id;
-	}
-
+	
 	
 	
 }

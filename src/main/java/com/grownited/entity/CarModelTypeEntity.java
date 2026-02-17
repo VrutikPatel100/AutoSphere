@@ -13,6 +13,7 @@ public class CarModelTypeEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer modelId;
+	private Integer brandId;
     private String modelName;
     private String bodyType;
     private Integer launchYear;
@@ -47,6 +48,13 @@ public class CarModelTypeEntity {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+	public Integer getBrandId() {
+		return brandId;
+	}
+	public void setBrandId(Integer brandId) {
+		this.brandId = brandId;
+	}
     
+	
 
 }

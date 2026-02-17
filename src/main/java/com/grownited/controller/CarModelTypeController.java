@@ -20,6 +20,7 @@ public class CarModelTypeController {
 		
 		@GetMapping("newcartype")
 		public String newcartype() {
+			
 			return "NewCarModelType";
 		}
 		

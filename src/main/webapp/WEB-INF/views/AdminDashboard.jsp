@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -7,20 +6,26 @@
 <meta charset="UTF-8">
 <title>Admin Dashboard</title>
 
+<!-- ✅ Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
+<!-- ✅ Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<!-- Your Custom CSS (Optional) -->
 <jsp:include page="AdminCSS.jsp"></jsp:include>
+
 </head>
 <body>
 
-	<!-- header -->
+	<!-- Header -->
 	<jsp:include page="AdminHeader.jsp"></jsp:include>
-
 
 	<!-- Sidebar -->
 	<jsp:include page="AdminSidebar.jsp"></jsp:include>
 
 	<!-- Main Content -->
-	<div class="content">
+	<div class="content p-4">
 		<h3>Dashboard</h3>
 		<p class="text-muted">Welcome to the admin dashboard.</p>
 
@@ -66,6 +71,8 @@
 		<jsp:include page="AdminFooter.jsp"></jsp:include>
 	</div>
 
+<!-- ✅ MOST IMPORTANT – Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

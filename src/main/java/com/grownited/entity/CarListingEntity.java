@@ -14,23 +14,42 @@ public class CarListingEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer listing_id;
-//	seller_id
-//	brand_id
-//	model_id
-//	variant_id
+	private Integer listingId;
+//	private Integer sellerId;
+	private Integer userId;
+	private Integer brandId;
+	private Integer modelId;
+	private Integer variantId;
 	private String city;
-	private Integer kms_driven;
+	private Integer kmsDriven;
 	private Integer year;
 	private String ownership;
 	private Integer price;
-//	status
+	private String status;  //Enum
 	private LocalDate createdAt;
-	public Integer getListing_id() {
-		return listing_id;
+	public Integer getListingId() {
+		return listingId;
 	}
-	public void setListing_id(Integer listing_id) {
-		this.listing_id = listing_id;
+	public void setListingId(Integer listingId) {
+		this.listingId = listingId;
+	}
+	public Integer getBrandId() {
+		return brandId;
+	}
+	public void setBrandId(Integer brandId) {
+		this.brandId = brandId;
+	}
+	public Integer getModelId() {
+		return modelId;
+	}
+	public void setModelId(Integer modelId) {
+		this.modelId = modelId;
+	}
+	public Integer getVariantId() {
+		return variantId;
+	}
+	public void setVariantId(Integer variantId) {
+		this.variantId = variantId;
 	}
 	public String getCity() {
 		return city;
@@ -38,11 +57,11 @@ public class CarListingEntity {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	public Integer getKms_driven() {
-		return kms_driven;
+	public Integer getKmsDriven() {
+		return kmsDriven;
 	}
-	public void setKms_driven(Integer kms_driven) {
-		this.kms_driven = kms_driven;
+	public void setKmsDriven(Integer kmsDriven) {
+		this.kmsDriven = kmsDriven;
 	}
 	public Integer getYear() {
 		return year;
@@ -62,12 +81,31 @@ public class CarListingEntity {
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public LocalDate getCreatedAt() {
 		return createdAt;
 	}
 	public void setCreatedAt(LocalDate createdAt) {
 		this.createdAt = createdAt;
-	} 
+	}
+//	public Integer getSellerId() {
+//		return sellerId;
+//	}
+//	public void setSellerId(Integer sellerId) {
+//		this.sellerId = sellerId;
+//	}
+	public Integer getUserId() {
+		return userId;
+	}
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+	
 	
 	
 

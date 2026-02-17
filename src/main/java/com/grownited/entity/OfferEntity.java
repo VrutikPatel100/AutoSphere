@@ -14,30 +14,51 @@ public class OfferEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer offer_id;
-//	listing_id;
-//	buyer_id;
-	private Number offered_price;
-//	offer_status;
-	private LocalDate created_at;
-	public Integer getOffer_id() {
-		return offer_id;
+	private Integer offerId;
+	private Integer listingId;
+	private Integer userId;
+	private Double offeredPrice;
+	private String offerStatus;
+	private LocalDate createdAt;
+	public Integer getOfferId() {
+		return offerId;
 	}
-	public void setOffer_id(Integer offer_id) {
-		this.offer_id = offer_id;
+	public void setOfferId(Integer offerId) {
+		this.offerId = offerId;
 	}
-	public Number getOffered_price() {
-		return offered_price;
+	public Integer getListingId() {
+		return listingId;
 	}
-	public void setOffered_price(Number offered_price) {
-		this.offered_price = offered_price;
+	public void setListingId(Integer listingId) {
+		this.listingId = listingId;
 	}
-	public LocalDate getCreated_at() {
-		return created_at;
+	public Integer getUserId() {
+		return userId;
 	}
-	public void setCreated_at(LocalDate created_at) {
-		this.created_at = created_at;
-	}	
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+	
+	public String getOfferStatus() {
+		return offerStatus;
+	}
+	public void setOfferStatus(String offerStatus) {
+		this.offerStatus = offerStatus;
+	}
+	public LocalDate getCreatedAt() {
+		return createdAt;
+	}
+	public void setCreatedAt(LocalDate createdAt) {
+		this.createdAt = createdAt;
+	}
+	public Double getOfferedPrice() {
+		return offeredPrice;
+	}
+	public void setOfferedPrice(Double offeredPrice) {
+		this.offeredPrice = offeredPrice;
+	}
+	
+	
 	
 	
 	

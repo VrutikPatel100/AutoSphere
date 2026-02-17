@@ -1,6 +1,6 @@
 package com.grownited.entity;
 
-import java.security.Timestamp;
+import java.sql.Date;
 import java.text.DecimalFormat;
 
 import jakarta.persistence.Entity;
@@ -15,32 +15,59 @@ public class TransactionsEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer transaction_id;
-//	listing_id;
-//	buyer_id;
-//	seller_id;
-	private DecimalFormat final_price;
-//	payment_mode;
-//	transaction_status;
-	private Timestamp completed_at;
-	public Integer getTransaction_id() {
-		return transaction_id;
+	private Integer transactionId;
+	private Integer listingId;
+	private Integer userId;
+	private Double finalPrice;
+	private String paymentMode;	
+	private String transactionStatus;
+	private Date completedAt;
+	public Integer getTransactionId() {
+		return transactionId;
 	}
-	public void setTransaction_id(Integer transaction_id) {
-		this.transaction_id = transaction_id;
+	public void setTransactionId(Integer transactionId) {
+		this.transactionId = transactionId;
 	}
-	public DecimalFormat getFinal_price() {
-		return final_price;
+	public Integer getListingId() {
+		return listingId;
 	}
-	public void setFinal_price(DecimalFormat final_price) {
-		this.final_price = final_price;
+	public void setListingId(Integer listingId) {
+		this.listingId = listingId;
 	}
-	public Timestamp getCompleted_at() {
-		return completed_at;
+	public Integer getUserId() {
+		return userId;
 	}
-	public void setCompleted_at(Timestamp completed_at) {
-		this.completed_at = completed_at;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
+	
+	public Double getFinalPrice() {
+		return finalPrice;
+	}
+	public void setFinalPrice(Double finalPrice) {
+		this.finalPrice = finalPrice;
+	}
+	public String getPaymentMode() {
+		return paymentMode;
+	}
+	public void setPaymentMode(String paymentMode) {
+		this.paymentMode = paymentMode;
+	}
+	public String getTransactionStatus() {
+		return transactionStatus;
+	}
+	public void setTransactionStatus(String transactionStatus) {
+		this.transactionStatus = transactionStatus;
+	}
+	public Date getCompletedAt() {
+		return completedAt;
+	}
+	public void setCompletedAt(Date completedAt) {
+		this.completedAt = completedAt;
+	}
+	
+	
+	
 
 	
 	

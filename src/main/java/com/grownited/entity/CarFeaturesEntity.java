@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+//import jakarta.persistence.JoinColumn;
+//import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -12,43 +14,62 @@ public class CarFeaturesEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer	feature_id;
+	private Integer	featureId;
 	
-//		variant_id
-	private String safety_features;
-	private String comfort_features;
-	private String entertainment_features;
-	private String exterior_features;
-	public Integer getFeature_id() {
-		return feature_id;
+//	@ManyToOne
+//    @JoinColumn(name = "variantId")
+//    private CarVariantEntity carVariant;
+	
+	private Integer variantId;
+
+	private String safetyFeatures;
+	private String comfortFeatures;
+	private String entertainmentFeatures;
+	private String exteriorFeatures;
+	public Integer getFeatureId() {
+		return featureId;
 	}
-	public void setFeature_id(Integer feature_id) {
-		this.feature_id = feature_id;
+	public void setFeatureId(Integer featureId) {
+		this.featureId = featureId;
 	}
-	public String getSafety_features() {
-		return safety_features;
+//	public CarVariantEntity getCarVariant() {
+//		return carVariant;
+//	}
+//	public void setCarVariant(CarVariantEntity carVariant) {
+//		this.carVariant = carVariant;
+//	}
+	public String getSafetyFeatures() {
+		return safetyFeatures;
 	}
-	public void setSafety_features(String safety_features) {
-		this.safety_features = safety_features;
+	public void setSafetyFeatures(String safetyFeatures) {
+		this.safetyFeatures = safetyFeatures;
 	}
-	public String getComfort_features() {
-		return comfort_features;
+	public String getComfortFeatures() {
+		return comfortFeatures;
 	}
-	public void setComfort_features(String comfort_features) {
-		this.comfort_features = comfort_features;
+	public void setComfortFeatures(String comfortFeatures) {
+		this.comfortFeatures = comfortFeatures;
 	}
-	public String getEntertainment_features() {
-		return entertainment_features;
+	public String getEntertainmentFeatures() {
+		return entertainmentFeatures;
 	}
-	public void setEntertainment_features(String entertainment_features) {
-		this.entertainment_features = entertainment_features;
+	public void setEntertainmentFeatures(String entertainmentFeatures) {
+		this.entertainmentFeatures = entertainmentFeatures;
 	}
-	public String getExterior_features() {
-		return exterior_features;
+	public String getExteriorFeatures() {
+		return exteriorFeatures;
 	}
-	public void setExterior_features(String exterior_features) {
-		this.exterior_features = exterior_features;
+	public void setExteriorFeatures(String exteriorFeatures) {
+		this.exteriorFeatures = exteriorFeatures;
 	}
+	public Integer getVariantId() {
+		return variantId;
+	}
+	public void setVariantId(Integer variantId) {
+		this.variantId = variantId;
+	}
+	
+	
 	
 	
 	

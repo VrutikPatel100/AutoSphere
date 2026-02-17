@@ -12,34 +12,40 @@ public class CarVariantEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer variant_id;	
-//	model_id	
-	private String variant_name;	
-	private Integer ex_showroom_price;	
+	private Integer variantId;	
+	private Integer modelId;	//fk
+	private String variantName;	
+	private Integer exShowroomPrice;	
 	private String mileage;	
 	private String engine;	
 	private String power;	
 	private String torque;	
 	private boolean active;	
-//	fuel_type	
-//	transmission	
-	public Integer getVariant_id() {
-		return variant_id;
+	private String fuelType;	
+	private String transmission;	
+	public Integer getVariantId() {
+		return variantId;
 	}
-	public void setVariant_id(Integer variant_id) {
-		this.variant_id = variant_id;
+	public void setVariantId(Integer variantId) {
+		this.variantId = variantId;
 	}
-	public String getVariant_name() {
-		return variant_name;
+	public Integer getModelId() {
+		return modelId;
 	}
-	public void setVariant_name(String variant_name) {
-		this.variant_name = variant_name;
+	public void setModelId(Integer modelId) {
+		this.modelId = modelId;
 	}
-	public Integer getEx_showroom_price() {
-		return ex_showroom_price;
+	public String getVariantName() {
+		return variantName;
 	}
-	public void setEx_showroom_price(Integer ex_showroom_price) {
-		this.ex_showroom_price = ex_showroom_price;
+	public void setVariantName(String variantName) {
+		this.variantName = variantName;
+	}
+	public Integer getExShowroomPrice() {
+		return exShowroomPrice;
+	}
+	public void setExShowroomPrice(Integer exShowroomPrice) {
+		this.exShowroomPrice = exShowroomPrice;
 	}
 	public String getMileage() {
 		return mileage;
@@ -71,6 +77,20 @@ public class CarVariantEntity {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+	public String getFuelType() {
+		return fuelType;
+	}
+	public void setFuelType(String fuelType) {
+		this.fuelType = fuelType;
+	}
+	public String getTransmission() {
+		return transmission;
+	}
+	public void setTransmission(String transmission) {
+		this.transmission = transmission;
+	}
 	
 	
+	
+
 }

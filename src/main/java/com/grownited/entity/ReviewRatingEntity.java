@@ -1,5 +1,6 @@
 package com.grownited.entity;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
@@ -14,17 +15,24 @@ public class ReviewRatingEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer review_id;
+	private Integer reviewId;
+	private Integer userId;
 //	sellerId;
 //	buyerId;
 	private Integer rating;
 	private String comment;
-	private LocalDate created_at;
-	public Integer getReview_id() {
-		return review_id;
+	private Date createdAt;
+	public Integer getReviewId() {
+		return reviewId;
 	}
-	public void setReview_id(Integer review_id) {
-		this.review_id = review_id;
+	public void setReviewId(Integer reviewId) {
+		this.reviewId = reviewId;
+	}
+	public Integer getUserId() {
+		return userId;
+	}
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 	public Integer getRating() {
 		return rating;
@@ -38,13 +46,11 @@ public class ReviewRatingEntity {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	public LocalDate getCreated_at() {
-		return created_at;
+	public Date getCreatedAt() {
+		return createdAt;
 	}
-	public void setCreated_at(LocalDate created_at) {
-		this.created_at = created_at;
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 	
-	
-
 }

@@ -1,6 +1,7 @@
 package com.grownited.entity;
 
 import java.security.Timestamp;
+import java.sql.Date;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,26 +15,48 @@ public class ReportsEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer report_id;
-//	sellerId;
-//	listing_id;
-//	reported_by;
-//	reason;
-//	status;
-	private Timestamp created_at;
-	public Integer getReport_id() {
-		return report_id;
+	private Integer reportId;
+	private Integer userId;
+	private Integer listingId;	
+//	private String reportedBy;
+	private String reason;
+	private String status;
+	private Date createdAt;
+	public Integer getReportId() {
+		return reportId;
 	}
-	public void setReport_id(Integer report_id) {
-		this.report_id = report_id;
+	public void setReportId(Integer reportId) {
+		this.reportId = reportId;
 	}
-	public Timestamp getCreated_at() {
-		return created_at;
+	public Integer getUserId() {
+		return userId;
 	}
-	public void setCreated_at(Timestamp created_at) {
-		this.created_at = created_at;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+	public Integer getListingId() {
+		return listingId;
+	}
+	public void setListingId(Integer listingId) {
+		this.listingId = listingId;
+	}
+	public String getReason() {
+		return reason;
+	}
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 	
-	
-
 }
