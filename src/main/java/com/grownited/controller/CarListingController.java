@@ -55,7 +55,7 @@ public class CarListingController {
 		return"CarListing";
 	}
 	
-	@PostMapping("saveCarListing")
+	@PostMapping("saveListing")
 	public String saveCarList(CarListingEntity carListingEntity) {
 		carListingRepository.save(carListingEntity);
 		return"AdminDashboard"; 

@@ -7,6 +7,7 @@ import java.util.Optional;
 import com.grownited.repository.CarModelTypeRepository;
 import com.grownited.repository.UserDetailRepository;
 import com.grownited.repository.UserRepository;
+import com.grownited.service.MailerService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -31,6 +32,9 @@ public class SessionController {
 	
 	@Autowired
 	CarModelTypeRepository carModelTypeRepository;
+
+	@Autowired
+	MailerService mailerService;
 	
 	
 	@GetMapping("/signup")
@@ -93,7 +97,12 @@ public class SessionController {
 		
 		userDetailEntity.setUserId(userEntity.getUserId());
 		userDetailRepository.save(userDetailEntity);
-		return"Login";
+		
+		
+
+		//welcome mail send 
+		mailerService.sendWelcomeMail(userEntity);
+		return "Login";
 	}
 
 	

@@ -1,137 +1,226 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-		<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>CAR OFFER</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Skydash Admin</title>
+<!-- plugins:css -->
 
 <jsp:include page="AdminCSS.jsp"></jsp:include>
-
-<style>
-body {
-	background-color: #f8f9fa;
-}
-
-.card {
-	margin-top: 80px;
-	border-radius: 12px;
-}
-</style>
-<style>
-body {
-    font-family: Arial;
-    background-color: #f4f4f4;
-}
-
-.container {
-    width: 400px;
-    margin: 60px auto;
-    background: white;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px #ccc;
-}
-
-h2 {
-    text-align: center;
-}
-
-input, select {
-    width: 100%;
-    padding: 8px;
-    margin: 8px 0;
-}
-
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    margin-top: 10px;
-    border-radius: 4px;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-</style>
 </head>
-
 <body>
-	<!-- header -->
-	<jsp:include page="AdminHeader.jsp"></jsp:include>
-
-	<!-- Sidebar -->
-	<jsp:include page="AdminSidebar.jsp"></jsp:include>
-
-
-	<div class="content">
-		<div class="row justify-content-center">
-			<div class="col-md-6 col-lg-5">
-				<div class="card shadow">
-					<div class="card-body p-4">
-						<h4 class="text-center mb-4">CAR OFFER</h4>
-
-						 
-									
-<div class="container">
-    <h2>Add Car Offer</h2>
-
-    <form action="saveCarOffer" method="post">
-
-        <!-- Listing Dropdown -->
-        <label>Listing</label>
-        <select name="listingId" required>
-            <option value="">Select Listing</option>
-            <c:forEach items="${allCarList}" var="l">
-                <option value="${l.listingId}">
-                    ${l.listingId}
-                </option>
-            </c:forEach>
-        </select>
-
-        <!-- Buyer Dropdown -->
-        <label>Buyer</label>
-        <select name="userId" required>
-            <option value="">Select Buyer</option>
-            <c:forEach items="${allUser}" var="u">
-                <option value="${u.userId}">
-                    ${u.userId} - ${u.firstName}
-                </option>
-            </c:forEach>
-        </select>
-
-        <label>Offered Price</label>
-        <input type="number" name="offeredPrice" required>
-
-        <label>Offer Status</label>
-        <select name="offerStatus">
-            <option value="PENDING">PENDING</option>
-            <option value="ACCEPTED">ACCEPTED</option>
-            <option value="REJECTED">REJECTED</option>
-        </select>
-
-        <label>Created At</label>
-        <input type="date" name="createdAt" required>
-
-        <button type="submit">Save Offer</button>
-    </form>
-</div>
-										
+	<div class="container-scroller">
+		<!-- partial:partials/_navbar.html -->
+		<jsp:include page="AdminHeader.jsp"></jsp:include>
+		<!-- partial -->
+		<div class="container-fluid page-body-wrapper">
+			<!-- partial:partials/_sidebar.html -->
+			<jsp:include page="AdminLeftSidebar.jsp"></jsp:include>
+			<!-- partial -->
+			<div class="main-panel">
+				<div class="content-wrapper">
+					<div class="row">
+						<div class="col-md-12 grid-margin">
+							<div class="row">
+								<div class="col-12 col-xl-8 mb-4 mb-xl-0">
+									<h3 class="font-weight-bold">Welcome ${sessionScope.user.firstName}</h3>
+									<h6 class="font-weight-normal mb-0">
+										All systems are running smoothly! You have <span
+											class="text-primary">3 unread alerts!</span>
+									</h6>
+								</div>
+								<div class="col-12 col-xl-4">
+									<div class="justify-content-end d-flex">
+										<div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+											<button class="btn btn-sm btn-light bg-white dropdown-toggle"
+												type="button" id="dropdownMenuDate2"
+												data-bs-toggle="dropdown" aria-haspopup="true"
+												aria-expanded="true">
+												<i class="mdi mdi-calendar"></i> Today (10 Jan 2021)
+											</button>
+											<div class="dropdown-menu dropdown-menu-right"
+												aria-labelledby="dropdownMenuDate2">
+												<a class="dropdown-item" href="#">January - March</a> <a
+													class="dropdown-item" href="#">March - June</a> <a
+													class="dropdown-item" href="#">June - August</a> <a
+													class="dropdown-item" href="#">August - November</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
+					<div class="row">
+						<div class="col-md-12 grid-margin transparent">
+							<div class="row">
+								<div class="col-md-3 mb-4 stretch-card transparent">
+									<div class="card card-tale">
+										<div class="card-body">
+											<p class="mb-4">Today’s Bookings</p>
+											<p class="fs-30 mb-2">4006</p>
+											<p>10.00% (30 days)</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3 mb-4 stretch-card transparent">
+									<div class="card card-dark-blue">
+										<div class="card-body">
+											<p class="mb-4">Total Bookings</p>
+											<p class="fs-30 mb-2">61344</p>
+											<p>22.00% (30 days)</p>
+										</div>
+									</div>
+								</div>
+
+
+								<div class="col-md-3 mb-4 stretch-card transparent">
+									<div class="card card-light-blue">
+										<div class="card-body">
+											<p class="mb-4">Number of Meetings</p>
+											<p class="fs-30 mb-2">34040</p>
+											<p>2.00% (30 days)</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3  mb-4 stretch-card transparent">
+									<div class="card card-light-danger">
+										<div class="card-body">
+											<p class="mb-4">Number of Clients</p>
+											<p class="fs-30 mb-2">47033</p>
+											<p>0.22% (30 days)</p>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+
+
+					<div class="row">
+						<div class="col-md-12 grid-margin stretch-card">
+							<div class="card">
+								<div class="card-body">
+									<!-- <div class="d-flex justify-content-between">
+										<p class="card-title">Sales Report</p>
+										<a href="#" class="text-info">View all</a>
+									</div>
+									<p class="font-weight-500">The total number of sessions
+										within the date range. It is the period time a user is
+										actively engaged with your website, page or app, etc</p> -->
+									<!-- <div id="sales-chart-legend" class="chartjs-legend mt-4 mb-2"></div>
+									<canvas id="sales-chart"></canvas> -->
+									
+									<h2 style="text-align: center;">Car Offer</h2>
+								</div>
+							</div>
+						</div>
+					</div>
+
+						   <div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title text-center">Add Car Offer</h4>
+
+                <form action="saveCarOffer" method="post">
+                    <div class="row">
+
+                        <!-- Listing -->
+                        <div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-body">
+
+                
+                <form action="saveCarOffer" method="post">
+
+                    <!-- Listing -->
+                    <div class="form-group mb-3">
+                        <label>Listing</label>
+                        <select class="form-control form-select" name="listingId" required>
+                            <option value="">Select Listing</option>
+                            <c:forEach items="${allCarList}" var="l">
+                                <option value="${l.listingId}">
+                                    ${l.listingId}
+                                </option>
+                            </c:forEach>
+                        </select>
+                    </div>
+
+                    <!-- Buyer -->
+                    <div class="form-group mb-3">
+                        <label>Buyer</label>
+                        <select class="form-control form-select" name="userId" required>
+                            <option value="">Select Buyer</option>
+                            <c:forEach items="${allUser}" var="u">
+                                <option value="${u.userId}">
+                                    ${u.userId} - ${u.firstName}
+                                </option>
+                            </c:forEach>
+                        </select>
+                    </div>
+
+                    <!-- Offered Price -->
+                    <div class="form-group mb-3">
+                        <label>Offered Price</label>
+                        <input type="number" class="form-control" name="offeredPrice" required>
+                    </div>
+
+                    <!-- Offer Status -->
+                    <div class="form-group mb-3">
+                        <label>Offer Status</label>
+                        <select class="form-control form-select" name="offerStatus">
+                            <option value="PENDING">PENDING</option>
+                            <option value="ACCEPTED">ACCEPTED</option>
+                            <option value="REJECTED">REJECTED</option>
+                        </select>
+                    </div>
+
+                    <!-- Created At -->
+                    <div class="form-group mb-4">
+                        <label>Created At</label>
+                        <input type="date" class="form-control" name="createdAt" required>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary px-4">
+                            Save Offer
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+						
 				</div>
+				<!-- content-wrapper ends -->
+				<!-- partial:partials/_footer.html -->
+				
+				<jsp:include page="AdminFooter.jsp"></jsp:include>
+				<!-- partial -->
 			</div>
+			<!-- main-panel ends -->
 		</div>
-
-
+		<!-- page-body-wrapper ends -->
 	</div>
-	<jsp:include page="AdminFooter.jsp"></jsp:include>
-
-
-
+	<!-- container-scroller -->
+	<!-- plugins:js -->
+	
+	
+	
+	
+	<!-- End custom js for this page-->
 </body>
-</html>
+</html> 

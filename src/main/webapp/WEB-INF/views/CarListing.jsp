@@ -1,113 +1,338 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Add Car Listing</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Skydash Admin</title>
+<!-- plugins:css -->
 
-<style>
-    body { font-family: Arial; background:#f4f4f4; }
-    .container { width:600px; margin:30px auto; background:white; padding:20px; border-radius:8px; }
-    input, select { width:100%; padding:8px; margin:8px 0; }
-    button { padding:10px; width:100%; background:#2c3e50; color:white; border:none; border-radius:5px; }
-</style>
-
+<jsp:include page="AdminCSS.jsp"></jsp:include>
 </head>
 <body>
+	<div class="container-scroller">
+		<!-- partial:partials/_navbar.html -->
+		<jsp:include page="AdminHeader.jsp"></jsp:include>
+		<!-- partial -->
+		<div class="container-fluid page-body-wrapper">
+			<!-- partial:partials/_sidebar.html -->
+			<jsp:include page="AdminLeftSidebar.jsp"></jsp:include>
+			<!-- partial -->
+			<div class="main-panel">
+				<div class="content-wrapper">
+					<div class="row">
+						<div class="col-md-12 grid-margin">
+							<div class="row">
+								<div class="col-12 col-xl-8 mb-4 mb-xl-0">
+									<h3 class="font-weight-bold">Welcome ${sessionScope.user.firstName}</h3>
+									<h6 class="font-weight-normal mb-0">
+										All systems are running smoothly! You have <span
+											class="text-primary">3 unread alerts!</span>
+									</h6>
+								</div>
+								<div class="col-12 col-xl-4">
+									<div class="justify-content-end d-flex">
+										<div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+											<button class="btn btn-sm btn-light bg-white dropdown-toggle"
+												type="button" id="dropdownMenuDate2"
+												data-bs-toggle="dropdown" aria-haspopup="true"
+												aria-expanded="true">
+												<i class="mdi mdi-calendar"></i> Today (10 Jan 2021)
+											</button>
+											<div class="dropdown-menu dropdown-menu-right"
+												aria-labelledby="dropdownMenuDate2">
+												<a class="dropdown-item" href="#">January - March</a> <a
+													class="dropdown-item" href="#">March - June</a> <a
+													class="dropdown-item" href="#">June - August</a> <a
+													class="dropdown-item" href="#">August - November</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 grid-margin transparent">
+							<div class="row">
+								<div class="col-md-3 mb-4 stretch-card transparent">
+									<div class="card card-tale">
+										<div class="card-body">
+											<p class="mb-4">Today’s Bookings</p>
+											<p class="fs-30 mb-2">4006</p>
+											<p>10.00% (30 days)</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3 mb-4 stretch-card transparent">
+									<div class="card card-dark-blue">
+										<div class="card-body">
+											<p class="mb-4">Total Bookings</p>
+											<p class="fs-30 mb-2">61344</p>
+											<p>22.00% (30 days)</p>
+										</div>
+									</div>
+								</div>
 
-<div class="container">
 
-<h2>Add Car Listing</h2>
+								<div class="col-md-3 mb-4 stretch-card transparent">
+									<div class="card card-light-blue">
+										<div class="card-body">
+											<p class="mb-4">Number of Meetings</p>
+											<p class="fs-30 mb-2">34040</p>
+											<p>2.00% (30 days)</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3  mb-4 stretch-card transparent">
+									<div class="card card-light-danger">
+										<div class="card-body">
+											<p class="mb-4">Number of Clients</p>
+											<p class="fs-30 mb-2">47033</p>
+											<p>0.22% (30 days)</p>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
 
-<form action="saveCarListing" method="post">
 
-    <!-- Seller -->
-    <label>Seller</label>
-    <select name="userId" required>
-        <option value="">Select Seller</option>
-        <c:forEach items="${allUser}" var="u">
-            <option value="${u.userId}">
-                ${u.firstName} ${u.lastName}
-            </option>
-        </c:forEach>
-    </select>
+					<div class="row">
+						<div class="col-md-12 grid-margin stretch-card">
+							<div class="card">
+								<div class="card-body">
+									<!-- <div class="d-flex justify-content-between">
+										<p class="card-title">Sales Report</p>
+										<a href="#" class="text-info">View all</a>
+									</div>
+									<p class="font-weight-500">The total number of sessions
+										within the date range. It is the period time a user is
+										actively engaged with your website, page or app, etc</p> -->
+									<!-- <div id="sales-chart-legend" class="chartjs-legend mt-4 mb-2"></div>
+									<canvas id="sales-chart"></canvas> -->
+									
+									<h2 style="text-align: center;">Car Listing</h2>
+								</div>
+							</div>
+						</div>
+					</div>
 
-    <!-- Brand -->
-    <label>Brand</label>
-    <select name="brandId" required>
-        <option value="">Select Brand</option>
-        <c:forEach items="${allCarBrand}" var="b">
-            <option value="${b.brandId}">
-                ${b.brandName}
-            </option>
-        </c:forEach>
-    </select>
+						 <div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
 
-    <!-- Model -->
-    <label>Model</label>
-    <select name="modelId" required>
-        <option value="">Select Model</option>
-        <c:forEach items="${allCarModel}" var="m">
-            <option value="${m.modelId}">
-                ${m.modelName}
-            </option>
-        </c:forEach>
-    </select>
+              
 
-    <!-- Variant -->
-    <label>Variant</label>
-    <select name="variantId" required>
-        <option value="">Select Variant</option>
-        <c:forEach items="${allCarVariant}" var="v">
-            <option value="${v.variantId}">
-                ${v.variantName}
-            </option>
-        </c:forEach>
-    </select>
+                <form action="saveListing" method="post">
 
-    <!-- City -->
-    <label>City</label>
-    <input type="text" name="city" required>
+    <div class="row">
 
-    <!-- KMS Driven -->
-    <label>Kilometers Driven</label>
-    <input type="number" name="kmsDriven" required>
+        <!-- <div class="col-md-12">
+            <div class="form-group">
+                <label>Seller</label>
+                <select class="form-control form-select" name="sellerId">
+                    <option>Select Seller</option>
+                </select>
+            </div>
+        </div> -->
+        
+        <div class="col-md-12">
+    <div class="form-group">
+        <label>Seller</label>
+        <select class="form-control form-select" name="sellerId">
+            <option value="">Select Seller</option>
 
-    <!-- Year -->
-    <label>Manufacturing Year</label>
-    <input type="number" name="year" required>
+            <c:forEach items="${allUser}" var="s">
+                <option value="${s.userId}">
+                    ${s.firstName} ${s.lastName}
+                </option>
+            </c:forEach>
 
-    <!-- Ownership -->
-    <label>Ownership</label>
-    <select name="ownership" required>
-        <option value="FIRST">First</option>
-        <option value="SECOND">Second</option>
-        <option value="THIRD">Third</option>
-    </select>
+        </select>
+    </div>
+</div>
+        
 
-    <!-- Price -->
-    <label>Price</label>
-    <input type="number" name="price" required>
+       <!--  <div class="col-md-12">
+            <div class="form-group">
+                <label>Brand</label>
+                <select class="form-control form-select" name="brandId">
+                    <option>Select Brand</option>
+                </select>
+            </div>
+        </div> -->
+        
+        <div class="col-md-12">
+    <div class="form-group">
+        <label>Brand</label>
+        <select class="form-control form-select" name="brandId">
+            <option value="">Select Brand</option>
 
-    <!-- Status -->
-    <label>Status</label>
-    <select name="status">
-        <option value="AVAILABLE">Available</option>
-        <option value="SOLD">Sold</option>
-    </select>
+            <c:forEach items="${allCarBrand}" var="b">
+                <option value="${b.brandId}">
+                    ${b.brandName}
+                </option>
+            </c:forEach>
 
-    <!-- Created At -->
-    <label>Created Date</label>
-    <input type="date" name="createdAt">
+        </select>
+    </div>
+</div>
+        
+        
+        
+        
 
-    <button type="submit">Save Listing</button>
+        <!-- <div class="col-md-12">
+            <div class="form-group">
+                <label>Model</label>
+                <select class="form-control form-select" name="modelId">
+                    <option>Select Model</option>
+                </select>
+            </div>
+        </div> -->
+        
+        
+        <div class="col-md-12">
+    <div class="form-group">
+        <label>Model</label>
+        <select class="form-control form-select" name="modelId">
+            <option value="">Select Model</option>
+
+            <c:forEach items="${allCarModel}" var="m">
+                <option value="${m.modelId}">
+                    ${m.modelName}
+                </option>
+            </c:forEach>
+
+        </select>
+    </div>
+</div>
+        
+        
+<!-- 
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Variant</label>
+                <select class="form-control form-select" name="variantId">
+                    <option>Select Variant</option>
+                </select>
+            </div>
+        </div>
+ -->
+ 
+ <div class="col-md-12">
+    <div class="form-group">
+        <label>Variant</label>
+        <select class="form-control form-select" name="variantId">
+            <option value="">Select Variant</option>
+
+            <c:forEach items="${allCarVariant}" var="v">
+                <option value="${v.variantId}">
+                    ${v.variantName}
+                </option>
+            </c:forEach>
+
+        </select>
+    </div>
+</div>
+ 
+ 
+ 
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>City</label>
+                <input type="text" class="form-control" name="city">
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Kilometers Driven</label>
+                <input type="number" class="form-control" name="kmDriven">
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Manufacturing Year</label>
+                <input type="number" class="form-control" name="year">
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Ownership</label>
+                <select class="form-control form-select" name="ownership">
+                    <option>First</option>
+                    <option>Second</option>
+                    <option>Third</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Price</label>
+                <input type="number" class="form-control" name="price">
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Status</label>
+                <select class="form-control form-select" name="status">
+                    <option>Available</option>
+                    <option>Sold</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Created Date</label>
+                <input type="date" class="form-control" name="createdDate">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="text-center mt-4">
+        <button type="submit" class="btn btn-primary">
+            Save Listing
+        </button>
+    </div>
 
 </form>
+                
 
+            </div>
+        </div>
+    </div>
 </div>
 
+						
+				</div>
+				<!-- content-wrapper ends -->
+				<!-- partial:partials/_footer.html -->
+				
+				<jsp:include page="AdminFooter.jsp"></jsp:include>
+				<!-- partial -->
+			</div>
+			<!-- main-panel ends -->
+		</div>
+		<!-- page-body-wrapper ends -->
+	</div>
+	<!-- container-scroller -->
+	<!-- plugins:js -->
+	
+	
+	
+	
+	<!-- End custom js for this page-->
 </body>
-</html>
+</html> 
