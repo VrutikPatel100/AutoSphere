@@ -2,10 +2,13 @@ package com.grownited.controller;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import com.grownited.repository.CarModelTypeRepository;
 import com.grownited.repository.UserDetailRepository;
 import com.grownited.repository.UserRepository;
+
+import jakarta.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,9 +42,29 @@ public class SessionController {
 	    return "Signup";
 	}
 	
+	
 	@GetMapping("/login")
 	public String openLoginPage() {
 		return "Login";
+	}
+	
+	@PostMapping("/authenticate")
+	public String authenticate(String email,String password,Model model,HttpSession session) {
+	Optional<UserEntity> op = userRepository.findByEmail(email);
+	
+	if(op.isPresent()) {
+		UserEntity dbUser = op.get();
+		session.setAttribute("user", dbUser);
+		if(dbUser.getPassword().equals(password)) {
+			if(dbUser.getRole().equals("ADMIN")) {
+				return"redirect:/admin-dashboard";  //url
+			}else if(dbUser.getRole().equals("CUSTOMER")) {
+				return"redirect:/customer-dashboard";
+			}
+		}
+	}
+		model.addAttribute("error","Invalid Credentials");
+		return"Login";
 	}
 	
 	@GetMapping("/forgetpassword")
@@ -73,4 +96,10 @@ public class SessionController {
 		return"Login";
 	}
 
+	
+	@GetMapping("logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return"Login";
+	}
 }

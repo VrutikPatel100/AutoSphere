@@ -27,7 +27,7 @@
 	<!-- Main Content -->
 	<div class="content p-4">
 		<h3>Dashboard</h3>
-		<p class="text-muted">Welcome to the admin dashboard.</p>
+		<p class="text-muted"><h6>Welcome ${sessionScope.user.firstName}</h6></p>
 
 		<div class="row">
 			<div class="col-md-3">

@@ -38,7 +38,7 @@
 
 		<div class="d-flex justify-content-between align-items-center mb-3">
 			<h3>User List</h3>
-			<a href="new-user.jsp" class="btn btn-primary">+ Add User</a>
+			<a href="signup" class="btn btn-primary">+ Add User</a>
 		</div>
 
 		<table class="table table-bordered table-hover table-striped">
@@ -83,10 +83,8 @@
 								</c:otherwise>
 							</c:choose></td>
 
-						<td><a href="editUser?userId=${user.userId}"
-							class="btn btn-sm btn-warning">Edit</a> <a
-							href="deleteUser?userId=${user.userId}"
-							class="btn btn-sm btn-danger"
+						<td><a href="editUser?userId=${user.userId}"class="btn btn-sm btn-warning">Edit</a> 
+						<a href="deleteUser?userId=${user.userId}"class="btn btn-sm btn-danger"
 							onclick="return confirm('Are you sure?');"> Delete </a>
 							
 							<a class="btn btn-info" href="viewUser?userId=${user.userId}">View</a>

@@ -11,7 +11,7 @@
     <!-- Bootstrap 5 CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <title>Login</title>
+    <title>AutoSphere Login</title>
 
     <style>
         body {
@@ -41,8 +41,10 @@
                 <div class="alert alert-danger">${error}</div>
             </c:if>
 
-            <form action="loginUser" method="post">
-
+				<h6>hello lets get started</h6>
+				<h6>Sign To Continue.</h6>
+            <form action="authenticate" method="post">
+				
                 <!-- Email -->
                 <div class="mb-3">
                     <label for="email" class="form-label">Email Address</label>
@@ -69,7 +71,11 @@
                 <p class="text-center mt-3">
                     Forget Password? 
                     <a href="forgetpassword">Click Here</a>
+                    <br><br>
+                    <span class="text-danger">${error}</span>
                 </p>
+                <br>
+                
 
             </form>
         </div>

@@ -125,7 +125,7 @@ tbody tr:hover {
 						                <td>${t.transactionStatus}</td>
 						                <td>${t.completedAt}</td>
 						                <td>
-						                    <a class="edit" href="viewTransaction?transactionId=${t.transactionId}">VIEW</a>
+						                    <a class="edit" href="viewCarTransaction?transactionId=${t.transactionId}">VIEW</a>
 						                    <a class = "delete" href="deleteTransaction?transactionId=${t.transactionId}">DELETE</a>
 						                </td>
 						            </tr>
