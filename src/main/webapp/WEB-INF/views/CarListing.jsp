@@ -148,8 +148,8 @@
             <option value="">Select Seller</option>
 
             <c:forEach items="${allUser}" var="s">
-                <option value="${s.userId}">
-                    ${s.firstName} ${s.lastName}
+                <option value="${s.userId}">            
+                    ${s.firstName} ${s.lastName} 
                 </option>
             </c:forEach>
 
@@ -253,7 +253,7 @@
         <div class="col-md-12">
             <div class="form-group">
                 <label>Kilometers Driven</label>
-                <input type="number" class="form-control" name="kmDriven">
+                <input type="number" class="form-control" name="kmsDriven">
             </div>
         </div>
 
@@ -295,7 +295,7 @@
         <div class="col-md-12">
             <div class="form-group">
                 <label>Created Date</label>
-                <input type="date" class="form-control" name="createdDate">
+                <input type="date" class="form-control" name="createdAt">
             </div>
         </div>
 

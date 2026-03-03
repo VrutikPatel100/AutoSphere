@@ -43,7 +43,6 @@ public class SavedListingEntity {
 	public void setAddedAt(Date addedAt) {
 		this.addedAt = addedAt;
 	}
-
 	
 	
 	

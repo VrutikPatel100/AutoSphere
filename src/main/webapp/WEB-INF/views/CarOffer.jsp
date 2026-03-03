@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -160,7 +162,7 @@
                             <option value="">Select Buyer</option>
                             <c:forEach items="${allUser}" var="u">
                                 <option value="${u.userId}">
-                                    ${u.userId} - ${u.firstName}
+                                    ${u.firstName} - ${u.lastName}
                                 </option>
                             </c:forEach>
                         </select>

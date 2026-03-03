@@ -1,4 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -141,7 +144,9 @@
 							                <td>${o.offerId}</td>
 							                <td>${o.listingId}</td>
 							                <td>${o.userId}</td>
-							                <td>₹ ${o.offeredPrice}</td>
+							         		<td>₹ ${o.offeredPrice}</td> 
+							                <%-- <td>₹ <fmt:formatNumber value="${o.offeredPrice}" type="number" groupingUsed="true"/></td> --%>
+							                
 							
 							                <td>
 							                    <c:choose>
@@ -160,10 +165,13 @@
 							                <td>${o.createdAt}</td>
 							
 							                <td>
-							                    <c:if test="${o.offerStatus == 'PENDING'}">
+							                    <%-- <c:if test="${o.offerStatus == 'PENDING'}">
 							                        <a href="viewOffer?offerId=${o.offerId}" class="action-btn accept">VIEW</a>
 							                        <a href="deleteOffer?offerId=${o.offerId}" class="action-btn reject">DELETE</a>
-							                    </c:if>
+							                    </c:if> --%>
+							                    
+							                    <a href="viewOffer?offerId=${o.offerId}" class="btn btn-primary">VIEW</a>
+    											<a href="deleteOffer?offerId=${o.offerId}" class="btn btn-danger">DELETE</a>
 							                </td>
 							
 							            </tr>

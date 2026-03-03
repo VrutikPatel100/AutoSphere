@@ -1,10 +1,12 @@
 package com.grownited.service;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -60,6 +62,28 @@ public class MailerService {
 			e.printStackTrace();
 		}
 
+	}
+	
+	
+public String sendForgotPasswordOtp(String email) {
+		
+		String otp = String.format("%06d", new Random().nextInt(999999));
+		
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setFrom("patelvrutik8682@gmail.com");
+		message.setTo(email);
+		message.setSubject("Your Password Reset OTP");
+		message.setText("Dear user,\\n\\nYour OTP for password reset is: " + otp +
+				"\n\nThis OTP is valid for 10 minutes.\n\nIf you did not request this, please ignore.\n\nThank you!");
+		
+		
+		//send mail
+		javaMailSender.send(message);
+		System.out.println("✅ OTP " + otp + 
+				"sent successfully to" + email);
+		
+		 // Return OTP (so controller can validate it later)
+		return otp;
 	}
 
 }

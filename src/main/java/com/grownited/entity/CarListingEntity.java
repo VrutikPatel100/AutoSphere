@@ -33,6 +33,12 @@ public class CarListingEntity {
 	public void setListingId(Integer listingId) {
 		this.listingId = listingId;
 	}
+	public Integer getUserId() {
+		return userId;
+	}
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
 	public Integer getBrandId() {
 		return brandId;
 	}
@@ -93,19 +99,6 @@ public class CarListingEntity {
 	public void setCreatedAt(LocalDate createdAt) {
 		this.createdAt = createdAt;
 	}
-//	public Integer getSellerId() {
-//		return sellerId;
-//	}
-//	public void setSellerId(Integer sellerId) {
-//		this.sellerId = sellerId;
-//	}
-	public Integer getUserId() {
-		return userId;
-	}
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
-	
 	
 	
 

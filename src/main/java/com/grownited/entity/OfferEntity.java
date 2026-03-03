@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="CarOffer")
+@Table(name="car_offer")
 public class OfferEntity {
 	
 	@Id
@@ -38,7 +38,12 @@ public class OfferEntity {
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
-	
+	public Double getOfferedPrice() {
+		return offeredPrice;
+	}
+	public void setOfferedPrice(Double offeredPrice) {
+		this.offeredPrice = offeredPrice;
+	}
 	public String getOfferStatus() {
 		return offerStatus;
 	}
@@ -51,14 +56,6 @@ public class OfferEntity {
 	public void setCreatedAt(LocalDate createdAt) {
 		this.createdAt = createdAt;
 	}
-	public Double getOfferedPrice() {
-		return offeredPrice;
-	}
-	public void setOfferedPrice(Double offeredPrice) {
-		this.offeredPrice = offeredPrice;
-	}
-	
-	
 	
 	
 	

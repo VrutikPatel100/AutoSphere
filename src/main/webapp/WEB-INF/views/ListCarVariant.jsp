@@ -160,7 +160,7 @@
                                         </c:if>
                                     </td> --%>
                                     <td>
-                                        <a href="editCarVariant?variantId=${v.variantId}" class="btn btn-primary" >VIEW</a>
+                                        <a href="viewCarVariant?variantId=${v.variantId}" class="btn btn-primary" >VIEW</a>
                                         <a href="deleteCarVariant?variantId=${v.variantId}"class="btn btn-danger"
                                            onclick="return confirm('Are you sure you want to delete this variant?')">
                                            Delete

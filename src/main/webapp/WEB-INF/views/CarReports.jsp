@@ -180,6 +180,12 @@
                             <option value="REJECTED">REJECTED</option>
                         </select>
                     </div>
+                    
+                    <!-- Created At -->
+                    <div class="form-group mb-4">
+                        <label>Created At</label>
+                        <input type="date" class="form-control" name="createdAt" required>
+                    </div>
 
                     <button type="submit" class="btn btn-primary btn-block">
                         Submit Report

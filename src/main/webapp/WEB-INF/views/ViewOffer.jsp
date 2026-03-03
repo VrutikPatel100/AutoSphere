@@ -51,6 +51,9 @@
                             <td class="label">Offered Price</td>
                             <td>₹ ${Offer.offeredPrice}</td>
                         </tr>
+                       <%--  <tr>
+                        	<td>₹ <fmt:formatNumber value="${Offer.offeredPrice}" type="number" groupingUsed="true"/></td>
+                        </tr> --%>
 
                         <tr>
                             <td class="label">Offer Status</td>
