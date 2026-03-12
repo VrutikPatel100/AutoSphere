@@ -94,7 +94,7 @@ public class SessionController {
 			if(dbUser.getRole().equals("ADMIN")) {
 				return"redirect:/admin-dashboard";  //url
 			}else if(dbUser.getRole().equals("CUSTOMER")) {
-				return"redirect:/customer-dashboard";
+				return"redirect:/customer/customer-dashboard";
 			}
 		}
 	}
@@ -231,3 +231,4 @@ public class SessionController {
 		return"Login";
 	}
 }
+

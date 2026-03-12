@@ -51,7 +51,7 @@
                         <tr>
                             <td class="label">Image Preview</td>
                             <td>
-                                <img src="${carImage.imageUrl}" alt="Car Image">
+                                <img src="${carImage.profilePicURL}" alt="Car Image">
                             </td>
                         </tr>
 

@@ -132,8 +132,8 @@
 						                <h4 class="mb-0">Add Car Image</h4>
 						            </div>
 						
-						            <div class="card-body">
-						                <form action="saveCarImage" method="post">
+						           <div class="card-body">
+						                	<form action="/uploadCarImage" method="post" enctype="multipart/form-data">
 						                    <div class="mb-3">
 						                        <label class="form-label">Select Model</label>
 						                        <select class="form-control" name="modelName" required>
@@ -144,13 +144,23 @@
 						                                </option>
 						                            </c:forEach>
 						                        </select>
-						                    </div>
+						                    </div>  
 						
-						                    <div class="mb-3">
+						                    <!-- <div class="mb-3">
 						                        <label class="form-label">Image URL</label>
 						                        <input type="text" class="form-control"
 						                               name="imageUrl" required>
-						                    </div>
+						                    </div> -->
+						                    
+						                    <!-- Profile Pic URL -->
+							<!-- <div class="mb-3">
+								<label class="form-label">Profile Picture URL</label> <input
+									type="file" name="profilePic" class="form-control">
+							</div> -->
+							
+							
+
+							<input type="file" name="imageURL">
 						
 						                    <div class="mb-3">
 						                        <label class="form-label">Is Primary?</label>

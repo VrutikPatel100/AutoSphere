@@ -13,33 +13,43 @@ public class CarImageEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer imageId;
-	private String modelName; 
-	private String imageUrl;
+	private String modelName;  
+	/* private String imageUrl; */
+	private String imageURL;
 	private boolean isPrimary;
 	public Integer getImageId() {
-		return imageId;
+		return imageId; 
 	}
 	public void setImageId(Integer imageId) {
-		this.imageId = imageId;
+		this.imageId = imageId; 
 	}
-	public String getModelName() {
+	public String getModelName() { 
 		return modelName;
 	}
 	public void setModelName(String modelName) {
 		this.modelName = modelName;
 	}
-	public String getImageUrl() {
-		return imageUrl;
-	}
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
+
+	/*
+	 * public String getImageUrl() { return imageUrl; } public void
+	 * setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+	 */
 	public boolean isPrimary() {
 		return isPrimary;
 	}
 	public void setPrimary(boolean isPrimary) {
 		this.isPrimary = isPrimary;
+		
 	}
+	public String getImageURL() {
+		return imageURL;
+	}
+	public void setImageURL(String imageURL) {
+		this.imageURL = imageURL;
+	}
+	
+	
+	
 	
 	
 	
