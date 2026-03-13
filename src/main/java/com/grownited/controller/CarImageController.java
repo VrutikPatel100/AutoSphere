@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cloudinary.Cloudinary;
@@ -40,32 +41,26 @@ public class CarImageController {
 	}
 	
 	@PostMapping("/uploadCarImage")
-	public String saveCarImage(CarImageEntity carImageEntity,MultipartFile imageURL) {
-		
-		
-		try {
+	public String saveCarImage(CarImageEntity carImageEntity,
+	                           @RequestParam("imageFile") MultipartFile imageFile) {
 
-			/* System.out.println(profilePic.getOriginalFilename()); */
+	    try {
 
-			Map uploadResult = cloudinary.uploader().upload(imageURL.getBytes(), null);
+	        Map uploadResult = cloudinary.uploader().upload(imageFile.getBytes(), null);
 
-			String profilePicURL = uploadResult.get("secure_url").toString();
+	        String imageURL = uploadResult.get("secure_url").toString();
 
-			System.out.println(profilePicURL);
+	        carImageEntity.setImageURL(imageURL);
 
-			CarImageEntity carImage = new CarImageEntity();
-			carImage.setImageURL(profilePicURL);
+	        carImageRepository.save(carImageEntity);
 
-			carImageRepository.save(carImage);
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		
-		carImageRepository.save(carImageEntity);
-		return"AdminDashboard";	
+	    return "AdminDashboard";
 	}
+
 	
 	@GetMapping("/listCarImage")
 	public String listCarImage(Model model) {

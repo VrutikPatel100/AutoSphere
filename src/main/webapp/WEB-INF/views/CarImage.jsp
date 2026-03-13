@@ -26,7 +26,8 @@
 						<div class="col-md-12 grid-margin">
 							<div class="row">
 								<div class="col-12 col-xl-8 mb-4 mb-xl-0">
-									<h3 class="font-weight-bold">Welcome ${sessionScope.user.firstName}</h3>
+									<h3 class="font-weight-bold">Welcome
+										${sessionScope.user.firstName}</h3>
 									<h6 class="font-weight-normal mb-0">
 										All systems are running smoothly! You have <span
 											class="text-primary">3 unread alerts!</span>
@@ -95,7 +96,7 @@
 										</div>
 									</div>
 								</div>
-								
+
 							</div>
 						</div>
 					</div>
@@ -114,83 +115,70 @@
 										actively engaged with your website, page or app, etc</p> -->
 									<!-- <div id="sales-chart-legend" class="chartjs-legend mt-4 mb-2"></div>
 									<canvas id="sales-chart"></canvas> -->
-									
+
 									<h2 style="text-align: center;">Add Car Image</h2>
-									
-									
-									
+
+
+
 								</div>
 							</div>
 						</div>
 					</div>
 
-						<div class="row justify-content-center">
-						    <div class="col-md-8 col-lg-6">
-						        <div class="card shadow">
-						
-						            <div class="card-header text-center">
-						                <h4 class="mb-0">Add Car Image</h4>
-						            </div>
-						
-						           <div class="card-body">
-						                	<form action="/uploadCarImage" method="post" enctype="multipart/form-data">
-						                    <div class="mb-3">
-						                        <label class="form-label">Select Model</label>
-						                        <select class="form-control" name="modelName" required>
-						                            <option value="">Select Model</option>
-						                            <c:forEach var="m" items="${allCarModel}">
-						                                <option value="${m.modelName}">
-						                                    ${m.modelName}
-						                                </option>
-						                            </c:forEach>
-						                        </select>
-						                    </div>  
-						
-						                    <!-- <div class="mb-3">
-						                        <label class="form-label">Image URL</label>
-						                        <input type="text" class="form-control"
-						                               name="imageUrl" required>
-						                    </div> -->
-						                    
-						                    <!-- Profile Pic URL -->
-							<!-- <div class="mb-3">
-								<label class="form-label">Profile Picture URL</label> <input
-									type="file" name="profilePic" class="form-control">
-							</div> -->
-							
-							
+					<div class="row justify-content-center">
+						<div class="col-md-8 col-lg-6">
+							<div class="card shadow">
 
-							<input type="file" name="imageURL">
-						
-						                    <div class="mb-3">
-						                        <label class="form-label">Is Primary?</label>
-						                        <select class="form-control" name="isPrimary" required>
-						                            <option value="">Select Option</option>
-						                            <option value="true">Yes</option>
-						                            <option value="false">No</option>
-						                        </select>
-						                    </div>
-						
-						                    <div class="text-center">
-						                        <button type="submit" class="btn btn-primary px-4">
-						                            Save Car Image
-						                        </button>
-						                    </div>
-						                </form>
-						            </div>
-						
-						        </div>
-						    </div>
+								<div class="card-header text-center">
+									<h4 class="mb-0">Add Car Image</h4>
+								</div>
+
+								<div class="card-body">
+									<form action="/uploadCarImage" method="post"
+										enctype="multipart/form-data">
+										<div class="mb-3">
+											<label class="form-label">Select Model</label> <select
+												class="form-control" name="modelName" required>
+												<option value="">Select Model</option>
+												<c:forEach var="m" items="${allCarModel}">
+													<option value="${m.modelName}">${m.modelName}</option>
+												</c:forEach>
+											</select>
+										</div>
+
+
+
+
+										<input type="file" name="imageFile">
+
+										<div class="mb-3">
+											<label class="form-label">Is Primary?</label> <select
+												class="form-control" name="isPrimary" required>
+												<option value="">Select Option</option>
+												<option value="true">Yes</option>
+												<option value="false">No</option>
+											</select>
+										</div>
+
+										<div class="text-center">
+											<button type="submit" class="btn btn-primary px-4">
+												Save Car Image</button>
+										</div>
+									</form>
+								</div>
+
+							</div>
 						</div>
-							
-							
+					</div>
 
-							
-						
+
+
+
+
 				</div>
 				<!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->
-				
+
 				<jsp:include page="AdminFooter.jsp"></jsp:include>
 				<!-- partial -->
 			</div>
@@ -200,10 +188,10 @@
 	</div>
 	<!-- container-scroller -->
 	<!-- plugins:js -->
-	
-	
-	
-	
+
+
+
+
 	<!-- End custom js for this page-->
 </body>
-</html> 
+</html>

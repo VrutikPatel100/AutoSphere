@@ -149,9 +149,12 @@
 							        <tr>
 							            <td>${c.listingId}</td>
 							            <td>${c.userId}</td>
-							            <td>${c.brandId}</td>
-							            <td>${c.modelId}</td>
-							            <td>${c.variantId}</td>
+							            <%-- <td>${c.brandId} ${c.brandName}</td> --%>
+							            <td>${c.brandName}</td>
+							           <%--  <td>${c.modelId} ${c.modelName}</td> --%>
+							            <td>${c.modelName}</td>
+							            <%-- <td>${c.variantId} ${c.variantName}</td> --%>
+							            <td> ${c.variantName}</td>
 							            <td>${c.city}</td>
 							            <td>${c.kmsDriven}</td>
 							            <td>${c.year}</td>

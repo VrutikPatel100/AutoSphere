@@ -36,8 +36,11 @@ public class SpinnyController {
 
 
 	@GetMapping ("customer-dashboard")
-	public String spinny()
+	public String spinny(Model model)
 	{
+		List<CarImageEntity> image = carImageRepository.findAll();
+				
+		model.addAttribute("image", image);
 		return "spinny";
 	}
 	
@@ -53,7 +56,7 @@ public class SpinnyController {
 	}
 	
 	@GetMapping("/customerViewCarListing")
-	public String customerViewCarListing(@RequestParam("listingId") Integer listingId, Model model){
+	public String customerViewCarListing(Integer listingId, Model model){
 
 	    Optional<CarListingEntity> op = carListingRepository.findById(listingId);
 

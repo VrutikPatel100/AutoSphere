@@ -43,17 +43,20 @@
 
                     <tr>
                         <td class="label">Brand</td>
-                        <td>${carListing.brandId}</td>
+                        <%-- <td>${carListing.brandId} - ${carListing.brandName}</td> --%>
+                        <td> ${carListing.brandName}</td>
                     </tr>
 
                     <tr>
                         <td class="label">Model</td>
-                        <td>${carListing.modelId}</td>
+                        <%-- <td>${carListing.modelId} - ${carListing.modelName}</td> --%>
+                        <td>${carListing.modelName}</td>
                     </tr>
 
                     <tr>
                         <td class="label">Variant</td>
-                        <td>${carListing.variantId}</td>
+                       <%--  <td>${carListing.variantId} - ${carListing.variantName}</td> --%>
+                        <td>${carListing.variantName}</td>
                     </tr>
 
                     <tr>

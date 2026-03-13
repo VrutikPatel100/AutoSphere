@@ -17,9 +17,15 @@ public class CarListingEntity {
 	private Integer listingId;
 //	private Integer sellerId;
 	private Integer userId;
+	
 	private Integer brandId;
 	private Integer modelId;
 	private Integer variantId;
+	
+	private String brandName;
+	private String modelName;
+	private String variantName;
+	
 	private String city;
 	private Integer kmsDriven;
 	private Integer year;
@@ -99,6 +105,25 @@ public class CarListingEntity {
 	public void setCreatedAt(LocalDate createdAt) {
 		this.createdAt = createdAt;
 	}
+	public String getBrandName() {
+		return brandName;
+	}
+	public void setBrandName(String brandName) {
+		this.brandName = brandName;
+	}
+	public String getModelName() {
+		return modelName;
+	}
+	public void setModelName(String modelName) {
+		this.modelName = modelName;
+	}
+	public String getVariantName() {
+		return variantName;
+	}
+	public void setVariantName(String variantName) {
+		this.variantName = variantName;
+	}
+	
 	
 	
 

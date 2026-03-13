@@ -148,7 +148,7 @@
                                                     <td>${img.imageId}</td>
                                                     <td>${img.modelName}</td>
                                                     <td>
-                                                        <img src="${img.profilePicURL}"
+                                                        <img src="${img.imageURL}" 
                                                              width="120"
                                                              height="80"
                                                              class="img-thumbnail"/>

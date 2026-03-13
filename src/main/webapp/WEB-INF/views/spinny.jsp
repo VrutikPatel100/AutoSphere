@@ -293,11 +293,8 @@ body {
 		</div>
 
 		<div class="menu">
-			<a href="CustomerCarList">List Car</a> 
-			<a href="#">Car Brand</a> 
-			<a href="#">Buy Car</a>
-		 	<a href="#">Sell Car</a> 
-		 	<a href="#">Login</a>
+			<a href="CustomerCarList">List Car</a> <a href="#">Car Brand</a> <a
+				href="#">Buy Car</a> <a href="#">Sell Car</a> <a href="#">Login</a>
 			<a href="#">Register</a>
 		</div>
 	</div>
@@ -315,7 +312,7 @@ body {
 
 			<!-- <div class="slider" id="slider"> -->
 
-				<!-- <img
+			<!-- <img
 					src="https://tse2.mm.bing.net/th/id/OIP.ol3_UawwhWz5LhXFWAdoNgHaE8">
 				<img
 					src="https://tse3.mm.bing.net/th/id/OIP.k83Uo4eIEvIwprOFSEAAFAHaEo">
@@ -336,14 +333,13 @@ body {
 				<img
 					src="https://tse2.mm.bing.net/th/id/OIP.sU50XnjaVMAl8jUzpQMjYQHaE8?pid=Api&P=0&h=220">
  -->
+			<div class="slider" id="slider">
 
-				<div class="slider" id="slider">
+				<c:forEach var="img" items="${image}">
+					<img src="${img.imageURL}">
+				</c:forEach>
 
-					<c:forEach var="img" items="${image}">
-						<img src="${img}">
-					</c:forEach>
-
-				</div>
+			</div>
 
 
 			<!-- </div>-->

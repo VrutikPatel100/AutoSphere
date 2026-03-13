@@ -55,11 +55,45 @@ public class CarListingController {
 		return"CarListing";
 	}
 	
+	/*
+	 * @PostMapping("saveListing") public String saveCarList(CarListingEntity
+	 * carListingEntity) { carListingRepository.save(carListingEntity);
+	 * return"AdminDashboard"; }
+	 */
+	
 	@PostMapping("saveListing")
 	public String saveCarList(CarListingEntity carListingEntity) {
-		carListingRepository.save(carListingEntity);
-		return"AdminDashboard"; 
-	}
+
+        // Brand Name
+        Optional<CarBrandEntity> brand =
+                carBrandRepository.findById(carListingEntity.getBrandId());
+
+        if (brand.isPresent()) {
+            carListingEntity.setBrandName(brand.get().getBrandName());
+        }
+
+        // Model Name
+        Optional<CarModelTypeEntity> model =
+                carModelTypeRepository.findById(carListingEntity.getModelId());
+
+        if (model.isPresent()) {
+            carListingEntity.setModelName(model.get().getModelName());
+        }
+
+        // Variant Name
+        Optional<CarVariantEntity> variant =
+                carVariantRepository.findById(carListingEntity.getVariantId());
+
+        if (variant.isPresent()) {
+            carListingEntity.setVariantName(variant.get().getVariantName());
+        }
+
+        carListingRepository.save(carListingEntity);
+
+        return "redirect:/allCarList";
+    }
+	
+	
 	
 	@GetMapping("allCarList")
 	public String alLCarList(Model model) {
