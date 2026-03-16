@@ -1,5 +1,7 @@
 package com.grownited.entity;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,7 +18,7 @@ public class CarModelTypeEntity {
 	private Integer brandId;
     private String modelName;
     private String bodyType;
-    private Integer launchYear;
+    private LocalDate launchYear;
     private boolean active;
 	public Integer getModelId() {
 		return modelId;
@@ -34,14 +36,9 @@ public class CarModelTypeEntity {
 		return bodyType;
 	}
 	public void setBodyType(String bodyType) {
-		this.bodyType = bodyType;
+		this.bodyType = bodyType; 
 	}
-	public Integer getLaunchYear() {
-		return launchYear;
-	}
-	public void setLaunchYear(Integer launchYear) {
-		this.launchYear = launchYear;
-	}
+	
 	public boolean isActive() {
 		return active;
 	}
@@ -54,7 +51,14 @@ public class CarModelTypeEntity {
 	public void setBrandId(Integer brandId) {
 		this.brandId = brandId;
 	}
+	public LocalDate getLaunchYear() {
+		return launchYear;
+	}
+	public void setLaunchYear(LocalDate launchYear) {
+		this.launchYear = launchYear;
+	}
     
+	
 	
 
 }

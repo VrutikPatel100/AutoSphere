@@ -97,7 +97,8 @@ public class SpinnyController {
 	    // Get car listing
 	    Optional<CarListingEntity> op = carListingRepository.findById(listingId);
 	    if(op.isPresent()) {
-	        model.addAttribute("carListing", op.get());
+	    	CarListingEntity carListingEntity = op.get();
+	        model.addAttribute("carListing", carListingEntity);
 	    } else {
 	        return "redirect:/CustomerCarList"; // fallback if car not found
 	    }

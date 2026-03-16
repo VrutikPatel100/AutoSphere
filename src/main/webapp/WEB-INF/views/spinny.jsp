@@ -114,8 +114,8 @@ cursor:pointer;
 border-radius:50%;
 }
 
-.left{ left:10px; }
-.right{ right:10px; }
+.left{left:10px;}
+.right{right:10px;}
 
 /* BUTTON */
 
@@ -160,10 +160,10 @@ object-fit:cover;
 border-radius:8px;
 }
 
-/* HOW IT WORKS */
+/* HOW WORKS */
 
 .how-section{
-background:linear-gradient(135deg,#ede7f6,#f5f5f5);
+background:#f2f2f2;
 padding:60px 20px;
 text-align:center;
 }
@@ -171,7 +171,7 @@ text-align:center;
 .how-cards{
 display:flex;
 justify-content:center;
-gap:60px;
+gap:80px;
 flex-wrap:wrap;
 margin-top:40px;
 }
@@ -181,11 +181,53 @@ width:220px;
 }
 
 .how-card img{
-width:140px;
+width:120px;
 margin-bottom:10px;
 }
 
-/* POPULAR BRANDS */
+.how-card h3{
+font-size:16px;
+}
+
+/* WATCH BUTTON */
+
+.watch-area{
+margin-top:40px;
+}
+
+.watch-btn{
+background:linear-gradient(90deg,#7b1fa2,#6a1b9a);
+color:white;
+border:none;
+padding:16px 35px;
+font-size:18px;
+border-radius:14px;
+cursor:pointer;
+display:inline-flex;
+align-items:center;
+gap:12px;
+}
+
+.play-icon{
+background:white;
+color:#6a1b9a;
+width:28px;
+height:28px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+font-size:14px;
+}
+
+.learn-more{
+margin-top:15px;
+color:#6a1b9a;
+font-weight:600;
+cursor:pointer;
+}
+
+/* BRANDS */
 
 .brand-section{
 padding:60px;
@@ -231,22 +273,43 @@ flex-wrap:wrap;
 width:220px;
 }
 
+.footer-col h3{
+margin-bottom:15px;
+}
+
+.footer-col p{
+font-size:14px;
+line-height:22px;
+color:#ddd;
+}
+
 .footer-col a{
 display:block;
 color:#ddd;
 text-decoration:none;
 margin-bottom:8px;
+font-size:14px;
 }
 
 .footer-bottom{
 margin-top:30px;
 text-align:center;
 color:#ccc;
+font-size:14px;
 }
 
-.slider{
-display:flex;
-transition:transform 0.6s ease-in-out;
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.search-bar{
+width:200px;
+}
+
+.how-cards{
+gap:40px;
+}
+
 }
 
 </style>
@@ -258,7 +321,7 @@ transition:transform 0.6s ease-in-out;
 
 <div class="header">
 
-<div class="logo">AutoSphere</div>
+<a href="customer-dashboard" class="logo" style="text-decoration:none;">AutoSphere</a>
 
 <input type="text" class="city-select" placeholder="Select City">
 
@@ -272,7 +335,7 @@ transition:transform 0.6s ease-in-out;
 <a href="wishlist">My Cart</a>
 <a href="#">Buy Car</a>
 <a href="#">Sell Car</a>
-<a href="#">Login</a>
+<a href="login">Login</a>
 <a href="#">Register</a>
 </div>
 
@@ -334,10 +397,9 @@ transition:transform 0.6s ease-in-out;
 </div>
 
 </div>
-
 </div>
 
-<!-- HOW WORKS -->
+<!-- HOW AUTOSPHERE WORKS -->
 
 <div class="how-section">
 
@@ -359,6 +421,18 @@ transition:transform 0.6s ease-in-out;
 <img src="https://tse2.mm.bing.net/th/id/OIP.TinBeamEG8ni7EGH1fS6NAHaHa">
 <h3>Online payment</h3>
 </div>
+
+</div>
+
+
+<div class="watch-area">
+
+<button class="watch-btn">
+Watch how it works
+<span class="play-icon">▶</span>
+</button>
+
+<p class="learn-more">Learn more</p>
 
 </div>
 
@@ -391,60 +465,70 @@ transition:transform 0.6s ease-in-out;
 
 <div class="footer-col">
 <h3>AutoSphere</h3>
-<p>Buy & sell cars easily.</p>
+<p>AutoSphere is the easiest way to buy and sell used cars online.</p>
 </div>
 
 <div class="footer-col">
 <h3>Company</h3>
 <a href="#">About</a>
 <a href="#">Careers</a>
+<a href="#">Blog</a>
+<a href="#">Contact</a>
 </div>
 
 <div class="footer-col">
 <h3>Services</h3>
 <a href="#">Buy Car</a>
 <a href="#">Sell Car</a>
+<a href="#">Car Loan</a>
+<a href="#">Insurance</a>
+</div>
+
+<div class="footer-col">
+<h3>Support</h3>
+<a href="#">FAQ</a>
+<a href="#">Terms</a>
+<a href="#">Privacy</a>
 </div>
 
 </div>
 
 <div class="footer-bottom">
-© 2026 AutoSphere
+© 2026 AutoSphere | MCA Sem 4 Project
 </div>
 
 </div>
+
 <script>
 
-let scroll = 0;
-const slider = document.getElementById("slider");
-const imageWidth = 315;
+let scroll=0;
+const slider=document.getElementById("slider");
+const imageWidth=315;
 
-const images = slider.querySelectorAll("img");
-const totalImages = images.length;
+const images=slider.querySelectorAll("img");
+const totalImages=images.length;
 
 function slideLeft(){
 
-scroll += imageWidth;
+scroll+=imageWidth;
 
-if(scroll > 0){
-scroll = -(imageWidth * (totalImages - 1));
+if(scroll>0){
+scroll=-(imageWidth*(totalImages-1));
 }
 
-slider.style.transform = "translateX(" + scroll + "px)";
+slider.style.transform="translateX("+scroll+"px)";
 }
 
 function slideRight(){
 
-scroll -= imageWidth;
+scroll-=imageWidth;
 
-if(Math.abs(scroll) >= imageWidth * totalImages){
-scroll = 0;
+if(Math.abs(scroll)>=imageWidth*totalImages){
+scroll=0;
 }
 
-slider.style.transform = "translateX(" + scroll + "px)";
+slider.style.transform="translateX("+scroll+"px)";
 }
-
-/* AUTO SLIDE */
 
 setInterval(function(){
 slideRight();
@@ -454,354 +538,6 @@ slideRight();
 
 </body>
 </html>
-
-
-
-
-
-
-
-<%-- <%@ page contentType="text/html;charset=UTF-8" %>
-<!DOCTYPE html>
-<html>
-<head>
-<title>AutoSphere | Buy & Sell Cars</title>
-
-<style>
-
-body{
-margin:0;
-font-family:Arial;
-background:#f4f6fb;
-}
-
-/* HEADER */
-
-.header{
-display:flex;
-align-items:center;
-padding:15px 40px;
-background:white;
-border-bottom:1px solid #ddd;
-}
-
-.logo{
-font-size:26px;
-font-weight:bold;
-color:#6a1b9a;
-}
-
-.city-select{
-padding:8px 16px;
-border-radius:22px;
-border:1px solid #d1c4e9;
-background:#f3e5f5;
-margin:0 20px;
-}
-
-.search-bar{
-display:flex;
-align-items:center;
-background:#f3e5f5;
-padding:8px 14px;
-border-radius:25px;
-width:320px;
-}
-
-.search-bar input{
-border:none;
-background:transparent;
-outline:none;
-width:100%;
-}
-
-.menu{
-margin-left:auto;
-}
-
-.menu a{
-margin-left:18px;
-text-decoration:none;
-color:#333;
-}
-
-.menu a:hover{
-color:#6a1b9a;
-}
-
-/* HERO */
-
-.hero{
-padding:40px;
-background:linear-gradient(135deg,#ede7f6,#f5f5f5);
-text-align:center;
-}
-
-.hero h1{
-color:#4a148c;
-}
-
-/* SLIDER */
-
-.slider-container{
-position:relative;
-overflow:hidden;
-margin-top:30px;
-}
-
-.slider-container::-webkit-scrollbar{
-height:8px;
-}
-
-.slider-container::-webkit-scrollbar-thumb{
-background:#6a1b9a;
-border-radius:10px;
-}
-.slider{
-display:flex;
-transition:0.5s;
-}
-
-.slider img{
-width:300px;
-height:200px;
-margin-right:15px;
-border-radius:10px;
-object-fit:cover;
-}
-
-/* ARROWS */
-
-.arrow{
-position:absolute;
-top:50%;
-transform:translateY(-50%);
-background:#6a1b9a;
-color:white;
-border:none;
-font-size:20px;
-padding:10px 15px;
-cursor:pointer;
-border-radius:50%;
-}
-
-.left{
-left:10px;
-}
-
-.right{
-right:10px;
-}
-
-/* BUTTON */
-
-.sell-btn{
-padding:12px 25px;
-background:#e91e63;
-color:white;
-border:none;
-border-radius:6px;
-cursor:pointer;
-margin-top:20px;
-}
-
-/* BENEFITS */
-
-.section{
-padding:40px;
-text-align:center;
-background:white;
-}
-
-.cards{
-display:flex;
-justify-content:center;
-margin-top:25px;
-}
-
-.card{
-width:200px;
-margin:10px;
-padding:15px;
-background:#fafafa;
-box-shadow:0 4px 12px rgba(0,0,0,0.08);
-border-radius:10px;
-}
-
-.card img{
-width:100%;
-height:120px;
-object-fit:cover;
-border-radius:8px;
-}
-
-.footer{
-background:#6a1b9a;
-color:white;
-text-align:center;
-padding:15px;
-}
-
-</style>
-</head>
-
-<body>
-
-<!-- HEADER -->
-
-<div class="header">
-
-<div class="logo">AutoSphere</div>
-
-<input type="text" class="city-select" placeholder="Select City">
-
-<div class="search-bar">
-<input type="text" placeholder="Search cars by brand or model">
-</div>
-
-<div class="menu">
-<a href="#">Car Brand</a>
-<a href="#">Buy Car</a>
-<a href="#">Sell Car</a>
-<a href="#">Login</a>
-<a href="#">Register</a>
-</div>
-
-</div>
-
-
-<!-- HERO -->
-
-<div class="hero">
-
-<h1>Cars you’ll love to buy</h1>
-<p>Verified used cars with full inspection</p>
-
-<div class="slider-container">
-
-<button class="arrow left" onclick="slideLeft()">❮</button>
-
-<div class="slider" id="slider">
-
-<img src="https://tse2.mm.bing.net/th/id/OIP.ol3_UawwhWz5LhXFWAdoNgHaE8?pid=Api&P=0&h=220">
-<img src="https://tse3.mm.bing.net/th/id/OIP.k83Uo4eIEvIwprOFSEAAFAHaEo?pid=Api&P=0&h=220">
-<img src="https://thecadillachotel.com/wp-content/uploads/2025/09/maruti-suzuki-victoris-2-1536x8641-1-1024x576.jpg">
-<img src="https://tse2.mm.bing.net/th/id/OIP.vpDq_k4ERgsBgSBr60_YPwHaE6?pid=Api&P=0&h=220">
-<img src="https://images.carexpert.com.au/resize/3000/-/app/uploads/2024/10/Mahindra-XUV700-Black-Edition_HERO-3x2-1.jpg">
-<img src="https://autotest.com.ar/wp-content/uploads/2023/02/NUEVO-VOLKSWAGEN-VIRTUS-FRENTE-1024x631.jpg">
-<img src="http://vehiclesinformation.com/wp-content/uploads/2025/05/2026-toyota-camry.webp">
-<img src="https://www.motortrend.com/uploads/2022/11/2024-audi-q8-sportback-front-three-quarter-motion2.jpg">
-<img src="https://tse3.mm.bing.net/th/id/OIP.sUXW2iSdGafANv3zEMrz9wHaEK?pid=Api&P=0&h=220">
-<img src="https://tse4.mm.bing.net/th/id/OIP.NPGVli4l1Ehfhf63-aG6ZwHaE0?pid=Api&P=0&h=220">
-
-</div>
-
-<button class="arrow right" onclick="slideRight()">❯</button>
-
-
-</div>
-
-<button class="sell-btn">Sell My Car</button>
-
-</div>
-
-
-<!-- BENEFITS -->
-
-<div class="section">
-
-<h2>AutoSphere Assured Benefits</h2>
-
-<div class="cards">
-
-<div class="card">
-<img src="https://tse2.mm.bing.net/th/id/OIP.Dt_cmV3c7iAiI9hH3a_-oQHaHa?pid=Api&P=0&h=220">
-✔ 200+ Quality Checks
-</div>
-
-<div class="card">
-<img src="https://tse2.mm.bing.net/th/id/OIP.dLwwkw6ARI0Jm1Y6LMvgXwHaFL?pid=Api&P=0&h=220">
-✔ 7 Days Trial
-</div>
-
-<div class="card">
-<img src="https://tse4.mm.bing.net/th/id/OIP.2-oHKJ06_H3EnJgGQQKTiQHaE8?pid=Api&P=0&h=220">
-✔ 1 Year Warranty
-</div>
-
-<div class="card">
-<img src="https://tse3.mm.bing.net/th/id/OIP.ApW2_1cwNgxi_flgt4ZQngHaEl?pid=Api&P=0&h=220">
-✔ Fixed Price
-</div>
-
-</div>
-
-</div>
-
-
-<div class="footer">
-© 2026 AutoSphere | MCA Sem 4 Project
-</div>
-
-
-<!-- JAVASCRIPT -->
-
-<script>
-
-let scroll = 0;
-
-const slider = document.getElementById("slider");
-const totalImages = slider.children.length;
-
-const imageWidth = 315; 
-const visibleImages = 3;
-
-const maxScroll = -(imageWidth * (totalImages - visibleImages));
-
-function slideLeft(){
-
-scroll += imageWidth;
-
-if(scroll > 0){
-scroll = maxScroll;
-}
-
-slider.style.transform = "translateX("+scroll+"px)";
-}
-
-function slideRight(){
-
-scroll -= imageWidth;
-
-if(scroll < maxScroll){
-scroll = 0;
-}
-
-slider.style.transform = "translateX("+scroll+"px)";
-}
-
-/* AUTO SLIDE */
-
-setInterval(()=>{
-
-scroll -= imageWidth;
-
-if(scroll < maxScroll){
-scroll = 0;
-}
-
-slider.style.transform = "translateX("+scroll+"px)";
-
-},3000);
-
-</script>
-
-</body>
-</html>
- --%>
-
-
-
 
 
 

@@ -142,6 +142,12 @@
                                    class="form-control"
                                    placeholder="Enter model name (optional)">
                         </div>
+                        
+                         <!-- Created At -->
+                    <div class="form-group mb-4">
+                        <label>Launch Year</label>
+                        <input type="date" name="launchYear" class="form-control">
+                    </div>
 
                         <!-- Buttons -->
                         <div class="d-grid gap-2">

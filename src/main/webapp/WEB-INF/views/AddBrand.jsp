@@ -26,7 +26,8 @@
 						<div class="col-md-12 grid-margin">
 							<div class="row">
 								<div class="col-12 col-xl-8 mb-4 mb-xl-0">
-									<h3 class="font-weight-bold">Welcome ${sessionScope.user.firstName}</h3>
+									<h3 class="font-weight-bold">Welcome
+										${sessionScope.user.firstName}</h3>
 									<h6 class="font-weight-normal mb-0">
 										All systems are running smoothly! You have <span
 											class="text-primary">3 unread alerts!</span>
@@ -95,7 +96,7 @@
 										</div>
 									</div>
 								</div>
-								
+
 							</div>
 						</div>
 					</div>
@@ -114,35 +115,45 @@
 										actively engaged with your website, page or app, etc</p> -->
 									<!-- <div id="sales-chart-legend" class="chartjs-legend mt-4 mb-2"></div>
 									<canvas id="sales-chart"></canvas> -->
-									
+
 									<h2 style="text-align: center;">Add Brand</h2>
 								</div>
 							</div>
 						</div>
 					</div>
 
-						 <form action="savebrand" method="post">
+					<form action="savebrand" method="post"
+						enctype="multipart/form-data">
 
-                        <div class="mb-3">
-                            <label for="brandName" class="form-label">Brand Name</label>
-                            <input type="text" class="form-control" id="brandName" name="brandName"
-                                   placeholder="Enter Car Brand Name" required>
-                        </div>
+						<div class="mb-3">
+							<label class="form-label">Brand Name</label> <input type="text"
+								class="form-control" name="brand_name"
+								placeholder="Enter Car Brand Name" required>
+						</div>
 
-                        <div class="mb-3">
-                            <label for="logoUrl" class="form-label">Logo URL</label>
-                            <input type="text" class="form-control" id="logoUrl" name="logoUrl"
-                                   placeholder="Enter Logo URL (optional)">
-                        </div>
+						<div class="mb-3">
+							<label class="form-label">Brand Logo</label> <input type="file"
+								class="form-control" name="logo">
+						</div>
 
-                        <button type="submit" class="btn btn-primary w-100">Submit</button>
+						<div class="mb-3">
+							<label class="form-label">Status</label> <select
+								class="form-control" name="active">
+								<option value="Y">Active</option>
+								<option value="N">Inactive</option>
+							</select>
+						</div>
 
-                    </form>
-						
+						<button type="submit" class="btn btn-primary w-100">Submit</button>
+
+					</form>
+
+
+
 				</div>
 				<!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->
-				
+
 				<jsp:include page="AdminFooter.jsp"></jsp:include>
 				<!-- partial -->
 			</div>
@@ -152,10 +163,10 @@
 	</div>
 	<!-- container-scroller -->
 	<!-- plugins:js -->
-	
-	
-	
-	
+
+
+
+
 	<!-- End custom js for this page-->
 </body>
-</html> 
+</html>

@@ -232,21 +232,25 @@ body {
 
 	<div class="header">
 
-		<div class="logo">AutoSphere</div>
+<a href="customer-dashboard" class="logo" style="text-decoration:none;">AutoSphere</a>
 
-		<input type="text" class="city-select" placeholder="Select City">
+<input type="text" class="city-select" placeholder="Select City">
 
-		<div class="search-bar">
-			<input type="text" placeholder="Search cars by brand or model">
-		</div>
+<div class="search-bar">
+<input type="text" placeholder="Search cars by brand or model">
+</div>
 
-		<div class="menu">
-			<a href="CustomerCarList">List Car</a> <!-- <a href="#">Car Brand</a> --> <a href="wishlist">My Cart</a> <a
-				href="#">Buy Car</a> <a href="#">Sell Car</a> <a href="#">Login</a>
-			<a href="#">Register</a>
-		</div>
+<div class="menu">
+<a href="CustomerCarList">List Car</a>
+<a href="#brands">Car Brand</a>
+<a href="wishlist">My Cart</a>
+<a href="#">Buy Car</a>
+<a href="#">Sell Car</a>
+<a href="login">Login</a>
+<a href="#">Register</a>
+</div>
 
-	</div>
+</div>
 
 
 
