@@ -15,7 +15,7 @@ public class CarBrandEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer brandId;
  	private String brandName;
-	private String logoUrl;
+	private String logoUrl;  
 	private boolean active;
 	public Integer getBrandId() {
 		return brandId;
