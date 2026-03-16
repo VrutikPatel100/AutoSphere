@@ -298,6 +298,55 @@ color:#ccc;
 font-size:14px;
 }
 
+
+.logo{
+display:flex;
+align-items:center;
+gap:12px;
+font-size:28px;
+font-weight:700;
+color:#4a148c;
+text-decoration:none;
+font-family:Arial, sans-serif;
+}
+
+.logo-icon{
+width:40px;
+height:40px;
+background:#ff4d6d;
+display:flex;
+align-items:center;
+justify-content:center;
+transform:rotate(45deg);
+border-radius:10px;
+}
+
+.logo-icon span{
+color:white;
+font-size:20px;
+font-weight:700;
+transform:rotate(-45deg);
+}
+
+/* responsive */
+
+@media(max-width:768px){
+
+.logo{
+font-size:22px;
+}
+
+.logo-icon{
+width:32px;
+height:32px;
+}
+
+.logo-icon span{
+font-size:16px;
+}
+
+}
+
 /* RESPONSIVE */
 
 @media(max-width:768px){
@@ -321,7 +370,15 @@ gap:40px;
 
 <div class="header">
 
-<a href="customer-dashboard" class="logo" style="text-decoration:none;">AutoSphere</a>
+<a href="customer-dashboard" class="logo">
+
+<div class="logo-icon">
+<span>A</span>
+</div>
+
+AutoSphere
+
+</a>
 
 <input type="text" class="city-select" placeholder="Select City">
 
