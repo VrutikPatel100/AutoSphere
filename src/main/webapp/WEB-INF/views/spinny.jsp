@@ -77,13 +77,15 @@ body {
 	color: #4a148c;
 }
 
-.section h2{
+.section h2 {
 	color: #4a148c;
 }
-.how-section h2{
+
+.how-section h2 {
 	color: #4a148c;
 }
-.brand-section h2{
+
+.brand-section h2 {
 	color: #4a148c;
 }
 
@@ -250,23 +252,19 @@ body {
 }
 
 .brand-card {
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+	background: white;
+	padding: 20px;
+	border-radius: 15px;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 
 .brand-card:hover {
-    transform: scale(1.08) translateY(-5px);
-    background: linear-gradient(135deg, #f3e5f5, #d1c4e9);
-
-    /* 🔥 Purple Shadow */
-   box-shadow: 0 12px 30px rgba(106, 27, 154, 0.5);
-
+	transform: scale(1.08) translateY(-5px);
+	background: linear-gradient(135deg, #f3e5f5, #d1c4e9);
+	/* 🔥 Purple Shadow */
+	box-shadow: 0 12px 30px rgba(106, 27, 154, 0.5);
 }
-
 
 .brand-card img {
 	width: 70px;
@@ -368,19 +366,38 @@ body {
 	}
 }
 
-
 .brand-card img {
-    width: 70px;
-    margin-top: 10px;
-    transition: transform 0.3s ease;
+	width: 70px;
+	margin-top: 10px;
+	transition: transform 0.3s ease;
 }
 
 .brand-card:hover img {
-    transform: scale(1.15);
+	transform: scale(1.15);
 }
 
+.suggestion-box {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+    z-index: 999;
+}
 
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+}
 
+.suggestion-item:hover {
+    background: #f3e5f5;
+}
 </style>
 </head>
 
@@ -396,10 +413,21 @@ body {
 				<span>A</span>
 			</div> AutoSphere
 
-		</a> <input type="text" class="city-select" placeholder="Select City">
+		</a>
+		<div style="position: relative;">
+			<input type="text" id="cityInput" class="city-select"
+				placeholder="Select City" onkeyup="showCitySuggestions()">
 
-		<div class="search-bar">
-			<input type="text" placeholder="Search cars by brand or model">
+			<div id="citySuggestionBox" class="suggestion-box"></div>
+		</div>
+
+
+
+		<div class="search-bar" style="position: relative;">
+			<input type="text" id="searchInput" placeholder="Search cars..."
+				onkeyup="showCarSuggestions()">
+
+			<div id="suggestionBox" class="suggestion-box"></div>
 		</div>
 
 		<div class="menu">
@@ -545,8 +573,8 @@ body {
 
 			<div class="footer-col">
 				<h3>Company</h3>
-				<a href="#">About</a> <a href="Careers">Careers</a> <a href="#">Blog</a> <a
-					href="Contact">Contact</a>
+				<a href="#">About</a> <a href="Careers">Careers</a> <a href="#">Blog</a>
+				<a href="Contact">Contact</a>
 			</div>
 
 			<div class="footer-col">
@@ -600,6 +628,93 @@ body {
 		setInterval(function() {
 			slideRight();
 		}, 3000);
+		
+		
+		
+		let cars = ["Thar","Scorpio","Bolero","XUV300","XUV500","XUV700","Swift","Swift Dzire","Baleno","Brezza","Ertiga","Alto","WagonR","Celerio","Ignis","S-Presso","BMW","Audi","Mercedes","Fortuner","Innova","Innova Crysta","Innova Hycross","Honda City","Amaze","Civic","CR-V","Verna","Creta","Venue","i10","i20","Kia Seltos","Kia Sonet","Kia Carens","MG Hector","MG Astor","Tata Nexon","Tata Punch","Tata Harrier","Tata Safari","Tata Tiago","Tata Tigor","Skoda Slavia","Skoda Kushaq","Volkswagen Polo","Virtus","Jeep Compass","Range Rover","Land Rover","Jaguar","Mini Cooper"];
+		let cities = ["Ahmedabad","Surat","Rajkot","Vadodara","Gandhinagar","Bhavnagar","Jamnagar","Junagadh","Anand","Navsari","Mehsana","Morbi","Surendranagar","Porbandar","Palanpur","Valsad","Bharuch","Godhra","Patan","Dahod","Bhuj","Veraval","Amreli","Gondal","Kalol","Nadiad","Mumbai","Delhi","Bengaluru","Chennai","Kolkata","Hyderabad","Pune","Jaipur","Lucknow","Kanpur","Nagpur","Indore","Bhopal","Patna","Chandigarh","Coimbatore","Kochi","Visakhapatnam","Agra","Varanasi","Madurai","Nashik","Vadodara","Faridabad","Ghaziabad","Noida"];
+
+		function showCarSuggestions() {
+		    let input = document.getElementById("searchInput").value.toLowerCase();
+		    let box = document.getElementById("suggestionBox");
+		    box.innerHTML = "";
+
+		    if (input === "") {
+		        box.style.display = "none";
+		        return;
+		    }
+
+		    let matches = cars.filter(c => c.toLowerCase().includes(input));
+
+		    matches.forEach(car => {
+		        let div = document.createElement("div");
+		        div.className = "suggestion-item";
+		        div.innerText = car;
+
+		        div.onclick = () => {
+		            document.getElementById("searchInput").value = car;
+		            box.style.display = "none";
+		        };
+
+		        box.appendChild(div);
+		    });
+
+		    box.style.display = matches.length ? "block" : "none";
+		}
+
+		function showCitySuggestions() {
+		    let input = document.getElementById("cityInput").value.toLowerCase();
+		    let box = document.getElementById("citySuggestionBox");
+		    box.innerHTML = "";
+
+		    if (input === "") {
+		        box.style.display = "none";
+		        return;
+		    }
+
+		    let matches = cities.filter(c => c.toLowerCase().includes(input));
+
+		    matches.forEach(city => {
+		        let div = document.createElement("div");
+		        div.className = "suggestion-item";
+		        div.innerText = city;
+
+		        div.onclick = () => {
+		            document.getElementById("cityInput").value = city;
+		            box.style.display = "none";
+		        };
+
+		        box.appendChild(div);
+		    });
+
+		    box.style.display = matches.length ? "block" : "none";
+		}
+		
+		
+		
+		
+		document.addEventListener("click", function(event) {
+
+		    let cityBox = document.getElementById("citySuggestionBox");
+		    let cityInput = document.getElementById("cityInput");
+
+		    let carBox = document.getElementById("suggestionBox");
+		    let carInput = document.getElementById("searchInput");
+
+		    // 🔹 City
+		    if (!cityInput.contains(event.target) && !cityBox.contains(event.target)) {
+		        cityBox.style.display = "none";
+		        cityInput.value = ""; // 🔥 clear text
+		    }
+
+		    // 🔹 Car
+		    if (!carInput.contains(event.target) && !carBox.contains(event.target)) {
+		        carBox.style.display = "none";
+		        carInput.value = ""; // 🔥 clear text
+		    }
+
+		});
+		
 	</script>
 
 </body>
