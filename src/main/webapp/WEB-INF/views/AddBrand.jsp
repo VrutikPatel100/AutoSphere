@@ -127,23 +127,24 @@
 
 						<div class="mb-3">
 							<label class="form-label">Brand Name</label> <input type="text"
-								class="form-control" name="brand_name"
+								class="form-control" name="brandName"
 								placeholder="Enter Car Brand Name" required>
 						</div>
 
 						<div class="mb-3">
-							<label class="form-label">Brand Logo</label> <input type="file"
-								class="form-control" name="logo">
+							<label class="form-label">Brand Logo</label> 
+							<input type="file" class="form-control" name="logoFile">
+
 						</div>
 
-						<div class="mb-3">
+						<!-- <div class="mb-3">
 							<label class="form-label">Status</label> <select
 								class="form-control" name="active">
 								<option value="Y">Active</option>
 								<option value="N">Inactive</option>
 							</select>
 						</div>
-
+ -->
 						<button type="submit" class="btn btn-primary w-100">Submit</button>
 
 					</form>

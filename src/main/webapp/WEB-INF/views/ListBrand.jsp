@@ -146,6 +146,10 @@
                        class="btn btn-primary">
                         View
                     </a>
+                    <a href="editbrand?brandId=${car.brandId}"
+                       class="btn btn-primary">
+                        Edit
+                    </a>
 
                     <!-- Delete Button -->
                     <a href="deletebrand?brandId=${car.brandId}"

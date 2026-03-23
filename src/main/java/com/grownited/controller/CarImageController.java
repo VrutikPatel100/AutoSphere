@@ -89,4 +89,58 @@ public class CarImageController {
 	}
 	
 	
+	
+	@GetMapping("/editCarImage")
+	public String editCarImage(Integer imageId, Model model) {
+
+	    Optional<CarImageEntity> opImage = carImageRepository.findById(imageId);
+
+	    if (opImage.isEmpty()) {
+	        return "redirect:/listCarImage";
+	    }
+
+	    model.addAttribute("carImage", opImage.get());
+
+	    // dropdown માટે model list
+	    List<CarModelTypeEntity> allCarModel = carModelTypeRepository.findAll();
+	    model.addAttribute("allCarModel", allCarModel);
+
+	    return "EditCarImage";
+	}
+
+	
+	@PostMapping("/updateCarImage")
+	public String updateCarImage(CarImageEntity carImageEntity,
+	                             @RequestParam("imageFile") MultipartFile imageFile) {
+
+	    try {
+
+	        if (!imageFile.isEmpty()) {
+
+	            // 🔥 New image upload
+	            Map uploadResult = cloudinary.uploader().upload(imageFile.getBytes(), null);
+
+	            String imageURL = uploadResult.get("secure_url").toString();
+
+	            carImageEntity.setImageURL(imageURL);
+
+	        } else {
+	            // 🔥 Keep old image
+	            CarImageEntity oldData =
+	                    carImageRepository.findById(carImageEntity.getImageId()).get();
+
+	            carImageEntity.setImageURL(oldData.getImageURL());
+	        }
+
+	        carImageRepository.save(carImageEntity);
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return "redirect:/listCarImage";
+	}
+
+	
+	
 }

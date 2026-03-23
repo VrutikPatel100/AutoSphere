@@ -172,6 +172,10 @@
                                                            class="btn btn-sm btn-info">
                                                             View
                                                         </a>
+                                                        <a href="editCarImage?imageId=${img.imageId}"
+                                                           class="btn btn-sm btn-info">
+                                                            EDIT
+                                                        </a>
 
                                                         <a href="deleteCarImage?imageId=${img.imageId}"
                                                            class="btn btn-sm btn-danger"

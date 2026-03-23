@@ -145,6 +145,7 @@
 								    <td>${f.exteriorFeatures}</td>
 								    <td>
 								        <a href="viewCarFeatures?featureId=${f.featureId}" class="btn btn-primary">VIEW</a>
+								        <a href="editCarFeatures?featureId=${f.featureId}" class="btn btn-primary">EDIT</a>
 								        <a href="deleteCarFeatures?featureId=${f.featureId}"
 								           class="btn btn-danger"
 								           onclick="return confirm('Are you sure?')">

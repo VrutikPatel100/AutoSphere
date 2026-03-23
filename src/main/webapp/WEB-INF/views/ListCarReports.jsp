@@ -166,6 +166,7 @@
 
                                     <td>
                                         <a href="viewCarReports?reportId=${r.reportId}" class="btn btn-primary">View</a>
+                                        <a href="editCarReports?reportId=${r.reportId}" class="btn btn-primary">EDIT</a>
                                         <a href="deleteCarReports?reportId=${r.reportId}"
                                            class="btn btn-danger"
                                            onclick="return confirm('Are you sure you want to delete this report?')">

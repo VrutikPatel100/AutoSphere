@@ -157,6 +157,8 @@
                                     <td>
                                         <a href="viewCarTransaction?transactionId=${t.transactionId}" 
                                            class="btn btn-info btn-sm">View</a>
+                                        <a href="editCarTransaction?transactionId=${t.transactionId}" 
+                                           class="btn btn-info btn-sm">EDIT</a>
 
                                         <a href="deleteTransaction?transactionId=${t.transactionId}" 
                                            class="btn btn-danger btn-sm">Delete</a>

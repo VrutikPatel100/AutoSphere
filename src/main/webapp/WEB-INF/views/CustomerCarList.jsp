@@ -8,6 +8,8 @@
 <meta charset="UTF-8">
 <title>List Of All Car</title>
 
+<jsp:include page="CustomerCSS.jsp"></jsp:include>
+
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -18,58 +20,7 @@ body {
 	font-family: 'Segoe UI', sans-serif;
 }
 
-/* HEADER */
-.header {
-	display: flex;
-	align-items: center;
-	padding: 15px 40px;
-	background: white;
-	border-bottom: 1px solid #ddd;
-}
 
-.logo {
-	font-size: 26px;
-	font-weight: bold;
-	color: #6a1b9a;
-}
-
-.city-select {
-	padding: 8px 16px;
-	border-radius: 22px;
-	border: 1px solid #d1c4e9;
-	background: #f3e5f5;
-	margin: 0 20px;
-}
-
-.search-bar {
-	display: flex;
-	align-items: center;
-	background: #f3e5f5;
-	padding: 8px 14px;
-	border-radius: 25px;
-	width: 320px;
-}
-
-.search-bar input {
-	border: none;
-	background: transparent;
-	outline: none;
-	width: 100%;
-}
-
-.menu {
-	margin-left: auto;
-}
-
-.menu a {
-	margin-left: 18px;
-	text-decoration: none;
-	color: #333;
-}
-
-.menu a:hover {
-	color: #6a1b9a;
-}
 
 /* CONTENT */
 .content {
@@ -180,47 +131,6 @@ body {
 	padding: 6px 16px;
 }
 
-/* FOOTER */
-.footer {
-	background: #3b005a;
-	color: white;
-	padding: 60px;
-}
-
-.footer-container {
-	display: flex;
-	justify-content: space-between;
-	flex-wrap: wrap;
-}
-
-.footer-col {
-	width: 220px;
-}
-
-.footer-col h3 {
-	margin-bottom: 15px;
-}
-
-.footer-col p {
-	font-size: 14px;
-	line-height: 22px;
-	color: #ddd;
-}
-
-.footer-col a {
-	display: block;
-	color: #ddd;
-	text-decoration: none;
-	margin-bottom: 8px;
-	font-size: 14px;
-}
-
-.footer-bottom {
-	margin-top: 30px;
-	text-align: center;
-	color: #ccc;
-	font-size: 14px;
-}
 </style>
 
 </head>
@@ -230,28 +140,7 @@ body {
 
 	<!-- HEADER -->
 
-	<div class="header">
-
-<a href="customer-dashboard" class="logo" style="text-decoration:none;">AutoSphere</a>
-
-<input type="text" class="city-select" placeholder="Select City">
-
-<div class="search-bar">
-<input type="text" placeholder="Search cars by brand or model">
-</div>
-
-<div class="menu">
-<a href="CustomerCarList">List Car</a>
-<a href="#brands">Car Brand</a>
-<a href="wishlist">My Cart</a>
-<a href="#">Buy Car</a>
-<a href="#">Sell Car</a>
-<a href="login">Login</a>
-<a href="#">Register</a>
-</div>
-
-</div>
-
+	<jsp:include page="CustomerHeader.jsp"></jsp:include>
 
 
 	<!-- CONTENT -->
@@ -266,84 +155,70 @@ body {
 
 				<div class="col-lg-3 col-md-6">
 
-					<div class="car-card">
+	<div class="car-card">
 
-						<div class="d-flex justify-content-between">
+		<!-- ✅ IMAGE (SAFE ADD - DESIGN BREAK NAI THAY) -->
+		<img src="${c.imageURL}" 
+		     style="width:100%; height:200px; object-fit:cover; border-radius:12px; margin-bottom:10px;">
 
-							<span class="list-id"> ID #CL${c.listingId} </span>
+		<div class="d-flex justify-content-between">
 
-							<!-- STATUS COLOR LOGIC -->
+			<span class="list-id"> ID #CL${c.listingId} </span>
 
-							<c:choose>
+			<c:choose>
+				<c:when test="${c.status == 'AVAILABLE'}">
+					<span class="status available">Available</span>
+				</c:when>
 
-								<c:when test="${c.status == 'AVAILABLE'}">
-									<span class="status available">Available</span>
-								</c:when>
+				<c:when test="${c.status == 'SOLD'}">
+					<span class="status sold">Sold</span>
+				</c:when>
 
-								<c:when test="${c.status == 'SOLD'}">
-									<span class="status sold">Sold</span>
-								</c:when>
+				<c:when test="${c.status == 'PENDING'}">
+					<span class="status pending">Pending</span>
+				</c:when>
 
-								<c:when test="${c.status == 'PENDING'}">
-									<span class="status pending">Pending</span>
-								</c:when>
+				<c:otherwise>
+					<span class="status">${c.status}</span>
+				</c:otherwise>
+			</c:choose>
 
-								<c:otherwise>
-									<span class="status">${c.status}</span>
-								</c:otherwise>
+		</div>
 
-							</c:choose>
+		<div class="small text-muted mt-2">
+			Seller : ${c.userId} <br> City : ${c.city}
+		</div>
 
-						</div>
+		<div class="brand">${c.brandName}</div>
 
+		<div class="model">${c.modelName}-${c.variantName}</div>
 
-						<div class="small text-muted mt-2">
+		<div class="chips">
+			<span class="chip kms">KMS: ${c.kmsDriven}</span>
+			<span class="chip year">Year: ${c.year}</span>
+			<span class="chip owner">Ownership: ${c.ownership}</span>
+			<span class="chip city">City: ${c.city}</span>
+		</div>
 
-							Seller : ${c.userId} <br> City : ${c.city}
+		<div class="price">₹ ${c.price}</div>
 
-						</div>
+		<hr>
 
+		<div class="d-flex justify-content-between align-items-center">
 
-						<div class="brand">${c.brandName}</div>
+			<small class="text-muted"> ${c.createdAt} </small>
 
-						<div class="model">${c.modelName}-${c.variantName}</div>
+			<div>
+				<a href="customerViewCarListing?listingId=${c.listingId}"
+					class="btn btn-outline-primary btn-sm view-btn"> View → </a>
+			</div>
 
+		</div>
 
-						<div class="chips">
+	</div>
 
-							<span class="chip kms">KMS: ${c.kmsDriven}</span> <span
-								class="chip year">Year: ${c.year}</span> <span
-								class="chip owner">Ownership: ${c.ownership}</span> <span
-								class="chip city">City: ${c.city}</span>
-
-						</div>
-
-
-						<div class="price">₹ ${c.price}</div>
-
-
-						<hr>
-
-
-						<div class="d-flex justify-content-between align-items-center">
-
-							<small class="text-muted"> ${c.createdAt} </small>
-
-							<div>
-
-								<a href="customerViewCarListing?listingId=${c.listingId}"
-									class="btn btn-outline-primary btn-sm view-btn"> View → </a> 
-									<%-- <a href="addToWishlist?listingId=${c.listingId}"
-									class="btn btn-outline-danger btn-sm"> ❤️ Wishlist </a> --%>
-
-							</div>
-
-						</div>
-
-
-					</div>
-
-				</div>
+</div>
+				
 
 			</c:forEach>
 
@@ -362,39 +237,7 @@ body {
 
 	<!-- FOOTER -->
 
-	<div class="footer">
-
-		<div class="footer-container">
-
-			<div class="footer-col">
-				<h3>AutoSphere</h3>
-				<p>AutoSphere is the easiest way to buy and sell used cars
-					online with verified inspection and doorstep delivery.</p>
-			</div>
-
-			<div class="footer-col">
-				<h3>Company</h3>
-				<a href="#">About</a> <a href="#">Careers</a> <a href="#">Blog</a> <a
-					href="#">Contact</a>
-			</div>
-
-			<div class="footer-col">
-				<h3>Services</h3>
-				<a href="#">Buy Car</a> <a href="#">Sell Car</a> <a href="#">Car
-					Loan</a> <a href="#">Insurance</a>
-			</div>
-
-			<div class="footer-col">
-				<h3>Support</h3>
-				<a href="#">FAQ</a> <a href="#">Terms</a> <a href="#">Privacy</a>
-			</div>
-
-		</div>
-
-		<div class="footer-bottom">© 2026 AutoSphere | MCA Sem 4 Project
-		</div>
-
-	</div>
+	<jsp:include page="CustomerFooter.jsp"></jsp:include>
 
 </body>
 </html>

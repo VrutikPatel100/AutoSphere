@@ -77,4 +77,37 @@ public class TransactionController {
 
 	    return "ViewCarTransaction";
 	}
+	
+	
+	@GetMapping("/editCarTransaction")
+	public String editCarTransaction(Integer transactionId, Model model) {
+
+	    Optional<TransactionsEntity> opTransaction =
+	            transactionsRepository.findById(transactionId);
+
+	    if (opTransaction.isEmpty()) {
+	        return "redirect:/listCarTransaction";
+	    }
+
+	    model.addAttribute("carTransaction", opTransaction.get());
+
+	    // dropdown data
+	    model.addAttribute("allCarList", carListingRepository.findAll());
+	    model.addAttribute("allUsers", userRepository.findAll());
+
+	    return "EditCarTransaction";
+	}
+
+	
+	
+	@PostMapping("/updateCarTransaction")
+	public String updateCarTransaction(TransactionsEntity transactionsEntity) {
+
+	    transactionsRepository.save(transactionsEntity);
+
+	    return "redirect:/listCarTransaction";
+	}
+
+	
+	
 }

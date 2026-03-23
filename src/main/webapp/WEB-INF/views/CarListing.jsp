@@ -26,7 +26,8 @@
 						<div class="col-md-12 grid-margin">
 							<div class="row">
 								<div class="col-12 col-xl-8 mb-4 mb-xl-0">
-									<h3 class="font-weight-bold">Welcome ${sessionScope.user.firstName}</h3>
+									<h3 class="font-weight-bold">Welcome
+										${sessionScope.user.firstName}</h3>
 									<h6 class="font-weight-normal mb-0">
 										All systems are running smoothly! You have <span
 											class="text-primary">3 unread alerts!</span>
@@ -95,7 +96,7 @@
 										</div>
 									</div>
 								</div>
-								
+
 							</div>
 						</div>
 					</div>
@@ -114,25 +115,27 @@
 										actively engaged with your website, page or app, etc</p> -->
 									<!-- <div id="sales-chart-legend" class="chartjs-legend mt-4 mb-2"></div>
 									<canvas id="sales-chart"></canvas> -->
-									
+
 									<h2 style="text-align: center;">Car Listing</h2>
 								</div>
 							</div>
 						</div>
 					</div>
 
-						 <div class="row">
-    <div class="col-md-12 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
+					<div class="row">
+						<div class="col-md-12 grid-margin stretch-card">
+							<div class="card">
+								<div class="card-body">
 
-              
 
-                <form action="saveListing" method="post">
 
-    <div class="row">
+									<form action="/saveListing" method="post"
+										enctype="multipart/form-data">
 
-        <!-- <div class="col-md-12">
+
+										<div class="row">
+
+											<!-- <div class="col-md-12">
             <div class="form-group">
                 <label>Seller</label>
                 <select class="form-control form-select" name="sellerId">
@@ -140,25 +143,24 @@
                 </select>
             </div>
         </div> -->
-        
-        <div class="col-md-12">
-    <div class="form-group">
-        <label>Seller</label>
-        <select class="form-control form-select" name="sellerId">
-            <option value="">Select Seller</option>
 
-            <c:forEach items="${allUser}" var="s">
-                <option value="${s.userId}">            
-                    ${s.firstName} ${s.lastName} 
-                </option>
-            </c:forEach>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Seller</label> <select
+														class="form-control form-select" name="sellerId">
+														<option value="">Select Seller</option>
 
-        </select>
-    </div>
-</div>
-        
+														<c:forEach items="${allUser}" var="s">
+															<option value="${s.userId}">${s.firstName}
+																${s.lastName}</option>
+														</c:forEach>
 
-       <!--  <div class="col-md-12">
+													</select>
+												</div>
+											</div>
+
+
+											<!--  <div class="col-md-12">
             <div class="form-group">
                 <label>Brand</label>
                 <select class="form-control form-select" name="brandId">
@@ -166,28 +168,26 @@
                 </select>
             </div>
         </div> -->
-        
-        <div class="col-md-12">
-    <div class="form-group">
-        <label>Brand</label>
-        <select class="form-control form-select" name="brandId">
-            <option value="">Select Brand</option>
 
-            <c:forEach items="${allCarBrand}" var="b">
-                <option value="${b.brandId}">
-                    ${b.brandName}
-                </option>
-            </c:forEach>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Brand</label> <select
+														class="form-control form-select" name="brandId">
+														<option value="">Select Brand</option>
 
-        </select>
-    </div>
-</div>
-        
-        
-        
-        
+														<c:forEach items="${allCarBrand}" var="b">
+															<option value="${b.brandId}">${b.brandName}</option>
+														</c:forEach>
 
-        <!-- <div class="col-md-12">
+													</select>
+												</div>
+											</div>
+
+
+
+
+
+											<!-- <div class="col-md-12">
             <div class="form-group">
                 <label>Model</label>
                 <select class="form-control form-select" name="modelId">
@@ -195,26 +195,24 @@
                 </select>
             </div>
         </div> -->
-        
-        
-        <div class="col-md-12">
-    <div class="form-group">
-        <label>Model</label>
-        <select class="form-control form-select" name="modelId">
-            <option value="">Select Model</option>
 
-            <c:forEach items="${allCarModel}" var="m">
-                <option value="${m.modelId}">
-                    ${m.modelName}
-                </option>
-            </c:forEach>
 
-        </select>
-    </div>
-</div>
-        
-        
-<!-- 
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Model</label> <select
+														class="form-control form-select" name="modelId">
+														<option value="">Select Model</option>
+
+														<c:forEach items="${allCarModel}" var="m">
+															<option value="${m.modelId}">${m.modelName}</option>
+														</c:forEach>
+
+													</select>
+												</div>
+											</div>
+
+
+											<!-- 
         <div class="col-md-12">
             <div class="form-group">
                 <label>Variant</label>
@@ -224,102 +222,113 @@
             </div>
         </div>
  -->
- 
- <div class="col-md-12">
-    <div class="form-group">
-        <label>Variant</label>
-        <select class="form-control form-select" name="variantId">
-            <option value="">Select Variant</option>
 
-            <c:forEach items="${allCarVariant}" var="v">
-                <option value="${v.variantId}">
-                    ${v.variantName}
-                </option>
-            </c:forEach>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Variant</label> <select
+														class="form-control form-select" name="variantId">
+														<option value="">Select Variant</option>
 
-        </select>
-    </div>
-</div>
- 
- 
- 
-        <div class="col-md-12">
-            <div class="form-group">
-                <label>City</label>
-                <input type="text" class="form-control" name="city">
-            </div>
-        </div>
+														<c:forEach items="${allCarVariant}" var="v">
+															<option value="${v.variantId}">${v.variantName}
+															</option>
+														</c:forEach>
 
-        <div class="col-md-12">
-            <div class="form-group">
-                <label>Kilometers Driven</label>
-                <input type="number" class="form-control" name="kmsDriven">
-            </div>
-        </div>
+													</select>
+												</div>
+											</div>
 
-        <div class="col-md-12">
-            <div class="form-group">
-                <label>Manufacturing Year</label>
-                <input type="number" class="form-control" name="year">
-            </div>
-        </div>
 
-        <div class="col-md-12">
-            <div class="form-group">
-                <label>Ownership</label>
-                <select class="form-control form-select" name="ownership">
-                    <option>First</option>
-                    <option>Second</option>
-                    <option>Third</option>
-                </select>
-            </div>
-        </div>
 
-        <div class="col-md-12">
-            <div class="form-group">
-                <label>Price</label>
-                <input type="number" class="form-control" name="price">
-            </div>
-        </div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>City</label> <input type="text" class="form-control"
+														name="city">
+												</div>
+											</div>
 
-        <div class="col-md-12">
-            <div class="form-group">
-                <label>Status</label>
-                <select class="form-control form-select" name="status">
-                    <option>Available</option>
-                    <option>Sold</option>
-                </select>
-            </div>
-        </div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Kilometers Driven</label> <input type="number"
+														class="form-control" name="kmsDriven">
+												</div>
+											</div>
 
-        <div class="col-md-12">
-            <div class="form-group">
-                <label>Created Date</label>
-                <input type="date" class="form-control" name="createdAt">
-            </div>
-        </div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Manufacturing Year</label> <input type="number"
+														class="form-control" name="year">
+												</div>
+											</div>
 
-    </div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Ownership</label> <select
+														class="form-control form-select" name="ownership">
+														<option>First</option>
+														<option>Second</option>
+														<option>Third</option>
+													</select>
+												</div>
+											</div>
 
-    <div class="text-center mt-4">
-        <button type="submit" class="btn btn-primary">
-            Save Listing
-        </button>
-    </div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Price</label> <input type="number"
+														class="form-control" name="price">
+												</div>
+											</div>
 
-</form>
-                
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Status</label> <select
+														class="form-control form-select" name="status">
+														<option>Available</option>
+														<option>Sold</option>
+													</select>
+												</div>
+											</div>
 
-            </div>
-        </div>
-    </div>
-</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Created Date</label> <input type="date"
+														class="form-control" name="createdAt">
+												</div>
+											</div>
+											<!-- 🔥 ADD THIS HERE -->
+											<div class="mb-3">
+												<label class="form-label">Car Image</label> <input
+													type="file" name="imageFile"
+													class="form-control small-input" required>
+											</div>
 
-						
+
+
+
+										</div>
+
+
+
+
+
+										<div class="text-center mt-4">
+											<button type="submit" class="btn btn-primary">Save
+												Listing</button>
+										</div>
+
+									</form>
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+
 				</div>
 				<!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->
-				
+
 				<jsp:include page="AdminFooter.jsp"></jsp:include>
 				<!-- partial -->
 			</div>
@@ -329,10 +338,10 @@
 	</div>
 	<!-- container-scroller -->
 	<!-- plugins:js -->
-	
-	
-	
-	
+
+
+
+
 	<!-- End custom js for this page-->
 </body>
-</html> 
+</html>

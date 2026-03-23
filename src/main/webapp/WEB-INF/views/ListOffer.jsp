@@ -171,6 +171,7 @@
 							                    </c:if> --%>
 							                    
 							                    <a href="viewOffer?offerId=${o.offerId}" class="btn btn-primary">VIEW</a>
+							                    <a href="editOffer?offerId=${o.offerId}" class="btn btn-primary">EDIT</a>
     											<a href="deleteOffer?offerId=${o.offerId}" class="btn btn-danger">DELETE</a>
 							                </td>
 							

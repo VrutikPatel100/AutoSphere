@@ -169,6 +169,10 @@
                            class="btn btn-sm btn-info">
                             View
                         </a>
+                        <a href="editSavedListing?wishlistId=${s.wishlistId}"
+                           class="btn btn-sm btn-info">
+                            EDIT
+                        </a>
 
                         <a href="deleteSavedListing?wishlistId=${s.wishlistId}"
                            class="btn btn-sm btn-danger"

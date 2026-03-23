@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,490 +8,341 @@
 
 <title>AutoSphere • Car Details</title>
 
+<jsp:include page="CustomerCSS.jsp"></jsp:include>
+
 <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 
 /* ---------- GLOBAL ---------- */
-
-body{
-background:#f5f3fa;
-font-family:'Segoe UI';
-margin:0;
-}
-
-/* ---------- HEADER ---------- */
-
-.header{
-display:flex;
-align-items:center;
-padding:15px 40px;
-background:white;
-border-bottom:1px solid #ddd;
-}
-
-.logo{
-font-size:26px;
-font-weight:bold;
-color:#6a1b9a;
-}
-
-.city-select{
-padding:8px 16px;
-border-radius:22px;
-border:1px solid #d1c4e9;
-background:#f3e5f5;
-margin:0 20px;
-}
-
-.search-bar{
-display:flex;
-align-items:center;
-background:#f3e5f5;
-padding:8px 14px;
-border-radius:25px;
-width:320px;
-}
-
-.search-bar input{
-border:none;
-background:transparent;
-outline:none;
-width:100%;
-}
-
-.menu{
-margin-left:auto;
-}
-
-.menu a{
-margin-left:18px;
-text-decoration:none;
-color:#333;
-font-weight:500;
-}
-
-.menu a:hover{
-color:#6a1b9a;
+body {
+	background: #f5f3fa;
+	font-family: 'Segoe UI';
+	margin: 0;
 }
 
 /* ---------- MAIN ---------- */
-
-.container{
-max-width:900px;
-margin:50px auto;
+.container {
+	max-width: 900px;
+	margin: 50px auto;
 }
 
 /* ---------- CARD ---------- */
-
-.detail-card{
-background:white;
-border-radius:20px;
-border:1px solid #e6e0f2;
-box-shadow:0 10px 25px rgba(0,0,0,0.06);
-overflow:hidden;
+.detail-card {
+	background: white;
+	border-radius: 20px;
+	border: 1px solid #e6e0f2;
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+	overflow: hidden;
 }
 
-.card-header-custom{
-background:#e6e0f2;
-padding:20px 30px;
-font-weight:600;
-font-size:22px;
-color:#2c2340;
-display:flex;
-align-items:center;
-gap:10px;
+.card-header-custom {
+	background: #e6e0f2;
+	padding: 20px 30px;
+	font-weight: 600;
+	font-size: 22px;
+	color: #2c2340;
+	display: flex;
+	align-items: center;
+	gap: 10px;
 }
 
-.card-body-custom{
-padding:30px;
+.card-body-custom {
+	padding: 30px;
 }
 
-.details-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:25px 60px;
+.details-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 25px 60px;
 }
 
-.detail-item{
-display:flex;
-align-items:center;
-border-bottom:1px dashed #ddd;
-padding-bottom:10px;
+.detail-item {
+	display: flex;
+	align-items: center;
+	border-bottom: 1px dashed #ddd;
+	padding-bottom: 10px;
 }
 
-.detail-icon{
-width:42px;
-height:42px;
-background:#ece7f7;
-border-radius:12px;
-display:flex;
-align-items:center;
-justify-content:center;
-margin-right:15px;
-color:#5c4a7d;
+.detail-icon {
+	width: 42px;
+	height: 42px;
+	background: #ece7f7;
+	border-radius: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 15px;
+	color: #5c4a7d;
 }
 
-.detail-label{
-font-size:12px;
-color:#8a7fa5;
-font-weight:600;
+.detail-label {
+	font-size: 12px;
+	color: #8a7fa5;
+	font-weight: 600;
 }
 
-.detail-value{
-font-size:17px;
-font-weight:600;
-color:#2c2340;
+.detail-value {
+	font-size: 17px;
+	font-weight: 600;
+	color: #2c2340;
 }
 
-.price-value{
-font-size:22px;
-color:#6a1b9a;
-font-weight:700;
+.price-value {
+	font-size: 22px;
+	color: #6a1b9a;
+	font-weight: 700;
 }
 
 /* STATUS */
-
-.status-badge-available{
-background:#e8f7ee;
-color:#2e7d32;
-padding:4px 14px;
-border-radius:20px;
-font-size:13px;
-font-weight:600;
+.status-badge-available {
+	background: #e8f7ee;
+	color: #2e7d32;
+	padding: 4px 14px;
+	border-radius: 20px;
+	font-size: 13px;
+	font-weight: 600;
 }
 
-.status-badge-sold{
-background:#fdeaea;
-color:#c62828;
-padding:4px 14px;
-border-radius:20px;
-font-size:13px;
-font-weight:600;
+.status-badge-sold {
+	background: #fdeaea;
+	color: #c62828;
+	padding: 4px 14px;
+	border-radius: 20px;
+	font-size: 13px;
+	font-weight: 600;
 }
 
 /* BUTTONS */
-
-.card-footer-custom{
-background:#f4effb;
-padding:20px 30px;
-display:flex;
-justify-content:flex-end;
-gap:15px;
+.card-footer-custom {
+	background: #f4effb;
+	padding: 20px 30px;
+	display: flex;
+	justify-content: flex-end;
+	gap: 15px;
 }
 
-.btn-modern{
-border-radius:25px;
-padding:8px 25px;
-text-decoration:none;
-font-weight:500;
+.btn-modern {
+	border-radius: 25px;
+	padding: 8px 25px;
+	text-decoration: none;
+	font-weight: 500;
 }
 
-.btn-back{
-border:1px solid #cfc6e3;
-background:white;
-color:#333;
+.btn-back {
+	border: 1px solid #cfc6e3;
+	background: white;
+	color: #333;
 }
 
-.btn-cart{
-background:#6a1b9a;
-color:white;
+.btn-cart {
+	background: #6a1b9a;
+	color: white;
 }
 
-.btn-cart:hover{
-background:#54127c;
+.btn-cart:hover {
+	background: #54127c;
 }
-
-/* FOOTER */
-
-.footer{
-background:#3b005a;
-color:white;
-padding:60px;
-margin-top:60px;
-}
-
-.footer-container{
-display:flex;
-justify-content:space-between;
-flex-wrap:wrap;
-}
-
-.footer-col{
-width:220px;
-}
-
-.footer-col h3{
-margin-bottom:15px;
-}
-
-.footer-col p{
-font-size:14px;
-line-height:22px;
-color:#ddd;
-}
-
-.footer-col a{
-display:block;
-color:#ddd;
-text-decoration:none;
-margin-bottom:8px;
-}
-
-.footer-col a:hover{
-color:white;
-}
-
-.footer-bottom{
-margin-top:30px;
-text-align:center;
-color:#ccc;
-font-size:14px;
-border-top:1px solid #5a2a77;
-padding-top:25px;
-}
-
-@media(max-width:700px){
-
-.details-grid{
-grid-template-columns:1fr;
-}
-
-}
-
 </style>
 
 </head>
 
 <body>
 
-<!-- HEADER -->
+	<!-- HEADER -->
 
-<div class="header">
+	<jsp:include page="CustomerHeader.jsp"></jsp:include>
 
-<div class="logo">AutoSphere</div>
+	<!-- MAIN -->
 
-<input type="text" class="city-select" placeholder="Select City">
+	<div class="container">
 
-<div class="search-bar">
-<input type="text" placeholder="Search cars by brand or model">
-</div>
+		<div class="detail-card">
 
-<div class="menu">
-<a href="CustomerCarList">List Car</a>
-<a href="#">Car Brand</a>
-<a href="wishlist">My Cart</a>
-<a href="#">Buy Car</a>
-<a href="#">Sell Car</a>
-<a href="#">Login</a>
-<a href="#">Register</a>
-</div>
+			<div class="card-header-custom">
+				<i class="fas fa-car-side"></i> Car Details
+			</div>
 
-</div>
+			<div class="card-body-custom">
 
-<!-- MAIN -->
+				<c:if test="${not empty carListing}">
 
-<div class="container">
+					<div class="details-grid">
 
-<div class="detail-card">
+						<div class="detail-item">
+							<div class="detail-icon">
+								<i class="fas fa-hashtag"></i>
+							</div>
+							<div>
+								<div class="detail-label">Listing ID</div>
+								<div class="detail-value">${carListing.listingId}</div>
+							</div>
+						</div>
 
-<div class="card-header-custom">
-<i class="fas fa-car-side"></i> Car Details
-</div>
+						<div class="detail-item">
+							<div class="detail-icon">
+								<i class="fas fa-user-circle"></i>
+							</div>
+							<div>
+								<div class="detail-label">Seller ID</div>
+								<div class="detail-value">${carListing.userId}</div>
+							</div>
+						</div>
 
-<div class="card-body-custom">
+						<div class="detail-item">
+							<div class="detail-icon">
+								<i class="fas fa-trademark"></i>
+							</div>
+							<div>
+								<div class="detail-label">Brand</div>
+								<div class="detail-value">${carListing.brandName}</div>
+							</div>
+						</div>
 
-<c:if test="${not empty carListing}">
+						<div class="detail-item">
+							<div class="detail-icon">
+								<i class="fas fa-car"></i>
+							</div>
+							<div>
+								<div class="detail-label">Model</div>
+								<div class="detail-value">${carListing.modelName}</div>
+							</div>
+						</div>
 
-<div class="details-grid">
+						<div class="detail-item">
+							<div class="detail-icon">
+								<i class="fas fa-cogs"></i>
+							</div>
+							<div>
+								<div class="detail-label">Variant</div>
+								<div class="detail-value">${carListing.variantName}</div>
+							</div>
+						</div>
 
-<div class="detail-item">
-<div class="detail-icon"><i class="fas fa-hashtag"></i></div>
-<div>
-<div class="detail-label">Listing ID</div>
-<div class="detail-value">${carListing.listingId}</div>
-</div>
-</div>
+						<div class="detail-item">
+							<div class="detail-icon">
+								<i class="fas fa-map-marker-alt"></i>
+							</div>
+							<div>
+								<div class="detail-label">City</div>
+								<div class="detail-value">${carListing.city}</div>
+							</div>
+						</div>
 
-<div class="detail-item">
-<div class="detail-icon"><i class="fas fa-user-circle"></i></div>
-<div>
-<div class="detail-label">Seller ID</div>
-<div class="detail-value">${carListing.userId}</div>
-</div>
-</div>
+						<div class="detail-item">
+							<div class="detail-icon">
+								<i class="fas fa-tachometer-alt"></i>
+							</div>
+							<div>
+								<div class="detail-label">KMS Driven</div>
+								<div class="detail-value">${carListing.kmsDriven}km</div>
+							</div>
+						</div>
 
-<div class="detail-item">
-<div class="detail-icon"><i class="fas fa-trademark"></i></div>
-<div>
-<div class="detail-label">Brand</div>
-<div class="detail-value">${carListing.brandName}</div>
-</div>
-</div>
+						<div class="detail-item">
+							<div class="detail-icon">
+								<i class="fas fa-calendar-alt"></i>
+							</div>
+							<div>
+								<div class="detail-label">Year</div>
+								<div class="detail-value">${carListing.year}</div>
+							</div>
+						</div>
 
-<div class="detail-item">
-<div class="detail-icon"><i class="fas fa-car"></i></div>
-<div>
-<div class="detail-label">Model</div>
-<div class="detail-value">${carListing.modelName}</div>
-</div>
-</div>
+						<div class="detail-item">
+							<div class="detail-icon">
+								<i class="fas fa-user-friends"></i>
+							</div>
+							<div>
+								<div class="detail-label">Ownership</div>
+								<div class="detail-value">${carListing.ownership}</div>
+							</div>
+						</div>
 
-<div class="detail-item">
-<div class="detail-icon"><i class="fas fa-cogs"></i></div>
-<div>
-<div class="detail-label">Variant</div>
-<div class="detail-value">${carListing.variantName}</div>
-</div>
-</div>
+						<div class="detail-item">
+							<div class="detail-icon">
+								<i class="fas fa-rupee-sign"></i>
+							</div>
+							<div>
+								<div class="detail-label">Price</div>
+								<div class="detail-value price-value">${carListing.price}</div>
+							</div>
+						</div>
 
-<div class="detail-item">
-<div class="detail-icon"><i class="fas fa-map-marker-alt"></i></div>
-<div>
-<div class="detail-label">City</div>
-<div class="detail-value">${carListing.city}</div>
-</div>
-</div>
+						<!-- STATUS -->
 
-<div class="detail-item">
-<div class="detail-icon"><i class="fas fa-tachometer-alt"></i></div>
-<div>
-<div class="detail-label">KMS Driven</div>
-<div class="detail-value">${carListing.kmsDriven} km</div>
-</div>
-</div>
+						<div class="detail-item">
+							<div class="detail-icon">
+								<i class="fas fa-check-circle"></i>
+							</div>
+							<div>
+								<div class="detail-label">Status</div>
 
-<div class="detail-item">
-<div class="detail-icon"><i class="fas fa-calendar-alt"></i></div>
-<div>
-<div class="detail-label">Year</div>
-<div class="detail-value">${carListing.year}</div>
-</div>
-</div>
+								<div class="detail-value">
 
-<div class="detail-item">
-<div class="detail-icon"><i class="fas fa-user-friends"></i></div>
-<div>
-<div class="detail-label">Ownership</div>
-<div class="detail-value">${carListing.ownership}</div>
-</div>
-</div>
+									<c:choose>
 
-<div class="detail-item">
-<div class="detail-icon"><i class="fas fa-rupee-sign"></i></div>
-<div>
-<div class="detail-label">Price</div>
-<div class="detail-value price-value">${carListing.price}</div>
-</div>
-</div>
+										<c:when test="${carListing.status == 'Available'}">
+											<span class="status-badge-available">Available</span>
+										</c:when>
 
-<!-- STATUS -->
+										<c:otherwise>
+											<span class="status-badge-sold">Sold</span>
+										</c:otherwise>
 
-<div class="detail-item">
-<div class="detail-icon"><i class="fas fa-check-circle"></i></div>
-<div>
-<div class="detail-label">Status</div>
+									</c:choose>
 
-<div class="detail-value">
+								</div>
+							</div>
+						</div>
 
-<c:choose>
+						<!-- CREATED AT -->
 
-<c:when test="${carListing.status == 'Available'}">
-<span class="status-badge-available">Available</span>
-</c:when>
+						<div class="detail-item">
+							<div class="detail-icon">
+								<i class="fas fa-clock"></i>
+							</div>
+							<div>
+								<div class="detail-label">Created At</div>
+								<div class="detail-value">${carListing.createdAt}</div>
+							</div>
+						</div>
 
-<c:otherwise>
-<span class="status-badge-sold">Sold</span>
-</c:otherwise>
+					</div>
 
-</c:choose>
+				</c:if>
 
-</div>
-</div>
-</div>
+				<c:if test="${empty carListing}">
+					<div style="text-align: center; color: #888; padding: 30px;">
+						<i class="fas fa-car fa-2x"></i> <br>
+						<br> No Car Listing Found
+					</div>
+				</c:if>
 
-<!-- CREATED AT -->
+			</div>
 
-<div class="detail-item">
-<div class="detail-icon"><i class="fas fa-clock"></i></div>
-<div>
-<div class="detail-label">Created At</div>
-<div class="detail-value">${carListing.createdAt}</div>
-</div>
-</div>
+			<div class="card-footer-custom">
 
-</div>
+				<a href="CustomerCarList" class="btn-modern btn-back"> <i
+					class="fas fa-arrow-left"></i> Back
+				</a> <a href="addToWishlist?listingId=${carListing.listingId}"
+					class="btn-modern btn-cart"> <i class="fas fa-cart-plus"></i>
+					Add To Cart
+				</a> <a href="buyNow?listingId=${carListing.listingId}"
+					class="btn-modern btn-cart"> <i class="fas fa-cart-plus"></i>
+					Buy
+				</a>
 
-</c:if>
+			</div>
 
-<c:if test="${empty carListing}">
-<div style="text-align:center;color:#888;padding:30px;">
-<i class="fas fa-car fa-2x"></i>
-<br><br>
-No Car Listing Found
-</div>
-</c:if>
+		</div>
 
-</div>
+	</div>
 
-<div class="card-footer-custom">
+	<!-- FOOTER -->
 
-<a href="CustomerCarList" class="btn-modern btn-back">
-<i class="fas fa-arrow-left"></i> Back
-</a>
-
-<a href="addToWishlist?listingId=${carListing.listingId}" class="btn-modern btn-cart">
-<i class="fas fa-cart-plus"></i> Add To Cart
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- FOOTER -->
-
-<div class="footer">
-
-<div class="footer-container">
-
-<div class="footer-col">
-<h3>AutoSphere</h3>
-<p>AutoSphere is the easiest way to buy and sell used cars online with verified inspection and doorstep delivery.</p>
-</div>
-
-<div class="footer-col">
-<h3>Company</h3>
-<a href="#">About</a>
-<a href="#">Careers</a>
-<a href="#">Blog</a>
-<a href="#">Contact</a>
-</div>
-
-<div class="footer-col">
-<h3>Services</h3>
-<a href="#">Buy Car</a>
-<a href="#">Sell Car</a>
-<a href="#">Car Loan</a>
-<a href="#">Insurance</a>
-</div>
-
-<div class="footer-col">
-<h3>Support</h3>
-<a href="#">FAQ</a>
-<a href="#">Terms</a>
-<a href="#">Privacy</a>
-</div>
-
-</div>
-
-<div class="footer-bottom">
-© 2026 AutoSphere | MCA Sem 4 Project
-</div>
-
-</div>
+	<jsp:include page="CustomerFooter.jsp"></jsp:include>
 
 </body>
 </html>

@@ -95,4 +95,40 @@ public class CarSavedListingController {
   
         return "ViewSavedListing";
     }
+    
+    
+    @GetMapping("/editSavedListing")
+    public String editSavedListing(Integer wishlistId, Model model) {
+
+        Optional<SavedListingEntity> op = savedListingRepository.findById(wishlistId);
+
+        if (op.isEmpty()) {
+            return "redirect:/listSavedListing";
+        }
+
+        model.addAttribute("saved", op.get());
+
+        // dropdown data
+        model.addAttribute("carList", carListingRepository.findAll());
+        model.addAttribute("all", userRepository.findAll());
+
+        return "EditSavedListing";
+    }
+
+    
+    @PostMapping("/updateSavedListing")
+    public String updateSavedListing(SavedListingEntity savedListingEntity) {
+
+        // જો date update ના કરવી હોય તો old રાખો
+        if (savedListingEntity.getAddedAt() == null) {
+            savedListingEntity.setAddedAt(Date.valueOf(LocalDate.now()));
+        }
+
+        savedListingRepository.save(savedListingEntity);
+
+        return "redirect:/listSavedListing";
+    }
+
+    
+    
 }

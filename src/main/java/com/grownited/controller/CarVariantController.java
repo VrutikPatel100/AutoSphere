@@ -67,4 +67,32 @@ public class CarVariantController {
 	    return "ViewCarVariant";
 	}
 
+	
+	@GetMapping("/editCarVariant")
+	public String editCarVariant(Integer variantId, Model model) {
+
+	    Optional<CarVariantEntity> opVariant = carVariantRepository.findById(variantId);
+
+	    if (opVariant.isEmpty()) {
+	        return "redirect:/listCarVariant";
+	    }
+
+	    model.addAttribute("carVariant", opVariant.get());
+
+	    // dropdown માટે model list
+	    List<CarModelTypeEntity> allCarType = carModelTypeRepository.findAll();
+	    model.addAttribute("allCarType", allCarType);
+
+	    return "EditCarVariant";
+	}
+
+	
+	@PostMapping("/updateCarVariant")
+	public String updateCarVariant(CarVariantEntity carVariantEntity) {
+
+	    carVariantRepository.save(carVariantEntity);
+
+	    return "redirect:/listCarVariant";
+	}
+
 }

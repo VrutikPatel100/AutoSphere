@@ -74,4 +74,36 @@ public class ReportsController {
 		}		
 		return"ViewCarReports";
 	}
+	
+	@GetMapping("/editCarReports")
+	public String editCarReports(Integer reportId, Model model) {
+
+	    Optional<ReportsEntity> opReport = reportsRepository.findById(reportId);
+
+	    if (opReport.isEmpty()) {
+	        return "redirect:/listCarReports";
+	    }
+
+	    model.addAttribute("report", opReport.get());
+
+	    // dropdown data
+	    model.addAttribute("allUser", userRepository.findAll());
+	    model.addAttribute("allCar", carListingRepository.findAll());
+
+	    return "EditCarReports";
+	}
+
+	
+	@PostMapping("/updateCarReports")
+	public String updateCarReports(ReportsEntity reportsEntity) {
+
+	    reportsRepository.save(reportsEntity);
+
+	    return "redirect:/listCarReports";
+	}
+
+	
+	
+	
 }
+

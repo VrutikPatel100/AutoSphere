@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.grownited.entity.UserDetailEntity;
 import com.grownited.entity.UserEntity;
@@ -56,6 +57,37 @@ public class UserController {
 		return"redirect:/listUser";
 	}
 	
+	
+	@GetMapping("/editUser")
+	public String editUser(Integer userId, Model model) {
+
+	    Optional<UserEntity> opUser = userRepository.findById(userId);
+	    Optional<UserDetailEntity> opUserDetail = userDetailRepository.findByUserId(userId);
+
+	    if (opUser.isPresent()) {
+	        model.addAttribute("user", opUser.get());
+	    }
+
+	    if (opUserDetail.isPresent()) {
+	        model.addAttribute("userDetail", opUserDetail.get());
+	    }
+
+	    return "EditUser"; // JSP/HTML page
+	}
+
+	
+	@PostMapping("/updateUser")
+	public String updateUser(UserEntity userEntity, UserDetailEntity userDetailEntity) {
+
+	    // User update
+	    userRepository.save(userEntity);
+
+	    // UserDetail update
+	    userDetailRepository.save(userDetailEntity);
+
+	    return "redirect:/listUser";
+	}
+
 	
 
 }

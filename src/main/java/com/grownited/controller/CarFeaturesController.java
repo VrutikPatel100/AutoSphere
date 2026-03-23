@@ -67,6 +67,37 @@ public class CarFeaturesController {
 
 	    return "ViewCarFeature";
 	}
+	
+	@GetMapping("/editCarFeatures")
+	public String editCarFeatures(Integer featureId, Model model) {
+
+	    Optional<CarFeaturesEntity> opFeature =
+	            carFeaturesRepository.findById(featureId);
+
+	    if (opFeature.isEmpty()) {
+	        return "redirect:/listCarFeatures";
+	    }
+
+	    model.addAttribute("carFeature", opFeature.get());
+
+	    // Variant dropdown માટે data (ModelType પણ લઈ શકો જો relation હોય)
+	    List<CarModelTypeEntity> allCarType = carModelTypeRepository.findAll();
+	    model.addAttribute("allCarType", allCarType);
+
+	    return "EditCarFeatures";
+	}
+
+	
+	@PostMapping("/updateCarFeatures")
+	public String updateCarFeatures(CarFeaturesEntity carFeaturesEntity) {
+
+	    carFeaturesRepository.save(carFeaturesEntity);
+
+	    return "redirect:/listCarFeatures";
+	}
+
+	
+	
 
 		
 }

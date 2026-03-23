@@ -72,6 +72,34 @@ public class OfferController {
 	
 		return"ViewOffer";
 	}
+	
+	@GetMapping("/editOffer")
+	public String editOffer(Integer offerId, Model model) {
+
+	    Optional<OfferEntity> opOffer = offerRepository.findById(offerId);
+
+	    if (opOffer.isEmpty()) {
+	        return "redirect:/listCarOffer";
+	    }
+
+	    model.addAttribute("offer", opOffer.get());
+
+	    // dropdown data
+	    model.addAttribute("allCarList", carListingRepository.findAll());
+	    model.addAttribute("allUser", userRepository.findAll());
+
+	    return "EditOffer";
+	}
+
+	
+	@PostMapping("/updateOffer")
+	public String updateOffer(OfferEntity offerEntity) {
+
+	    offerRepository.save(offerEntity);
+
+	    return "redirect:/listCarOffer";
+	}
+
 }
 
 

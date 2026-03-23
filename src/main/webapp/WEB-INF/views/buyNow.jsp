@@ -12,22 +12,166 @@
 <title>AutoSphere • Car Booking</title>
 
 <link rel="stylesheet"
-href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
 
 <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 
 /* BODY */
-
-body{
-background:#f5f3fa;
-font-family:'Segoe UI';
-margin:0;
+body {
+	background: #f5f3fa;
+	font-family: 'Segoe UI';
+	margin: 0;
 }
 
 /* HEADER */
+.header {
+	display: flex;
+	align-items: center;
+	padding: 15px 40px;
+	background: white;
+	border-bottom: 1px solid #ddd;
+}
+
+.logo {
+	font-size: 26px;
+	font-weight: bold;
+	color: #6a1b9a;
+}
+
+.city-select {
+	padding: 8px 16px;
+	border-radius: 22px;
+	border: 1px solid #d1c4e9;
+	background: #f3e5f5;
+	margin: 0 20px;
+}
+
+.search-bar {
+	display: flex;
+	align-items: center;
+	background: #f3e5f5;
+	padding: 8px 14px;
+	border-radius: 25px;
+	width: 320px;
+}
+
+.search-bar input {
+	border: none;
+	background: transparent;
+	outline: none;
+	width: 100%;
+}
+
+.menu {
+	margin-left: auto;
+}
+
+.menu a {
+	margin-left: 18px;
+	text-decoration: none;
+	color: #333;
+	font-weight: 500;
+}
+
+.menu a:hover {
+	color: #6a1b9a;
+}
+
+/* CONTAINER */
+.container-main {
+	max-width: 1000px;
+	margin: 60px auto;
+}
+
+/* BOOKING CARD */
+.booking-card {
+	border-radius: 18px;
+	border: 1px solid #e6e0f2;
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.card-header {
+	background: #6a1b9a;
+	color: white;
+	font-weight: 600;
+	font-size: 18px;
+}
+
+.section-title {
+	font-size: 14px;
+	font-weight: 600;
+	color: #444;
+	margin-bottom: 5px;
+}
+
+.amount-box {
+	background: #f3e5f5;
+	border-radius: 8px;
+	padding: 10px;
+	font-weight: 600;
+	color: #6a1b9a;
+	text-align: center;
+}
+
+.confirm-btn {
+	background: #6a1b9a;
+	border: none;
+}
+
+.confirm-btn:hover {
+	background: #54127c;
+}
+
+/* FOOTER */
+.footer {
+	background: #3b005a;
+	color: white;
+	padding: 60px;
+	margin-top: 80px;
+}
+
+.footer-container {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.footer-col {
+	width: 220px;
+}
+
+.footer-col h3 {
+	margin-bottom: 15px;
+}
+
+.footer-col p {
+	font-size: 14px;
+	line-height: 22px;
+	color: #ddd;
+}
+
+.footer-col a {
+	display: block;
+	color: #ddd;
+	text-decoration: none;
+	margin-bottom: 8px;
+}
+
+.footer-col a:hover {
+	color: white;
+}
+
+.footer-bottom {
+	margin-top: 30px;
+	text-align: center;
+	color: #ccc;
+	font-size: 14px;
+	border-top: 1px solid #5a2a77;
+	padding-top: 25px;
+}
 
 .header{
 display:flex;
@@ -43,330 +187,207 @@ font-weight:bold;
 color:#6a1b9a;
 }
 
-.city-select{
-padding:8px 16px;
-border-radius:22px;
-border:1px solid #d1c4e9;
-background:#f3e5f5;
-margin:0 20px;
-}
-
-.search-bar{
+.logo{
 display:flex;
 align-items:center;
-background:#f3e5f5;
-padding:8px 14px;
-border-radius:25px;
-width:320px;
-}
-
-.search-bar input{
-border:none;
-background:transparent;
-outline:none;
-width:100%;
-}
-
-.menu{
-margin-left:auto;
-}
-
-.menu a{
-margin-left:18px;
+gap:12px;
+font-size:28px;
+font-weight:700;
+color:#4a148c;
 text-decoration:none;
-color:#333;
-font-weight:500;
+font-family:Arial, sans-serif;
 }
 
-.menu a:hover{
-color:#6a1b9a;
-}
-
-/* CONTAINER */
-
-.container-main{
-max-width:1000px;
-margin:60px auto;
-}
-
-/* BOOKING CARD */
-
-.booking-card{
-border-radius:18px;
-border:1px solid #e6e0f2;
-box-shadow:0 10px 25px rgba(0,0,0,0.08);
-}
-
-.card-header{
-background:#6a1b9a;
-color:white;
-font-weight:600;
-font-size:18px;
-}
-
-.section-title{
-font-size:14px;
-font-weight:600;
-color:#444;
-margin-bottom:5px;
-}
-
-.amount-box{
-background:#f3e5f5;
-border-radius:8px;
-padding:10px;
-font-weight:600;
-color:#6a1b9a;
-text-align:center;
-}
-
-.confirm-btn{
-background:#6a1b9a;
-border:none;
-}
-
-.confirm-btn:hover{
-background:#54127c;
-}
-
-/* FOOTER */
-
-.footer{
-background:#3b005a;
-color:white;
-padding:60px;
-margin-top:80px;
-}
-
-.footer-container{
+.logo-icon{
+width:40px;
+height:40px;
+background:#ff4d6d;
 display:flex;
-justify-content:space-between;
-flex-wrap:wrap;
+align-items:center;
+justify-content:center;
+transform:rotate(45deg);
+border-radius:10px;
 }
 
-.footer-col{
-width:220px;
-}
-
-.footer-col h3{
-margin-bottom:15px;
-}
-
-.footer-col p{
-font-size:14px;
-line-height:22px;
-color:#ddd;
-}
-
-.footer-col a{
-display:block;
-color:#ddd;
-text-decoration:none;
-margin-bottom:8px;
-}
-
-.footer-col a:hover{
+.logo-icon span{
 color:white;
+font-size:20px;
+font-weight:700;
+transform:rotate(-45deg);
 }
-
-.footer-bottom{
-margin-top:30px;
-text-align:center;
-color:#ccc;
-font-size:14px;
-border-top:1px solid #5a2a77;
-padding-top:25px;
-}
-
 </style>
 
 </head>
 
 <body>
 
-<!-- HEADER -->
+	<!-- HEADER -->
 
-<div class="header">
+	<div class="header">
 
-<div class="logo">AutoSphere</div>
 
-<input type="text" class="city-select" placeholder="Select City">
 
-<div class="search-bar">
-<input type="text" placeholder="Search cars by brand or model">
-</div>
+		<a href="customer-dashboard" class="logo">
 
-<div class="menu">
-<a href="CustomerCarList">List Car</a>
-<a href="#">Car Brand</a>
-<a href="wishlist">My Cart</a>
-<a href="#">Buy Car</a>
-<a href="#">Sell Car</a>
-<a href="#">Login</a>
-<a href="#">Register</a>
-</div>
+			<div class="logo-icon">
+				<span>A</span>
+			</div> AutoSphere
 
-</div>
+		</a> <input type="text" class="city-select" placeholder="Select City">
 
-<!-- MAIN -->
+		<div class="search-bar">
+			<input type="text" placeholder="Search cars by brand or model">
+		</div>
 
-<div class="container container-main">
+		<div class="menu">
+			<a href="CustomerCarList">List Car</a> <a href="#">Car Brand</a> <a
+				href="wishlist">My Cart</a> <a href="#">Buy Car</a> <a href="#">Sell
+				Car</a> <a href="#">Login</a> <a href="#">Register</a>
+		</div>
 
-<div class="card booking-card">
+	</div>
 
-<div class="card-header text-center">
-<i class="fas fa-car"></i> Confirm Your Car Booking
-</div>
+	<!-- MAIN -->
 
-<div class="card-body">
+	<div class="container container-main">
 
-<form action="confirmBooking" method="post">
+		<div class="card booking-card">
 
-<input type="hidden" name="listingId" value="${carListing.listingId}">
-<input type="hidden" name="bookingAmount" value="10000">
+			<div class="card-header text-center">
+				<i class="fas fa-car"></i> Confirm Your Car Booking
+			</div>
 
-<div class="row">
+			<div class="card-body">
 
-<!-- LEFT SIDE -->
+				<form action="confirmBooking" method="post">
 
-<div class="col-md-6">
+					<input type="hidden" name="listingId"
+						value="${carListing.listingId}"> <input type="hidden"
+						name="bookingAmount" value="10000">
 
-<div class="section-title">Buyer Name</div>
+					<div class="row">
 
-<input type="text" class="form-control mb-3"
-value="${sessionScope.user.firstName} ${sessionScope.user.lastName}" readonly>
+						<!-- LEFT SIDE -->
 
-<div class="section-title">Car Name</div>
+						<div class="col-md-6">
 
-<input type="text" class="form-control mb-3"
-value="${carListing.brandName} ${carListing.modelName}" readonly>
+							<div class="section-title">Buyer Name</div>
 
-<div class="section-title">Variant Name</div>
+							<input type="text" class="form-control mb-3"
+								value="${sessionScope.user.firstName} ${sessionScope.user.lastName}"
+								readonly>
 
-<input type="text" class="form-control mb-3"
-value="${carListing.variantName}" readonly>
+							<div class="section-title">Car Name</div>
 
-</div>
+							<input type="text" class="form-control mb-3"
+								value="${carListing.brandName} ${carListing.modelName}" readonly>
 
-<!-- RIGHT SIDE -->
+							<div class="section-title">Variant Name</div>
 
-<div class="col-md-6">
+							<input type="text" class="form-control mb-3"
+								value="${carListing.variantName}" readonly>
 
-<div class="section-title">Booking Amount</div>
+						</div>
 
-<div class="amount-box mb-3">
-₹10,000 Advance Booking
-</div>
+						<!-- RIGHT SIDE -->
 
-<div class="section-title">Payment Method</div>
+						<div class="col-md-6">
 
-<select class="form-select mb-3" name="paymentMethod" required>
-<option value="">Select Payment</option>
-<option value="Credit Card">Credit Card</option>
-</select>
+							<div class="section-title">Booking Amount</div>
 
-<div class="section-title">Card Number</div>
+							<div class="amount-box mb-3">₹10,000 Advance Booking</div>
 
-<input type="text" class="form-control mb-3"
-name="cardNumber"
-placeholder="XXXX XXXX XXXX XXXX"
-required>
+							<div class="section-title">Payment Method</div>
 
-<div class="row">
+							<select class="form-select mb-3" name="paymentMethod" required>
+								<option value="">Select Payment</option>
+								<option value="Credit Card">Credit Card</option>
+							</select>
 
-<div class="col-md-6">
+							<div class="section-title">Card Number</div>
 
-<div class="section-title">Expiry</div>
+							<input type="text" class="form-control mb-3" name="cardNumber"
+								placeholder="XXXX XXXX XXXX XXXX" required>
 
-<input type="text" class="form-control"
-name="expiryDate"
-placeholder="MM/YY"
-required>
+							<div class="row">
 
-</div>
+								<div class="col-md-6">
 
-<div class="col-md-6">
+									<div class="section-title">Expiry</div>
 
-<div class="section-title">CVV</div>
+									<input type="text" class="form-control" name="expiryDate"
+										placeholder="MM/YY" required>
 
-<input type="password"
-class="form-control"
-name="cvv"
-placeholder="CVV"
-required>
+								</div>
 
-</div>
+								<div class="col-md-6">
 
-</div>
+									<div class="section-title">CVV</div>
 
-<br>
+									<input type="password" class="form-control" name="cvv"
+										placeholder="CVV" required>
 
-<div class="d-grid">
+								</div>
 
-<button type="submit"
-class="btn confirm-btn text-white btn-lg">
+							</div>
 
-Confirm Booking ₹10,000
+							<br>
 
-</button>
+							<div class="d-grid">
 
-</div>
+								<button type="submit" class="btn confirm-btn text-white btn-lg">
 
-</div>
+									Confirm Booking ₹10,000</button>
 
-</div>
+							</div>
 
-</form>
+						</div>
 
-</div>
+					</div>
 
-</div>
+				</form>
 
-</div>
+			</div>
 
-<!-- FOOTER -->
+		</div>
 
-<div class="footer">
+	</div>
 
-<div class="footer-container">
+	<!-- FOOTER -->
 
-<div class="footer-col">
-<h3>AutoSphere</h3>
-<p>
-AutoSphere is the easiest way to buy and sell used cars online with verified inspection and doorstep delivery.
-</p>
-</div>
+	<div class="footer">
 
-<div class="footer-col">
-<h3>Company</h3>
-<a href="#">About</a>
-<a href="#">Careers</a>
-<a href="#">Blog</a>
-<a href="#">Contact</a>
-</div>
+		<div class="footer-container">
 
-<div class="footer-col">
-<h3>Services</h3>
-<a href="#">Buy Car</a>
-<a href="#">Sell Car</a>
-<a href="#">Car Loan</a>
-<a href="#">Insurance</a>
-</div>
+			<div class="footer-col">
+				<h3>AutoSphere</h3>
+				<p>AutoSphere is the easiest way to buy and sell used cars
+					online with verified inspection and doorstep delivery.</p>
+			</div>
 
-<div class="footer-col">
-<h3>Support</h3>
-<a href="#">FAQ</a>
-<a href="#">Terms</a>
-<a href="#">Privacy</a>
-</div>
+			<div class="footer-col">
+				<h3>Company</h3>
+				<a href="#">About</a> <a href="#">Careers</a> <a href="#">Blog</a> <a
+					href="#">Contact</a>
+			</div>
 
-</div>
+			<div class="footer-col">
+				<h3>Services</h3>
+				<a href="#">Buy Car</a> <a href="#">Sell Car</a> <a href="#">Car
+					Loan</a> <a href="#">Insurance</a>
+			</div>
 
-<div class="footer-bottom">
-© 2026 AutoSphere | MCA Sem 4 Project
-</div>
+			<div class="footer-col">
+				<h3>Support</h3>
+				<a href="#">FAQ</a> <a href="#">Terms</a> <a href="#">Privacy</a>
+			</div>
 
-</div>
+		</div>
+
+		<div class="footer-bottom">© 2026 AutoSphere | MCA Sem 4 Project
+		</div>
+
+	</div>
 
 </body>
 </html>

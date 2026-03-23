@@ -156,6 +156,7 @@
                     </td> --%>
                     <td>
 	                    <a href="viewReviewRating?reviewId=${r.reviewId}" class="btn btn-primary">View</a>
+	                    <a href="editReviewRating?reviewId=${r.reviewId}" class="btn btn-primary">EDIT</a>
 	                    <a href="deleteReviewRating?reviewId=${r.reviewId}" class="btn btn-danger">Delete</a>
                		</td>
                 </tr>

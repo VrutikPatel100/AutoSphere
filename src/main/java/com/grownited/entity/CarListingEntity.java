@@ -32,6 +32,7 @@ public class CarListingEntity {
 	private String ownership;
 	private Integer price;
 	private String status;  //Enum
+	private String imageURL;
 	private LocalDate createdAt;
 	public Integer getListingId() {
 		return listingId;
@@ -122,6 +123,12 @@ public class CarListingEntity {
 	}
 	public void setVariantName(String variantName) {
 		this.variantName = variantName;
+	}
+	public String getImageURL() {
+		return imageURL;
+	}
+	public void setImageURL(String imageURL) {
+		this.imageURL = imageURL;
 	}
 	
 	

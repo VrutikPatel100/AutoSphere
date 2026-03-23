@@ -26,7 +26,8 @@
 						<div class="col-md-12 grid-margin">
 							<div class="row">
 								<div class="col-12 col-xl-8 mb-4 mb-xl-0">
-									<h3 class="font-weight-bold">Welcome ${sessionScope.user.firstName}</h3>
+									<h3 class="font-weight-bold">Welcome
+										${sessionScope.user.firstName}</h3>
 									<h6 class="font-weight-normal mb-0">
 										All systems are running smoothly! You have <span
 											class="text-primary">3 unread alerts!</span>
@@ -95,7 +96,7 @@
 										</div>
 									</div>
 								</div>
-								
+
 							</div>
 						</div>
 					</div>
@@ -114,76 +115,82 @@
 										actively engaged with your website, page or app, etc</p> -->
 									<!-- <div id="sales-chart-legend" class="chartjs-legend mt-4 mb-2"></div>
 									<canvas id="sales-chart"></canvas> -->
-									
+
 									<h2 style="text-align: center;">View Car List</h2>
 								</div>
 							</div>
 						</div>
 					</div>
 
-						 <div class="row">
-    <div class="col-md-12 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
+					<div class="row">
+						<div class="col-md-12 grid-margin stretch-card">
+							<div class="card">
+								<div class="card-body">
 
 
-			<div class="table-responsive">
-                <table class="table table-striped">
-							    <tr>
-							        <th>ID</th>
-							        <th>Seller</th>
-							        <th>Brand</th>
-							        <th>Model</th>
-							        <th>Variant</th>
-							        <th>City</th>
-							        <th>KMS Driven</th>
-							        <th>Year</th>
-							        <th>Ownership</th>
-							        <th>Price</th>
-							        <th>Status</th>
-							        <th>Created Date</th>
-							        <th>Action</th>
-							    </tr>
-							
-							    <c:forEach items="${allCarList}" var="c">
-							        <tr>
-							            <td>${c.listingId}</td>
-							            <td>${c.userId}</td>
-							            <%-- <td>${c.brandId} ${c.brandName}</td> --%>
-							            <td>${c.brandName}</td>
-							           <%--  <td>${c.modelId} ${c.modelName}</td> --%>
-							            <td>${c.modelName}</td>
-							            <%-- <td>${c.variantId} ${c.variantName}</td> --%>
-							            <td> ${c.variantName}</td>
-							            <td>${c.city}</td>
-							            <td>${c.kmsDriven}</td>
-							            <td>${c.year}</td>
-							            <td>${c.ownership}</td>
-							            <td>${c.price}</td>
-							            <td>${c.status}</td>
-							            <td>${c.createdAt}</td>
-							            <td>
-							                <a href="viewCarListing?listingId=${c.listingId}" class="btn btn-primary ">View</a>
-							                <a href="deleteCarListing?listingId=${c.listingId}" class="btn btn-danger"
-							                   onclick="return confirm('Are you sure?')">Delete</a>
-							            </td>
-							        </tr>
-							    </c:forEach>
-							
-							</table>
+									<div class="table-responsive">
+										<table class="table table-striped">
+											<tr>
+												<th>ID</th>
+												<th>Seller</th>
+												<th>Brand</th>
+												<th>Model</th>
+												<th>Variant</th>
+												<th>City</th>
+												<th>KMS Driven</th>
+												<th>Year</th>
+												<th>Ownership</th>
+												<th>Price</th>
+												<th>Status</th>
+												<th>Created Date</th>
+												 <th>Image </th> 
+												<th>Action</th>
+											</tr>
+
+											<c:forEach items="${allCarList}" var="c">
+												<tr>
+													<td>${c.listingId}</td>
+													<td>${c.userId}</td>
+													<%-- <td>${c.brandId} ${c.brandName}</td> --%>
+													<td>${c.brandName}</td>
+													<%--  <td>${c.modelId} ${c.modelName}</td> --%>
+													<td>${c.modelName}</td>
+													<%-- <td>${c.variantId} ${c.variantName}</td> --%>
+													<td>${c.variantName}</td>
+													<td>${c.city}</td>
+													<td>${c.kmsDriven}</td>
+													<td>${c.year}</td>
+													<td>${c.ownership}</td>
+													<td>${c.price}</td>
+													<td>${c.status}</td>
+													
+													<td>${c.createdAt}</td>
+													<td>${c.imageURL}</td> 
+													<td><a href="viewCarListing?listingId=${c.listingId}"
+														class="btn btn-primary ">View</a> 
+													<td><a href="editCarListing?listingId=${c.listingId}"
+														class="btn btn-primary ">EDIT</a> 
+														<a
+														href="deleteCarListing?listingId=${c.listingId}"
+														class="btn btn-danger"
+														onclick="return confirm('Are you sure?')">Delete</a></td>
+												</tr>
+											</c:forEach>
+
+										</table>
+									</div>
+
+
+								</div>
+							</div>
 						</div>
-                
+					</div>
 
-            </div>
-        </div>
-    </div>
-</div>
 
-						
 				</div>
 				<!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->
-				
+
 				<jsp:include page="AdminFooter.jsp"></jsp:include>
 				<!-- partial -->
 			</div>
@@ -193,10 +200,10 @@
 	</div>
 	<!-- container-scroller -->
 	<!-- plugins:js -->
-	
-	
-	
-	
+
+
+
+
 	<!-- End custom js for this page-->
 </body>
-</html> 
+</html>

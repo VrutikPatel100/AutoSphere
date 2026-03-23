@@ -1,6 +1,7 @@
 package com.grownited.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.grownited.entity.CarBrandEntity;
 import com.grownited.entity.CarListingEntity;
 import com.grownited.repository.CarBrandRepository;
@@ -19,6 +24,9 @@ public class CarBrandController {
 
     @Autowired
     CarBrandRepository carBrandRepository;
+    
+    @Autowired
+    Cloudinary cloudinary;
   
 
     
@@ -27,15 +35,34 @@ public class CarBrandController {
         return "AddBrand";
     }
     
-    @PostMapping("savebrand")
-	public String saveCategory(CarBrandEntity carBrandEntity) {
+ // 🔥 CLOUDINARY UPLOAD
+    @PostMapping("/savebrand")
+    public String saveCategory(CarBrandEntity carBrandEntity,
+                               @RequestParam("logoFile") MultipartFile file) {
 
-		carBrandEntity.setActive(true);
-		
-		//insert 
-		carBrandRepository.save(carBrandEntity); 
-		return "AdminDashboard";
-	}
+        try {
+
+            // 🔥 Upload to Cloudinary (logo folder)
+            Map uploadResult = cloudinary.uploader().upload(
+                    file.getBytes(),
+                    ObjectUtils.asMap("folder", "brand_logos")
+            );
+
+            String imageUrl = (String) uploadResult.get("secure_url");
+
+            // 🔥 Save URL in DB
+            carBrandEntity.setLogoUrl(imageUrl);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        carBrandEntity.setActive(true);
+
+        carBrandRepository.save(carBrandEntity);
+
+        return "redirect:/listbrand";
+    }
      
  
 
@@ -80,5 +107,55 @@ public class CarBrandController {
 	    return "ViewCarBrand";
 	}
     
+    
+    @GetMapping("/editbrand")
+    public String editBrand(Integer brandId, Model model) {
+
+        Optional<CarBrandEntity> opBrand = carBrandRepository.findById(brandId);
+
+        if (opBrand.isEmpty()) {
+            return "redirect:/listbrand";
+        }
+
+        model.addAttribute("carBrand", opBrand.get());
+
+        return "EditBrand";
+    }
+
+    
+    @PostMapping("/updatebrand")
+    public String updateBrand(CarBrandEntity carBrandEntity,
+                              @RequestParam("logoFile") MultipartFile file) {
+
+        try {
+
+            // 🔥 If new file uploaded → update image
+            if (!file.isEmpty()) {
+
+                Map uploadResult = cloudinary.uploader().upload(
+                        file.getBytes(),
+                        ObjectUtils.asMap("folder", "brand_logos")
+                );
+
+                String imageUrl = (String) uploadResult.get("secure_url");
+
+                carBrandEntity.setLogoUrl(imageUrl);
+            } else {
+                // 🔥 Keep old image
+                CarBrandEntity oldData =
+                        carBrandRepository.findById(carBrandEntity.getBrandId()).get();
+
+                carBrandEntity.setLogoUrl(oldData.getLogoUrl());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        carBrandRepository.save(carBrandEntity);
+
+        return "redirect:/listbrand";
+    }
+
   
 }

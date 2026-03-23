@@ -64,6 +64,29 @@ public class CarModelTypeController {
 		}
 
 		
+		@GetMapping("editCarModel")
+		public String editCarModel(Integer modelId, Model model) {
+
+		    Optional<CarModelTypeEntity> opModel = carModelTypeRepository.findById(modelId);
+
+		    if (opModel.isEmpty()) {
+		        return "redirect:/listCarModel";
+		    }
+
+		    model.addAttribute("carModel", opModel.get());
+
+		    return "EditCarModel";
+		}
+
+		
+		@PostMapping("updateCarModel")
+		public String updateCarModel(CarModelTypeEntity carModelTypeEntity) {
+
+		    carModelTypeRepository.save(carModelTypeEntity);
+
+		    return "redirect:/listCarModel";
+		}
+
 		
 		
 }

@@ -89,6 +89,9 @@ public class SessionController {
 		UserEntity dbUser = op.get();
 		session.setAttribute("user", dbUser);
 		
+		 // 🔥 ADD THIS LINE (VERY IMPORTANT) --> user wise wishlist
+        session.setAttribute("userId", dbUser.getUserId());
+		
 		if(passwordEncoder.matches(password, dbUser.getPassword())) {
 //		if(dbUser.getPassword().equals(password)) { 
 			if(dbUser.getRole().equals("ADMIN")) {

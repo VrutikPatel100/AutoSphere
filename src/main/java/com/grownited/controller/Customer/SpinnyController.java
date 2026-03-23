@@ -45,6 +45,8 @@ public class SpinnyController {
 	
 	@Autowired
 	CarBrandRepository carBrandRepository;
+	
+	
 
 
 
@@ -53,12 +55,23 @@ public class SpinnyController {
 	{
 		List<CarImageEntity> image = carImageRepository.findAll();
 		List<CarBrandEntity> brand = carBrandRepository.findAll();
+		List<CarListingEntity> list = carListingRepository.findAll();
 			
 		model.addAttribute("image", image);
 		model.addAttribute("brand",brand);
+		model.addAttribute("list",list);
 		return "spinny";
 	}
 	
+	@GetMapping("Careers")
+	public String Careers() {
+		return"Careers";
+	}
+
+	@GetMapping("Contact")
+	public String Contact() {
+		return"Contact";
+	}
 	
 	@GetMapping("/CustomerCarList")
 	public String customerCarList(Model model){
