@@ -12,6 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.cloudinary.Cloudinary;
 import com.grownited.entity.*;
 import com.grownited.repository.*;
+import com.grownited.entity.CarListingEntity;
+
 
 @Controller
 public class CarListingController {
@@ -33,6 +35,9 @@ public class CarListingController {
 
     @Autowired
     Cloudinary cloudinary;
+    
+    
+
 
     // ================== ADD PAGE ==================
     @GetMapping("/carListing")
@@ -110,4 +115,15 @@ public class CarListingController {
 
         return "ViewCarListing";
     }
+    @GetMapping("/warranty")
+    public String warrantyPage() {
+        return "warranty";
+    }
+
+    
+    
+
+    
+
+
 }

@@ -398,6 +398,16 @@ body {
 .suggestion-item:hover {
     background: #f3e5f5;
 }
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card {
+    cursor: pointer;
+}
+
 </style>
 </head>
 
@@ -469,36 +479,45 @@ body {
 
 	<div class="section">
 
-		<h2>AutoSphere Assured Benefits</h2>
+    <h2>AutoSphere Assured Benefits</h2>
 
-		<div class="cards">
+    <div class="cards">
 
-			<div class="card">
-				<img
-					src="https://tse2.mm.bing.net/th/id/OIP.Dt_cmV3c7iAiI9hH3a_-oQHaHa">
-				<p>✔ 200+ Quality Checks</p>
-			</div>
+        <!-- Quality Checks -->
+        <a href="quality-check" class="card-link">
+            <div class="card">
+                <img src="https://tse2.mm.bing.net/th/id/OIP.Dt_cmV3c7iAiI9hH3a_-oQHaHa">
+                <p>✔ 200+ Quality Checks</p>
+            </div>
+        </a>
 
-			<div class="card">
-				<img
-					src="https://tse2.mm.bing.net/th/id/OIP.dLwwkw6ARI0Jm1Y6LMvgXwHaFL">
-				<p>✔ 7 Days Trial</p>
-			</div>
+        <!-- Trial -->
+        <a href="trial" class="card-link">
+            <div class="card">
+                <img src="https://tse2.mm.bing.net/th/id/OIP.dLwwkw6ARI0Jm1Y6LMvgXwHaFL">
+                <p>✔ 7 Days Trial</p>
+            </div>
+        </a>
 
-			<div class="card">
-				<img
-					src="https://tse4.mm.bing.net/th/id/OIP.2-oHKJ06_H3EnJgGQQKTiQHaE8">
-				<p>✔ 1 Year Warranty</p>
-			</div>
+        <!-- Warranty -->
+        <a href="warranty" class="card-link">
+            <div class="card">
+                <img src="https://tse4.mm.bing.net/th/id/OIP.2-oHKJ06_H3EnJgGQQKTiQHaE8">
+                <p>✔ 1 Year Warranty</p>
+            </div>
+        </a>
 
-			<div class="card">
-				<img
-					src="https://tse3.mm.bing.net/th/id/OIP.ApW2_1cwNgxi_flgt4ZQngHaEl">
-				<p>✔ Fixed Price</p>
-			</div>
+        <!-- Fixed Price -->
+        <a href="fixed-price" class="card-link">
+            <div class="card">
+                <img src="https://tse3.mm.bing.net/th/id/OIP.ApW2_1cwNgxi_flgt4ZQngHaEl">
+                <p>✔ Fixed Price</p>
+            </div>
+        </a>
 
-		</div>
-	</div>
+    </div>
+</div>
+	
 
 	<!-- HOW AUTOSPHERE WORKS -->
 
@@ -573,7 +592,7 @@ body {
 
 			<div class="footer-col">
 				<h3>Company</h3>
-				<a href="#">About</a> <a href="Careers">Careers</a> <a href="#">Blog</a>
+				<a href="about">About</a> <a href="Careers">Careers</a> <a href="Blog">Blog</a>
 				<a href="Contact">Contact</a>
 			</div>
 

@@ -73,6 +73,17 @@ public class SpinnyController {
 		return"Contact";
 	}
 	
+	@GetMapping("Blog")
+	public String blog() {
+		return"Blog";
+	}
+	
+	@GetMapping("/about")
+	public String aboutPage() {
+	    return "About";
+	}
+
+	
 	@GetMapping("/CustomerCarList")
 	public String customerCarList(Model model){
 
