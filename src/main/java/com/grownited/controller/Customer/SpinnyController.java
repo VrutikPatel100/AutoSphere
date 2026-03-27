@@ -109,24 +109,38 @@ public class SpinnyController {
 	
 	
 	
-	// ⭐ BUY NOW PAGE
+//	// ⭐ BUY NOW PAGE
+//	@GetMapping("/buyNow")
+//	public String buyNow(@RequestParam("listingId") Integer listingId, Model model, HttpSession session) {
+//
+//	    // Check if user is logged in
+//	    if(session.getAttribute("user") == null) {
+//	        return "redirect:/login"; // redirect to login if user not in session
+//	    }
+//
+//	    // Get car listing
+//	    Optional<CarListingEntity> op = carListingRepository.findById(listingId);
+//	    if(op.isPresent()) {
+//	    	CarListingEntity carListingEntity = op.get();
+//	        model.addAttribute("carListing", carListingEntity);
+//	    } else {
+//	        return "redirect:/CustomerCarList"; // fallback if car not found
+//	    }
+//
+//	    return "buyNow";
+//	}
+	
 	@GetMapping("/buyNow")
-	public String buyNow(@RequestParam("listingId") Integer listingId, Model model, HttpSession session) {
+	public String buyNow(@RequestParam("listingId") Integer listingId,
+	                     Model model) {
 
-	    // Check if user is logged in
-	    if(session.getAttribute("user") == null) {
-	        return "redirect:/login"; // redirect to login if user not in session
-	    }
+	    // 🔥 ID thi car fetch karo
+	    CarListingEntity car = carListingRepository.findById(listingId).orElse(null);
 
-	    // Get car listing
-	    Optional<CarListingEntity> op = carListingRepository.findById(listingId);
-	    if(op.isPresent()) {
-	    	CarListingEntity carListingEntity = op.get();
-	        model.addAttribute("carListing", carListingEntity);
-	    } else {
-	        return "redirect:/CustomerCarList"; // fallback if car not found
-	    }
+	    // 🔥 JSP ma moklo
+	    model.addAttribute("carListing", car);
 
+	    // 🔥 BuyNow.jsp open karo
 	    return "buyNow";
 	}
 

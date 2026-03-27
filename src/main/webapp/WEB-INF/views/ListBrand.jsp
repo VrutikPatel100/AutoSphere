@@ -2,6 +2,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skydash Admin</title>
+
+<jsp:include page="AdminCSS.jsp"></jsp:include>
+
+<style>
+
+/* Background */
+body {
+    background: #f4f6fb;
+}
+
+/* Center container */
+.custom-box {
+    max-width: 1100px;
+    margin: 30px auto;
+}
+
+/* Card */
+.custom-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Title (same as User JSP) */
+.title-box {
+    background: #e9e9e9;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.title-box h3 {
+    color: #4e4bb5;
+    margin: 0;
+}
+
+/* Table fix */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.table {
+    min-width: 100%;
+    word-break: break-word;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container-scroller">
+
+    <!-- Header -->
+    <jsp:include page="AdminHeader.jsp"></jsp:include>
+
+    <div class="container-fluid page-body-wrapper">
+
+        <!-- Sidebar -->
+        <jsp:include page="AdminLeftSidebar.jsp"></jsp:include>
+
+        <div class="main-panel">
+            <div class="content-wrapper">
+
+                <!-- ✅ Welcome -->
+                <h3 class="mb-3">Welcome ${sessionScope.user.firstName}</h3>
+
+                <!-- ✅ Center Box -->
+                <div class="custom-box">
+                    <div class="custom-card">
+
+                        <!-- Title -->
+                        <div class="title-box">
+                            <h3>List Brand</h3>
+                        </div>
+
+                        <!-- Table -->
+                        <div class="table-responsive">
+
+                            <table class="table table-bordered table-striped bg-white">
+
+                                <thead class="table-dark">
+                                <tr>
+                                    <th>Brand ID</th>
+                                    <th>Brand Name</th>
+                                    <th>Logo URL</th>
+                                    <th>Active</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+
+                                <c:forEach var="car" items="${brandList}">
+                                    <tr>
+                                        <td>${car.brandId}</td>
+                                        <td>${car.brandName}</td>
+                                        <td>${car.logoUrl}</td>
+                                        <td>${car.active}</td>
+
+                                        <td>
+                                            <a href="viewCarBrand?brandId=${car.brandId}"
+                                               class="btn btn-primary">View</a>
+
+                                            <a href="editbrand?brandId=${car.brandId}"
+                                               class="btn btn-primary">Edit</a>
+
+                                            <a href="deletebrand?brandId=${car.brandId}"
+                                               class="btn btn-danger"
+                                               onclick="return confirm('Are you sure you want to delete this brand?');">
+                                               Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Footer -->
+            <jsp:include page="AdminFooter.jsp"></jsp:include>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+
+<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
@@ -183,4 +333,4 @@
 	
 	<!-- End custom js for this page-->
 </body>
-</html> 
+</html>  --%>

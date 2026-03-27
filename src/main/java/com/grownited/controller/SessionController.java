@@ -94,7 +94,7 @@ public class SessionController {
 		
 		if(passwordEncoder.matches(password, dbUser.getPassword())) {
 //		if(dbUser.getPassword().equals(password)) { 
-			if(dbUser.getRole().equals("ADMIN")) {
+			if(dbUser.getRole().equals("admin")) {
 				return"redirect:/admin-dashboard";  //url
 			}else if(dbUser.getRole().equals("CUSTOMER")) {
 				return"redirect:/customer-dashboard";

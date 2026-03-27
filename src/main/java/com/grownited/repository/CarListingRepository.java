@@ -13,6 +13,7 @@ public interface CarListingRepository extends JpaRepository<CarListingEntity, In
 //	 long countByRole(String role);
 	
 	long countByStatus(String status);
+	List<CarListingEntity> findByBrandNameIgnoreCase(String brandName);
 	
 	
 

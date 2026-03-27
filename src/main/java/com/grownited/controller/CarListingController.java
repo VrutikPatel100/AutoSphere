@@ -1,5 +1,6 @@
 package com.grownited.controller;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -18,6 +19,8 @@ import com.grownited.entity.CarListingEntity;
 @Controller
 public class CarListingController {
 
+    private final SessionController sessionController;
+
     @Autowired
     CarListingRepository carListingRepository;
 
@@ -35,6 +38,11 @@ public class CarListingController {
 
     @Autowired
     Cloudinary cloudinary;
+
+
+    CarListingController(SessionController sessionController) {
+        this.sessionController = sessionController;
+    }
     
     
 
@@ -120,10 +128,25 @@ public class CarListingController {
         return "warranty";
     }
 
+    @GetMapping("/cars-by-brand")
+    public String getCarsByBrand(@RequestParam("brand") String brand, Model model) {
+
+        List<CarListingEntity> cars = carListingRepository.findByBrandNameIgnoreCase(brand);
+
+        model.addAttribute("cars", cars);
+        model.addAttribute("brand", brand);
+
+        return "carsByBrand";
+    }
     
     
+    @GetMapping("/car-details")
+    public String carDetails(@RequestParam("id") Integer id, Model model) {
 
-    
+        CarListingEntity car = carListingRepository.findById(id).orElse(null);
 
+        model.addAttribute("car", car);
 
+        return "CustomerViewCarListing"; // JSP name
+    }
 }

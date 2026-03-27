@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>CodeVerse</title>
+<title>AutoSphere</title>
 <!-- plugins:css -->
 <link rel="stylesheet" href="../../assets/vendors/feather/feather.css">
 <link rel="stylesheet"

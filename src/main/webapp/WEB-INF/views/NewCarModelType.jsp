@@ -2,183 +2,178 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Required meta tags -->
+
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Skydash Admin</title>
-<!-- plugins:css -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>New Car Model</title>
 
 <jsp:include page="AdminCSS.jsp"></jsp:include>
+
+<style>
+
+/* Background */
+body {
+	background: #f4f6fb;
+}
+
+/* Center container */
+.form-container {
+	max-width: 650px;
+	margin: 40px auto;
+}
+
+/* Card */
+.form-card {
+	background: #fff;
+	padding: 25px;
+	border-radius: 12px;
+	box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* Title box */
+.title-box {
+	background: #f1f1f1;
+	border-radius: 12px;
+	padding: 15px;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.title-box h3 {
+	margin: 0;
+	color: #4e4bb5;
+	font-weight: 600;
+}
+
+/* Inputs */
+.form-control {
+	height: 40px;
+	font-size: 14px;
+}
+
+/* Purple button */
+.btn-purple {
+	background-color: #4e4bb5;
+	color: #fff;
+	border: none;
+	height: 45px;
+	border-radius: 12px;
+	width: 100%;
+}
+
+.btn-purple:hover {
+	background-color: #3f3ca0;
+}
+
+/* Cancel button */
+.btn-cancel {
+	background-color: #6c757d;
+	color: #fff;
+	border: none;
+	height: 45px;
+	border-radius: 12px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+}
+
+.btn-cancel:hover {
+	background-color: #5a6268;
+	color: #fff;
+}
+
+/* Button spacing */
+.button-group {
+	display: grid;
+	gap: 10px;
+	margin-top: 15px;
+}
+
+</style>
+
 </head>
+
 <body>
-	<div class="container-scroller">
-		<!-- partial:partials/_navbar.html -->
-		<jsp:include page="AdminHeader.jsp"></jsp:include>
-		<!-- partial -->
-		<div class="container-fluid page-body-wrapper">
-			<!-- partial:partials/_sidebar.html -->
-			<jsp:include page="AdminLeftSidebar.jsp"></jsp:include>
-			<!-- partial -->
-			<div class="main-panel">
-				<div class="content-wrapper">
-					<div class="row">
-						<div class="col-md-12 grid-margin">
-							<div class="row">
-								<div class="col-12 col-xl-8 mb-4 mb-xl-0">
-									<h3 class="font-weight-bold">Welcome ${sessionScope.user.firstName}</h3>
-									<h6 class="font-weight-normal mb-0">
-										All systems are running smoothly! You have <span
-											class="text-primary">3 unread alerts!</span>
-									</h6>
-								</div>
-								<div class="col-12 col-xl-4">
-									<div class="justify-content-end d-flex">
-										<div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-											<button class="btn btn-sm btn-light bg-white dropdown-toggle"
-												type="button" id="dropdownMenuDate2"
-												data-bs-toggle="dropdown" aria-haspopup="true"
-												aria-expanded="true">
-												<i class="mdi mdi-calendar"></i> Today (10 Jan 2021)
-											</button>
-											<div class="dropdown-menu dropdown-menu-right"
-												aria-labelledby="dropdownMenuDate2">
-												<a class="dropdown-item" href="#">January - March</a> <a
-													class="dropdown-item" href="#">March - June</a> <a
-													class="dropdown-item" href="#">June - August</a> <a
-													class="dropdown-item" href="#">August - November</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+
+<div class="container-scroller">
+
+	<jsp:include page="AdminHeader.jsp"></jsp:include>
+
+	<div class="container-fluid page-body-wrapper">
+
+		<jsp:include page="AdminLeftSidebar.jsp"></jsp:include>
+
+		<div class="main-panel">
+			<div class="content-wrapper">
+
+				<h3 class="mb-3">Welcome ${sessionScope.user.firstName}</h3>
+
+				<!-- Compact Form -->
+				<div class="form-container">
+					<div class="form-card">
+
+						<!-- Title -->
+						<div class="title-box">
+							<h3>New Car Model</h3>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12 grid-margin transparent">
-							<div class="row">
-								<div class="col-md-3 mb-4 stretch-card transparent">
-									<div class="card card-tale">
-										<div class="card-body">
-											<p class="mb-4">Today’s Bookings</p>
-											<p class="fs-30 mb-2">4006</p>
-											<p>10.00% (30 days)</p>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3 mb-4 stretch-card transparent">
-									<div class="card card-dark-blue">
-										<div class="card-body">
-											<p class="mb-4">Total Bookings</p>
-											<p class="fs-30 mb-2">61344</p>
-											<p>22.00% (30 days)</p>
-										</div>
-									</div>
-								</div>
 
+						<form action="savecartype" method="post">
 
-								<div class="col-md-3 mb-4 stretch-card transparent">
-									<div class="card card-light-blue">
-										<div class="card-body">
-											<p class="mb-4">Number of Meetings</p>
-											<p class="fs-30 mb-2">34040</p>
-											<p>2.00% (30 days)</p>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3  mb-4 stretch-card transparent">
-									<div class="card card-light-danger">
-										<div class="card-body">
-											<p class="mb-4">Number of Clients</p>
-											<p class="fs-30 mb-2">47033</p>
-											<p>0.22% (30 days)</p>
-										</div>
-									</div>
-								</div>
-								
+							<!-- Body Type -->
+							<div class="mb-3">
+								<label>Body Type</label>
+								<input type="text"
+									name="bodyType"
+									class="form-control"
+									placeholder="Enter body type (e.g., SUV)"
+									required>
 							</div>
-						</div>
-					</div>
 
-
-					<div class="row">
-						<div class="col-md-12 grid-margin stretch-card">
-							<div class="card">
-								<div class="card-body">
-									<!-- <div class="d-flex justify-content-between">
-										<p class="card-title">Sales Report</p>
-										<a href="#" class="text-info">View all</a>
-									</div>
-									<p class="font-weight-500">The total number of sessions
-										within the date range. It is the period time a user is
-										actively engaged with your website, page or app, etc</p> -->
-									<!-- <div id="sales-chart-legend" class="chartjs-legend mt-4 mb-2"></div>
-									<canvas id="sales-chart"></canvas> -->
-									
-									<h2 style="text-align: center;">New Car Model</h2>
-								</div>
+							<!-- Model Name -->
+							<div class="mb-3">
+								<label>Model Name</label>
+								<input type="text"
+									name="modelName"
+									class="form-control"
+									placeholder="Enter model name (optional)">
 							</div>
-						</div>
+
+							<!-- Launch Year -->
+							<div class="mb-3">
+								<label>Launch Year</label>
+								<input type="date"
+									name="launchYear"
+									class="form-control">
+							</div>
+
+							<!-- Buttons -->
+							<div class="button-group">
+
+								<button type="submit" class="btn-purple">
+									Save Car Model Type
+								</button>
+
+								<a href="admin-dashboard" class="btn-cancel">
+									Cancel
+								</a>
+
+							</div>
+
+						</form>
+
 					</div>
-
-						 
-						  <form action="savecartype" method="post">
-
-                        <!-- Body Type -->
-                        <div class="mb-3">
-                            <label class="form-label">Body Type</label>
-                            <input type="text"
-                                   name="bodyType"
-                                   class="form-control"
-                                   placeholder="Enter body type (e.g., SUV)"
-                                   required>
-                        </div>
-
-                        <!-- Model Name (Optional) -->
-                        <div class="mb-3">
-                            <label class="form-label">Model Name</label>
-                            <input type="text"
-                                   name="modelName"
-                                   class="form-control"
-                                   placeholder="Enter model name (optional)">
-                        </div>
-                        
-                         <!-- Created At -->
-                    <div class="form-group mb-4">
-                        <label>Launch Year</label>
-                        <input type="date" name="launchYear" class="form-control">
-                    </div>
-
-                        <!-- Buttons -->
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-primary">
-                                Save Car Model Type
-                            </button>
-                            <a href="admin-dashboard" class="btn btn-secondary">
-                                Cancel
-                            </a>
-                        </div>
-
-                    </form>
-						 
-						
 				</div>
-				<!-- content-wrapper ends -->
-				<!-- partial:partials/_footer.html -->
-				
-				<jsp:include page="AdminFooter.jsp"></jsp:include>
-				<!-- partial -->
+
 			</div>
-			<!-- main-panel ends -->
+
+			<jsp:include page="AdminFooter.jsp"></jsp:include>
+
 		</div>
-		<!-- page-body-wrapper ends -->
 	</div>
-	<!-- container-scroller -->
-	<!-- plugins:js -->
-	
-	
-	
-	
-	<!-- End custom js for this page-->
+</div>
+
 </body>
-</html> 
+</html>

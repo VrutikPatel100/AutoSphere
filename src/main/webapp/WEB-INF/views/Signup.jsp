@@ -1,264 +1,203 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Skydash Admin</title>
-<!-- plugins:css -->
 
-<jsp:include page="AdminCSS.jsp"></jsp:include> 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Signup</title>
+
+<jsp:include page="AdminCSS.jsp"></jsp:include>
+
+<style>
+
+/* Background */
+body {
+	background: #f4f6fb;
+}
+
+/* Center form */
+.signup-container {
+	max-width: 650px;
+	margin: 40px auto;
+}
+
+/* Card */
+.signup-card {
+	background: #fff;
+	padding: 25px;
+	border-radius: 12px;
+	box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* Title box (Add Brand jevu) */
+.signup-title-box {
+	background: #f1f1f1;
+	border-radius: 12px;
+	padding: 15px;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.signup-title-box h3 {
+	margin: 0;
+	color: #4e4bb5;
+	font-weight: 600;
+}
+
+/* Inputs */
+.form-control {
+	height: 38px;
+	font-size: 14px;
+}
+
+/* Purple Button */
+.btn-purple {
+	background-color: #4e4bb5;
+	color: white;
+	border: none;
+	height: 45px;
+	border-radius: 12px;
+	width: 100%;
+	font-size: 15px;
+}
+
+.btn-purple:hover {
+	background-color: #3f3ca0;
+}
+
+</style>
+
 </head>
+
 <body>
-	<div class="container-scroller">
-		<!-- partial:partials/_navbar.html -->
-		<jsp:include page="AdminHeader.jsp"></jsp:include>
-		<!-- partial -->
-		<div class="container-fluid page-body-wrapper">
-			<!-- partial:partials/_sidebar.html -->
-			<jsp:include page="AdminLeftSidebar.jsp"></jsp:include>
-			<!-- partial -->
-			<div class="main-panel">
-				<div class="content-wrapper">
-					 <div class="row">
-						<div class="col-md-12 grid-margin">
-							<div class="row">
-								 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-									<h3 class="font-weight-bold">Welcome ${sessionScope.user.firstName}</h3>
-									<!-- <h6 class="font-weight-normal mb-0">
-										All systems are running smoothly! You have <span
-											class="text-primary">3 unread alerts!</span>
-									</h6> -->
-								</div> 
-								<div class="col-12 col-xl-4">
-									<div class="justify-content-end d-flex">
-										<div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-											<!--<button class="btn btn-sm btn-light bg-white dropdown-toggle"
-												type="button" id="dropdownMenuDate2"
-												data-bs-toggle="dropdown" aria-haspopup="true"
-												aria-expanded="true">
-												<i class="mdi mdi-calendar"></i> Today (10 Jan 2021)
-											</button>
-											 <div class="dropdown-menu dropdown-menu-right"
-												aria-labelledby="dropdownMenuDate2">
-												<a class="dropdown-item" href="#">January - March</a> <a
-													class="dropdown-item" href="#">March - June</a> <a
-													class="dropdown-item" href="#">June - August</a> <a
-													class="dropdown-item" href="#">August - November</a>
-											</div> -->
-										</div>
-									</div>
-								</div>
-							</div>
+
+<div class="container-scroller">
+
+	<jsp:include page="AdminHeader.jsp"></jsp:include>
+
+	<div class="container-fluid page-body-wrapper">
+
+		<jsp:include page="AdminLeftSidebar.jsp"></jsp:include>
+
+		<div class="main-panel">
+			<div class="content-wrapper">
+
+				<h3 class="mb-3">Welcome ${sessionScope.user.firstName}</h3>
+
+				<div class="signup-container">
+					<div class="signup-card">
+
+						<!-- Title -->
+						<div class="signup-title-box">
+							<h3>Signup</h3>
 						</div>
-					 </div>
-				<div class="row">
-						<div class="col-md-12 grid-margin transparent">
-							<div class="row">
-								<!-- <div class="col-md-3 mb-4 stretch-card transparent">
-									<div class="card card-tale">
-										<div class="card-body">
-											<p class="mb-4">Today’s Bookings</p>
-											<p class="fs-30 mb-2">4006</p>
-											<p>10.00% (30 days)</p>
-										</div>
-									</div>
-								</div>
-								 <div class="col-md-3 mb-4 stretch-card transparent">
-									<div class="card card-dark-blue">
-										<div class="card-body">
-											<p class="mb-4">Total Bookings</p>
-											<p class="fs-30 mb-2">61344</p>
-											<p>22.00% (30 days)</p>
-										</div>
-									</div>
-								</div>
 
-
-								<div class="col-md-3 mb-4 stretch-card transparent">
-									<div class="card card-light-blue">
-										<div class="card-body">
-											<p class="mb-4">Number of Meetings</p>
-											<p class="fs-30 mb-2">34040</p>
-											<p>2.00% (30 days)</p>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3  mb-4 stretch-card transparent">
-									<div class="card card-light-danger">
-										<div class="card-body">
-											<p class="mb-4">Number of Clients</p>
-											<p class="fs-30 mb-2">47033</p>
-											<p>0.22% (30 days)</p>
-										</div>
-									</div>
-								</div> --> 
-								
-							</div>
-						</div>
-					</div>
-
-
-					<div class="row">
-						<div class="col-md-6 grid-margin stretch-card">
-							<div class="card">
-								<div class="card-body">
-									<!-- <div class="d-flex justify-content-between">
-										<p class="card-title">Sales Report</p>
-										<a href="#" class="text-info">View all</a>
-									</div> -->
-									<!-- <p class="font-weight-500">The total number of sessions
-										within the date range. It is the period time a user is
-										actively engaged with your website, page or app, etc</p> --> 	
-									<%-- <div id="sales-chart-legend" class="chartjs-legend mt-4 mb-2"></div>
-									<canvas id="sales-chart"></canvas>  --%>
-									
-									<h2 style="text-align: center;">Signup</h2>
-								</div>
-							</div>
-						</div>
-					</div>
-
-						
-						<div class="card-body" col-md-16 grid-margin stretch-card>
 						<form action="register" method="post" enctype="multipart/form-data">
 
-							<!-- First Name -->
-							<div class="mb-3">
-								<label class="form-label">First Name</label> <input type="text"
-									name="firstName" class="form-control" required>
-							</div>
+							<!-- Name -->
+							<div class="row">
+								<div class="col-md-6 mb-2">
+									<label>First Name</label>
+									<input type="text" name="firstName" class="form-control" required>
+								</div>
 
-							<!-- Last Name -->
-							<div class="mb-3">
-								<label class="form-label">Last Name</label> <input type="text"
-									name="lastName" class="form-control" required>
+								<div class="col-md-6 mb-2">
+									<label>Last Name</label>
+									<input type="text" name="lastName" class="form-control" required>
+								</div>
 							</div>
 
 							<!-- Email -->
-							<div class="mb-3">
-								<label class="form-label">Email</label> <input type="email"
-									name="email" class="form-control" required>
+							<div class="mb-2">
+								<label>Email</label>
+								<input type="email" name="email" class="form-control" required>
 							</div>
 
 							<!-- Password -->
-							<div class="mb-3">
-								<label class="form-label">Password</label> <input
-									type="password" name="password" class="form-control" required>
+							<div class="mb-2">
+								<label>Password</label>
+								<input type="password" name="password" class="form-control" required>
 							</div>
 
 							<!-- Gender -->
-							<div class="mb-3">
-								<label class="form-label d-block">Gender</label>
-								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="gender"
-										value="MALE" required> <label class="form-check-label">Male</label>
-								</div>
-								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="gender"
-										value="FEMALE"> <label class="form-check-label">Female</label>
-								</div>
-								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="gender"
-										value="OTHER"> <label class="form-check-label">Other</label>
-								</div>
+							<div class="mb-2">
+								<label>Gender</label><br>
+								<input type="radio" name="gender" value="MALE" required> Male
+								<input type="radio" name="gender" value="FEMALE" class="ms-2"> Female
+								<input type="radio" name="gender" value="OTHER" class="ms-2"> Other
 							</div>
 
-							<!-- Birth Year -->
-							<div class="mb-3">
-								<label class="form-label">Birth Year</label> <input
-									type="number" name="birthYear" class="form-control" min="1900"
-									max="2100" required>
-							</div>
+							<!-- Birth + Contact -->
+							<div class="row">
+								<div class="col-md-6 mb-2">
+									<label>Birth Year</label>
+									<input type="number" name="birthYear" class="form-control" required>
+								</div>
 
-							<!-- Contact Number -->
-							<div class="mb-3">
-								<label class="form-label">Contact Number</label> <input
-									type="text" name="contactNum" class="form-control" required>
+								<div class="col-md-6 mb-2">
+									<label>Contact</label>
+									<input type="text" name="contactNum" class="form-control" required>
+								</div>
 							</div>
-
 
 							<!-- Qualification -->
-							<div class="mb-3">
-								<label class="form-label">Qualification</label> <input
-									type="text" name="qualification" class="form-control"
-									placeholder="e.g. B.Tech, MCA, BSc" required>
+							<div class="mb-2">
+								<label>Qualification</label>
+								<input type="text" name="qualification" class="form-control" required>
 							</div>
-							
-							<div class="mb-3">
-								<label class="form-label">User Type</label> <select
-									name="modelId" class="form-control">
-									<option value="-1">---Select User Type---</option>
 
+							<!-- User Type -->
+							<div class="mb-2">
+								<label>User Type</label>
+								<select name="modelId" class="form-control">
+									<option value="-1">Select User Type</option>
 									<c:forEach items="${allCarModelType}" var="ut">
-    									<option value="${ut.modelId}">${ut.bodyType}</option>
+										<option value="${ut.modelId}">${ut.bodyType}</option>
 									</c:forEach>
-
-
 								</select>
 							</div>
 
-							<!-- City -->
-							<div class="mb-3">
-								<label class="form-label">City</label> <input type="text"
-									name="city" class="form-control" placeholder="Enter city"
-									required>
+							<!-- Address -->
+							<div class="row">
+								<div class="col-md-4 mb-2">
+									<input type="text" name="city" class="form-control" placeholder="City" required>
+								</div>
+								<div class="col-md-4 mb-2">
+									<input type="text" name="state" class="form-control" placeholder="State" required>
+								</div>
+								<div class="col-md-4 mb-2">
+									<input type="text" name="country" class="form-control" value="India" required>
+								</div>
 							</div>
 
-							<!-- State -->
+							<!-- Profile Pic -->
 							<div class="mb-3">
-								<label class="form-label">State</label> <input type="text"
-									name="state" class="form-control" placeholder="Enter state"
-									required>
+								<label>Profile Picture</label>
+								<input type="file" name="profilePic" class="form-control">
 							</div>
-
-							<!-- Country -->
-							<div class="mb-3">
-								<label class="form-label">Country</label> <input type="text"
-									name="country" class="form-control" placeholder="Enter country"
-									value="India" required>
-							</div>
-
-
-							<!-- Profile Pic URL -->
-							<div class="mb-3">
-								<label class="form-label">Profile Picture URL</label> <input
-									type="file" name="profilePic" class="form-control">
-							</div>
-
 
 							<!-- Submit -->
-							<div class="d-grid">
-								<button type="submit" class="btn btn-success">Save User
-								</button>
-							</div>
+							<button type="submit" class="btn-purple">
+								Register
+							</button>
 
 						</form>
+
 					</div>
-						 
-						
 				</div>
-				<!-- content-wrapper ends -->
-				<!-- partial:partials/_footer.html -->
-				
-				<jsp:include page="AdminFooter.jsp"></jsp:include>
-				<!-- partial -->
+
 			</div>
-			<!-- main-panel ends -->
+
+			<jsp:include page="AdminFooter.jsp"></jsp:include>
+
 		</div>
-		<!-- page-body-wrapper ends -->
 	</div>
-	<!-- container-scroller -->
-	<!-- plugins:js -->
-	
-	
-	
-	
-	<!-- End custom js for this page-->
+</div>
+
 </body>
-</html> 
+</html>

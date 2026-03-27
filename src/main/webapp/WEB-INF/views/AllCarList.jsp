@@ -2,6 +2,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>List Car</title>
+<jsp:include page="AdminCSS.jsp"></jsp:include>
+
+<style>
+body {
+    background: #f4f6fb;
+}
+
+/* Center container */
+.custom-box {
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+/* Card */
+.custom-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Title */
+.title-box {
+    background: #e9e9e9;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.title-box h3 {
+    color: #4e4bb5;
+    margin: 0;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.table {
+    min-width: 100%;
+    word-break: break-word;
+}
+</style>
+</head>
+
+<body>
+<div class="container-scroller">
+
+    <!-- Header -->
+    <jsp:include page="AdminHeader.jsp"></jsp:include>
+
+    <div class="container-fluid page-body-wrapper">
+
+        <!-- Sidebar -->
+        <jsp:include page="AdminLeftSidebar.jsp"></jsp:include>
+
+        <div class="main-panel">
+            <div class="content-wrapper">
+
+                <h3 class="mb-3">Welcome ${sessionScope.user.firstName}</h3>
+
+                <!-- Centered Card -->
+                <div class="custom-box">
+                    <div class="custom-card">
+
+                        <!-- Title -->
+                        <div class="title-box">
+                            <h3>List Car</h3>
+                        </div>
+
+                        <!-- Table -->
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Seller</th>
+                                        <th>Brand</th>
+                                        <th>Model</th>
+                                        <th>Variant</th>
+                                        <th>City</th>
+                                        <th>KMS Driven</th>
+                                        <th>Year</th>
+                                        <th>Ownership</th>
+                                        <th>Price</th>
+                                        <th>Status</th>
+                                        <th>Created Date</th>
+                                        <th>Image</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach items="${allCarList}" var="c">
+                                        <tr>
+                                            <td>${c.listingId}</td>
+                                            <td>${c.userId}</td>
+                                            <td>${c.brandName}</td>
+                                            <td>${c.modelName}</td>
+                                            <td>${c.variantName}</td>
+                                            <td>${c.city}</td>
+                                            <td>${c.kmsDriven}</td>
+                                            <td>${c.year}</td>
+                                            <td>${c.ownership}</td>
+                                            <td>${c.price}</td>
+                                            <td>${c.status}</td>
+                                            <td>${c.createdAt}</td>
+                                            <td>
+                                                <img src="${c.imageURL}" alt="Car Image" style="height:60px; width:100px; object-fit:cover;">
+                                            </td>
+                                            <td>
+                                                <a href="viewCarListing?listingId=${c.listingId}" class="btn btn-primary btn-sm mb-1">View</a>
+                                                <a href="editCarListing?listingId=${c.listingId}" class="btn btn-primary btn-sm mb-1">Edit</a>
+                                                <a href="deleteCarListing?listingId=${c.listingId}" class="btn btn-danger btn-sm mb-1" onclick="return confirm('Are you sure?')">Delete</a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                    <c:if test="${empty allCarList}">
+                                        <tr>
+                                            <td colspan="14" class="text-center">No car listings found</td>
+                                        </tr>
+                                    </c:if>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- Footer -->
+            <jsp:include page="AdminFooter.jsp"></jsp:include>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
@@ -151,11 +298,11 @@
 												<tr>
 													<td>${c.listingId}</td>
 													<td>${c.userId}</td>
-													<%-- <td>${c.brandId} ${c.brandName}</td> --%>
+													<td>${c.brandId} ${c.brandName}</td>
 													<td>${c.brandName}</td>
-													<%--  <td>${c.modelId} ${c.modelName}</td> --%>
+													 <td>${c.modelId} ${c.modelName}</td>
 													<td>${c.modelName}</td>
-													<%-- <td>${c.variantId} ${c.variantName}</td> --%>
+													<td>${c.variantId} ${c.variantName}</td>
 													<td>${c.variantName}</td>
 													<td>${c.city}</td>
 													<td>${c.kmsDriven}</td>
@@ -207,3 +354,4 @@
 	<!-- End custom js for this page-->
 </body>
 </html>
+ --%>
