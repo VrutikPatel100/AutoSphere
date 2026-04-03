@@ -20,17 +20,27 @@
 	<script src="assets/vendors/chart.js/chart.umd.js"></script>
 	<script src="assets/vendors/datatables.net/jquery.dataTables.js"></script>
 	<!-- <script src="assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script> -->
+ <script src="https://cdn.datatables.net/2.3.7/js/dataTables.js"></script>
+	<script src="https://cdn.datatables.net/buttons/3.2.6/js/dataTables.buttons.js"></script>
+	<script src="https://cdn.datatables.net/buttons/3.2.6/js/buttons.dataTables.js"></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+	<script src="https://cdn.datatables.net/buttons/3.2.6/js/buttons.html5.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/3.2.6/js/buttons.print.min.js"></script>
+
+
+
 	<script
 		src="assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js"></script>
 	<script src="assets/js/dataTables.select.min.js"></script>
 	<!-- End plugin js for this page -->
 	<!-- inject:js -->
-	<script src="assets/js/off-canvas.js"></script>
-	<script src="assets/js/template.js"></script>
-	<script src="assets/js/settings.js"></script>
-	<script src="assets/js/todolist.js"></script>
-	<!-- endinject -->
+@@ -34,4 +41,8 @@
 	<!-- Custom js for this page-->
 	<script src="assets/js/jquery.cookie.js" type="text/javascript"></script>
 	<script src="assets/js/dashboard.js"></script>
 	<!-- <script src="assets/js/Chart.roundedBarCharts.js"></script> -->
+	<!-- <script src="assets/js/Chart.roundedBarCharts.js"></script> -->
+	

@@ -55,11 +55,11 @@ public class SpinnyController {
 	{
 		List<CarImageEntity> image = carImageRepository.findAll();
 		List<CarBrandEntity> brand = carBrandRepository.findAll();
-		List<CarListingEntity> list = carListingRepository.findAll();
+		List<CarListingEntity> customerCarList = carListingRepository.findAll();
 			
 		model.addAttribute("image", image);
 		model.addAttribute("brand",brand);
-		model.addAttribute("list",list);
+		model.addAttribute("customerCarList",customerCarList);
 		return "spinny";
 	}
 	
@@ -153,5 +153,18 @@ public class SpinnyController {
 
 		    return "bookingSuccess";
 		}
+		
+		@GetMapping("/customerViewCarListing1")
+		public String customerViewCarListing1(@RequestParam("listingId") Integer listingId, Model model) {
+
+		    Optional<CarListingEntity> op = carListingRepository.findById(listingId);
+
+		    if(op.isPresent()) {
+		        model.addAttribute("carListing", op.get());
+		    }
+
+		    return "CustomerViewCarListing1"; // 🔥 aa change karo
+		}
+
 
 }

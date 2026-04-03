@@ -7,6 +7,1022 @@
 <title>AutoSphere | Buy & Sell Cars</title>
 
 <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6fb;
+}
+
+/* HEADER */
+.header {
+    display: flex;
+    align-items: center;
+    padding: 15px 40px;
+    background: white;
+    border-bottom: 1px solid #ddd;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #4a148c;
+    text-decoration: none;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background: #ff4d6d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(45deg);
+    border-radius: 10px;
+}
+
+.logo-icon span {
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    transform: rotate(-45deg);
+}
+
+.city-select {
+    padding: 8px 16px;
+    border-radius: 22px;
+    border: 1px solid #d1c4e9;
+    background: #f3e5f5;
+    width: 150px;
+    outline: none;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: #f3e5f5;
+    padding: 8px 14px;
+    border-radius: 25px;
+    width: 320px;
+    position: relative;
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 100%;
+}
+
+.menu {
+    margin-left: auto;
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s;
+}
+
+.menu a:hover {
+    color: #6a1b9a;
+}
+
+/* HERO SECTION */
+.hero {
+    padding: 40px;
+    background: linear-gradient(135deg, #ede7f6, #f5f5f5);
+    text-align: center;
+}
+
+.hero h1 {
+    color: #4a148c;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* SLIDER - FULLY WORKING */
+.slider-container {
+    position: relative;
+    max-width: 1600px; /* width vadhari */
+    width: 85%;        /* responsive banse */
+    margin: 0 auto;
+    padding: 0 50px;
+}
+
+.slider-wrapper {
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.slider-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.slider {
+    display: flex;
+    gap: 15px;
+    min-width: max-content;
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    flex: 0 0 300px;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(106, 27, 154, 0.3);
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card h5 {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.card p {
+    font-weight: bold;
+    color: #4a148c;
+    margin-top: 5px;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #6a1b9a;
+    color: white;
+    border: none;
+    font-size: 24px;
+    padding: 12px 18px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.arrow:hover {
+    background: #ff4d6d;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.left {
+    left: 0;
+}
+
+.right {
+    right: 0;
+}
+
+/* DOTS INDICATOR */
+.dots-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #d1c4e9;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: #6a1b9a;
+    width: 25px;
+    border-radius: 5px;
+}
+
+/* BUTTON */
+.sell-btn {
+    padding: 12px 25px;
+    background: #e91e63;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 30px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.sell-btn:hover {
+    background: #c2185b;
+    transform: scale(1.05);
+}
+
+/* BENEFITS SECTION */
+.section {
+    padding: 50px;
+    text-align: center;
+    background: linear-gradient(135deg, #ede7f6, #f5f5f5);
+}
+
+.section h2 {
+    color: #4a148c;
+    margin-bottom: 30px;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.cards .card {
+    width: 250px;
+    padding: 0;
+}
+
+.cards .card p {
+    padding: 15px;
+    margin: 0;
+    font-weight: normal;
+}
+
+/* HOW WORKS */
+.how-section {
+    background: #f2f2f2;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.how-section h2 {
+    color: #4a148c;
+    margin-bottom: 40px;
+}
+
+.how-cards {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    flex-wrap: wrap;
+}
+
+.how-card {
+    width: 220px;
+    transition: transform 0.3s ease;
+}
+
+.how-card:hover {
+    transform: translateY(-10px);
+}
+
+.how-card img {
+    width: 120px;
+    margin-bottom: 15px;
+}
+
+.how-card h3 {
+    font-size: 18px;
+    color: #333;
+}
+
+/* WATCH BUTTON */
+.watch-area {
+    margin-top: 40px;
+}
+
+.watch-btn {
+    background: linear-gradient(90deg, #7b1fa2, #6a1b9a);
+    color: white;
+    border: none;
+    padding: 16px 35px;
+    font-size: 18px;
+    border-radius: 14px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+}
+
+.watch-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(106, 27, 154, 0.4);
+}
+
+.play-icon {
+    background: white;
+    color: #6a1b9a;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 14px;
+}
+
+.learn-more {
+    margin-top: 15px;
+    color: #6a1b9a;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.learn-more:hover {
+    color: #ff4d6d;
+}
+
+/* BRANDS SECTION */
+.brand-section {
+    padding: 60px;
+    text-align: center;
+    background: linear-gradient(135deg, #ede7f6, #f5f5f5);
+}
+
+.brand-section h2 {
+    color: #4a148c;
+    margin-bottom: 40px;
+}
+
+.brand-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 25px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.brand-card {
+    background: white;
+    padding: 20px;
+    border-radius: 18px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+}
+
+.brand-card:hover {
+    transform: scale(1.08) translateY(-5px);
+    background: linear-gradient(135deg, #f3e5f5, #d1c4e9);
+    box-shadow: 0 12px 30px rgba(106, 27, 154, 0.5);
+}
+
+.brand-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+    color: #333;
+}
+
+.brand-card img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.brand-card:hover img {
+    transform: scale(1.15);
+}
+
+/* FOOTER */
+.footer {
+    background: #3b005a;
+    color: white;
+    padding: 50px 60px 30px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 180px;
+}
+
+.footer-col h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.footer-col p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #ddd;
+}
+
+.footer-col a {
+    display: block;
+    color: #ddd;
+    text-decoration: none;
+    margin-bottom: 8px;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.footer-col a:hover {
+    color: #ff4d6d;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    color: #ccc;
+    font-size: 14px;
+}
+
+/* SUGGESTION BOX */
+.suggestion-box {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+    z-index: 999;
+}
+
+.suggestion-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.suggestion-item:hover {
+    background: #f3e5f5;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .menu {
+        margin-left: 0;
+        justify-content: center;
+    }
+    
+    .search-bar {
+        width: 100%;
+    }
+    
+    .slider-container {
+        padding: 0 40px;
+    }
+    
+    .card-link {
+        flex: 0 0 250px;
+    }
+    
+    .brand-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .footer {
+        padding: 40px 20px;
+    }
+    
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <a href="customer-dashboard" class="logo">
+        <div class="logo-icon"><span>A</span></div>
+        AutoSphere
+    </a>
+
+    <div style="position: relative;">
+        <input type="text" id="cityInput" class="city-select"
+            placeholder="Select City" onkeyup="showCitySuggestions()">
+        <div id="citySuggestionBox" class="suggestion-box"></div>
+    </div>
+
+    <div class="search-bar" style="position: relative;">
+        <input type="text" id="searchInput" placeholder="Search cars..."
+            onkeyup="showCarSuggestions()">
+        <div id="suggestionBox" class="suggestion-box"></div>
+    </div>
+
+    <div class="menu">
+        <a href="CustomerCarList">List Car</a>
+        <a href="#brands">Car Brand</a>
+        <a href="wishlist">My Cart</a>
+        <a href="#">Buy Car</a>
+        <a href="#">Sell Car</a>
+        <a href="login">Login</a>
+        <a href="#">Register</a>
+    </div>
+</div>
+
+<!-- HERO SECTION WITH SLIDER -->
+<div class="hero">
+    <h1>Cars you'll love to buy</h1>
+    <p>Verified used cars with full inspection</p>
+
+    <div class="slider-container">
+        <button class="arrow left" id="prevBtn">&#10094;</button>
+        
+        <div class="slider-wrapper" id="sliderWrapper">
+            <div class="slider" id="slider">
+                <c:forEach var="car" items="${customerCarList}">
+                    <a href="customerViewCarListing1?listingId=${car.listingId}" class="card-link">
+                        <div class="card">
+                            <img src="${car.imageURL}" alt="car">
+                            <div style="padding:10px;">
+                                <h5>${car.brandName} ${car.modelName}</h5>
+                                <p style="color:#4a148c; font-weight:bold;">
+                                    &#8377; ${car.price}
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </c:forEach>
+            </div>
+        </div>
+        
+        <button class="arrow right" id="nextBtn">&#10095;</button>
+    </div>
+    
+    <div class="dots-container" id="dotsContainer"></div>
+
+    <button class="sell-btn">Sell My Car</button>
+</div>
+
+<!-- BENEFITS SECTION -->
+<div class="section">
+    <h2>AutoSphere Assured Benefits</h2>
+    <div class="cards">
+        <a href="quality-check" class="card-link">
+            <div class="card">
+                <img src="https://tse2.mm.bing.net/th/id/OIP.Dt_cmV3c7iAiI9hH3a_-oQHaHa">
+                <p>&#10004; 200+ Quality Checks</p>
+            </div>
+        </a>
+        <a href="trial" class="card-link">
+            <div class="card">
+                <img src="https://tse2.mm.bing.net/th/id/OIP.dLwwkw6ARI0Jm1Y6LMvgXwHaFL">
+                <p>&#10004; 7 Days Trial</p>
+            </div>
+        </a>
+        <a href="warranty" class="card-link">
+            <div class="card">
+                <img src="https://tse4.mm.bing.net/th/id/OIP.2-oHKJ06_H3EnJgGQQKTiQHaE8">
+                <p>&#10004; 1 Year Warranty</p>
+            </div>
+        </a>
+        <a href="fixed-price" class="card-link">
+            <div class="card">
+                <img src="https://tse3.mm.bing.net/th/id/OIP.ApW2_1cwNgxi_flgt4ZQngHaEl">
+                <p>&#10004; Fixed Price</p>
+            </div>
+        </a>
+    </div>
+</div>
+
+<!-- HOW AUTOSPHERE WORKS -->
+<div class="how-section">
+    <h2>How AutoSphere Works</h2>
+    <div class="how-cards">
+        <div class="how-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/854/854878.png">
+            <h3>Choose your car</h3>
+        </div>
+        <div class="how-card">
+            <img src="https://tse3.mm.bing.net/th/id/OIP.3I6DIZqr146CnNMUkrljrQHaE8">
+            <h3>Book test drive</h3>
+        </div>
+        <div class="how-card">
+            <img src="https://tse2.mm.bing.net/th/id/OIP.TinBeamEG8ni7EGH1fS6NAHaHa">
+            <h3>Online payment</h3>
+        </div>
+    </div>
+    <div class="watch-area">
+        <button class="watch-btn">
+            Watch how it works <span class="play-icon">&#9654;</span>
+        </button>
+        <p class="learn-more">Learn more</p>
+    </div>
+</div>
+
+<!-- BRANDS SECTION -->
+<div class="brand-section" id="brands">
+    <h2>Explore Popular Brands</h2>
+    <div class="brand-grid">
+        <c:forEach var="brd" items="${brand}">
+            <c:url value="/cars-by-brand" var="brandUrl">
+                <c:param name="brand" value="${brd.brandName}" />
+            </c:url>
+            <a href="${brandUrl}" style="text-decoration: none; color: inherit;">
+                <div class="brand-card">
+                    <h3>${brd.brandName}</h3>
+                    <img src="${brd.logoUrl}">
+                </div>
+            </a>
+        </c:forEach>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    <div class="footer-container">
+        <div class="footer-col">
+            <h3>AutoSphere</h3>
+            <p>AutoSphere is the easiest way to buy and sell used cars online.</p>
+        </div>
+        <div class="footer-col">
+            <h3>Company</h3>
+            <a href="about">About</a>
+            <a href="Careers">Careers</a>
+            <a href="Blog">Blog</a>
+            <a href="Contact">Contact</a>
+        </div>
+        <div class="footer-col">
+            <h3>Services</h3>
+            <a href="#">Buy Car</a>
+            <a href="#">Sell Car</a>
+            <a href="#">Car Loan</a>
+            <a href="#">Insurance</a>
+        </div>
+        <div class="footer-col">
+            <h3>Support</h3>
+            <a href="#">FAQ</a>
+            <a href="#">Terms</a>
+            <a href="#">Privacy</a>
+        </div>
+    </div>
+    <div class="footer-bottom">&#169; 2026 AutoSphere | MCA Sem 4 Project</div>
+</div>
+
+<script>
+// ========== SLIDER CODE - 100% WORKING ==========
+const sliderWrapper = document.getElementById('sliderWrapper');
+const slider = document.getElementById('slider');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const dotsContainer = document.getElementById('dotsContainer');
+
+let currentIndex = 0;
+let autoSlideInterval;
+let totalSlides = 0;
+let slides = [];
+
+// Get all cards
+function getSlides() {
+    return Array.from(document.querySelectorAll('#slider .card-link'));
+}
+
+// Calculate card width (including gap)
+function getCardWidth() {
+    const firstCard = document.querySelector('#slider .card-link');
+    if (!firstCard) return 315;
+    const style = window.getComputedStyle(firstCard);
+    const marginRight = parseInt(style.marginRight) || 0;
+    return firstCard.offsetWidth + marginRight;
+}
+
+//->>>>>>>>>>>>>>>>>> image niche dot mate 
+
+// Update slider position
+/* function updateSliderPosition(animate = true) {
+    if (animate) {
+        sliderWrapper.style.scrollBehavior = 'smooth';
+    } else {
+        sliderWrapper.style.scrollBehavior = 'auto';
+    }
+    const cardWidth = getCardWidth();
+    sliderWrapper.scrollLeft = currentIndex * cardWidth;
+} */
+
+
+function updateSliderPosition(animate = true) {
+    if (animate) {
+        sliderWrapper.style.scrollBehavior = 'smooth';
+    } else {
+        sliderWrapper.style.scrollBehavior = 'auto';
+    }
+
+    const cardWidth = getCardWidth();
+    const visibleCards = getVisibleCards();
+
+    sliderWrapper.scrollLeft = currentIndex * (cardWidth * visibleCards);
+}
+
+// Go to specific slide
+function goToSlide(index) {
+    if (index < 0) {
+        index = 0;
+    }
+    if (index >= totalSlides) {
+        index = totalSlides - 1;
+    }
+    currentIndex = index;
+    updateSliderPosition(true);
+    updateDots();
+    resetAutoPlay();
+}
+
+// Next slide
+function nextSlide() {
+    if (currentIndex < totalSlides - 1) {
+        currentIndex++;
+        updateSliderPosition(true);
+    } else {
+        // Loop to first slide
+        currentIndex = 0;
+        updateSliderPosition(true);
+    }
+    updateDots();
+    resetAutoPlay();
+}
+
+// Previous slide
+function prevSlide() {
+    if (currentIndex > 0) {
+        currentIndex--;
+        updateSliderPosition(true);
+    } else {
+        // Loop to last slide
+        currentIndex = totalSlides - 1;
+        updateSliderPosition(true);
+    }
+    updateDots();
+    resetAutoPlay();
+}
+
+// Create dots
+function createDots() {
+    if (!dotsContainer) return;
+    dotsContainer.innerHTML = '';
+    
+    for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        dot.addEventListener('click', () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+    }
+    updateDots();
+}
+
+// Update active dot
+function updateDots() {
+    const dots = document.querySelectorAll('.dot');
+    dots.forEach((dot, i) => {
+        if (i === currentIndex) {
+            dot.classList.add('active');
+        } else {
+            dot.classList.remove('active');
+        }
+    });
+}
+
+// Auto play
+function startAutoPlay() {
+    if (autoSlideInterval) clearInterval(autoSlideInterval);
+    autoSlideInterval = setInterval(() => {
+        nextSlide();
+    }, 3000);
+}
+
+function resetAutoPlay() {
+    clearInterval(autoSlideInterval);
+    startAutoPlay();
+}
+
+// Stop auto on hover
+function setupHoverPause() {
+    const container = document.querySelector('.slider-container');
+    if (container) {
+        container.addEventListener('mouseenter', () => {
+            clearInterval(autoSlideInterval);
+        });
+        container.addEventListener('mouseleave', () => {
+            startAutoPlay();
+        });
+    }
+}
+
+// Handle scroll event to update current index
+
+//->>>>>>>>>>>>>>>>>> image niche dot mate 
+
+/* function handleScroll() {
+    const cardWidth = getCardWidth();
+    const scrollPosition = sliderWrapper.scrollLeft;
+    const newIndex = Math.round(scrollPosition / cardWidth);
+    
+    if (newIndex !== currentIndex && newIndex >= 0 && newIndex < totalSlides) {
+        currentIndex = newIndex;
+        updateDots();
+    }
+} */
+
+function handleScroll() {
+    const cardWidth = getCardWidth();
+    const visibleCards = getVisibleCards();
+
+    const scrollPosition = sliderWrapper.scrollLeft;
+    const newIndex = Math.round(scrollPosition / (cardWidth * visibleCards));
+
+    if (newIndex !== currentIndex && newIndex >= 0 && newIndex < totalSlides) {
+        currentIndex = newIndex;
+        updateDots();
+    }
+}
+
+/* ------>>>>>>>>>>>>>add this ->>>>>>>mage niche dot mate */
+function getVisibleCards() {
+    const containerWidth = sliderWrapper.offsetWidth;
+    const cardWidth = getCardWidth();
+    return Math.floor(containerWidth / cardWidth);
+}
+
+// Initialize slider
+function initSlider() {
+	
+    slides = getSlides();
+    /* totalSlides = slides.length; */ /*->>>>>>>>>>>>> image niche dot mate  */   
+    const visibleCards = getVisibleCards();
+totalSlides = Math.ceil(slides.length / visibleCards);
+    
+    if (totalSlides === 0) return;
+    
+    createDots();
+    startAutoPlay();
+    setupHoverPause();
+    
+    // Add scroll listener
+    sliderWrapper.addEventListener('scroll', handleScroll);
+    
+    // Add button listeners
+    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+}
+
+// Initialize when page loads
+window.addEventListener('load', initSlider);
+
+// ========== SEARCH SUGGESTIONS ==========
+const cars = ["Thar","Scorpio","Bolero","XUV300","XUV500","XUV700",
+              "Swift","Swift Dzire","Baleno","Brezza","Ertiga","Alto",
+              "WagonR","Celerio","Ignis","S-Presso","BMW","Audi","Mercedes",
+              "Fortuner","Innova","Innova Crysta","Innova Hycross","Honda City",
+              "Amaze","Civic","CR-V","Verna","Creta","Venue","i10","i20",
+              "Kia Seltos","Kia Sonet","Kia Carens","MG Hector","MG Astor",
+              "Tata Nexon","Tata Punch","Tata Harrier","Tata Safari","Tata Tiago",
+              "Tata Tigor","Skoda Slavia","Skoda Kushaq","Volkswagen Polo",
+              "Virtus","Jeep Compass","Range Rover","Land Rover","Jaguar","Mini Cooper"];
+
+const cities = ["Ahmedabad","Surat","Rajkot","Vadodara","Gandhinagar",
+                "Bhavnagar","Jamnagar","Junagadh","Anand","Navsari","Mehsana",
+                "Morbi","Surendranagar","Porbandar","Palanpur","Valsad","Bharuch",
+                "Godhra","Patan","Dahod","Bhuj","Veraval","Amreli","Gondal",
+                "Kalol","Nadiad","Mumbai","Delhi","Bengaluru","Chennai","Kolkata",
+                "Hyderabad","Pune","Jaipur","Lucknow","Kanpur","Nagpur","Indore",
+                "Bhopal","Patna","Chandigarh","Coimbatore","Kochi","Visakhapatnam",
+                "Agra","Varanasi","Madurai","Nashik","Faridabad","Ghaziabad","Noida"];
+
+function showCarSuggestions() {
+    let input = document.getElementById("searchInput").value.toLowerCase();
+    let box = document.getElementById("suggestionBox");
+    box.innerHTML = "";
+
+    if (input === "") {
+        box.style.display = "none";
+        return;
+    }
+
+    let matches = cars.filter(c => c.toLowerCase().includes(input));
+
+    matches.forEach(car => {
+        let div = document.createElement("div");
+        div.className = "suggestion-item";
+        div.innerText = car;
+        div.onclick = () => {
+            document.getElementById("searchInput").value = car;
+            box.style.display = "none";
+        };
+        box.appendChild(div);
+    });
+
+    box.style.display = matches.length ? "block" : "none";
+}
+
+function showCitySuggestions() {
+    let input = document.getElementById("cityInput").value.toLowerCase();
+    let box = document.getElementById("citySuggestionBox");
+    box.innerHTML = "";
+
+    if (input === "") {
+        box.style.display = "none";
+        return;
+    }
+
+    let matches = cities.filter(c => c.toLowerCase().includes(input));
+
+    matches.forEach(city => {
+        let div = document.createElement("div");
+        div.className = "suggestion-item";
+        div.innerText = city;
+        div.onclick = () => {
+            document.getElementById("cityInput").value = city;
+            box.style.display = "none";
+        };
+        box.appendChild(div);
+    });
+
+    box.style.display = matches.length ? "block" : "none";
+}
+
+// Click outside to close suggestions
+document.addEventListener("click", function(event) {
+    let cityBox = document.getElementById("citySuggestionBox");
+    let cityInput = document.getElementById("cityInput");
+    let carBox = document.getElementById("suggestionBox");
+    let carInput = document.getElementById("searchInput");
+
+    if (cityInput && cityBox && !cityInput.contains(event.target) && !cityBox.contains(event.target)) {
+        cityBox.style.display = "none";
+        cityInput.value = "";
+    }
+
+    if (carInput && carBox && !carInput.contains(event.target) && !carBox.contains(event.target)) {
+        carBox.style.display = "none";
+        carInput.value = "";
+    }
+});
+</script>
+
+</body>
+</html>
+
+
+
+<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page contentType="text/html;charset=UTF-8"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>AutoSphere | Buy & Sell Cars</title>
+
+<style>
 body {
 	margin: 0;
 	font-family: Arial;
@@ -522,6 +1538,30 @@ body {
 }
 
 
+
+.suggestion-box {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    width: 100%;
+    z-index: 999;
+    display: none;
+}
+
+.suggestion-box .item {
+    padding: 10px;
+    cursor: pointer;
+    color: black;          /* 🔥 IMPORTANT */
+    background: white;     /* ensure visible */
+}
+
+.suggestion-box .item:hover {
+    background-color: #f3e5f5;
+    color: #000;   /* 🔥 */
+}
+
+
+
 </style>
 </head>
 
@@ -769,126 +1809,163 @@ body {
 
 	</div>
 
+	
 	<script>
-		let scroll = 0;
-		const slider = document.getElementById("slider");
-		const imageWidth = 315;
 
-		const images = slider.querySelectorAll("img");
-		const totalImages = images.length;
 
-		function slideLeft() {
 
-			scroll += imageWidth;
+	let scroll = 0;
+	const slider = document.getElementById("slider");
+	const imageWidth = 315;
 
-			if (scroll > 0) {
-				scroll = -(imageWidth * (totalImages - 1));
-			}
+	const images = slider.querySelectorAll("img");
+	const totalImages = images.length;
 
-			slider.style.transform = "translateX(" + scroll + "px)";
-		}
+	// ================= SLIDER =================
 
-		function slideRight() {
+	function slideLeft() {
+	    scroll += imageWidth;
 
-			scroll -= imageWidth;
+	    if (scroll > 0) {
+	        scroll = -(imageWidth * (totalImages - 1));
+	    }
 
-			if (Math.abs(scroll) >= imageWidth * totalImages) {
-				scroll = 0;
-			}
+	    slider.style.transform = "translateX(" + scroll + "px)";
+	}
 
-			slider.style.transform = "translateX(" + scroll + "px)";
-		}
+	function slideRight() {
+	    scroll -= imageWidth;
 
-		setInterval(function() {
-			slideRight();
-		}, 3000);
+	    if (Math.abs(scroll) >= imageWidth * totalImages) {
+	        scroll = 0;
+	    }
+
+	    slider.style.transform = "translateX(" + scroll + "px)";
+	}
+
+	setInterval(function () {
+	    slideRight();
+	}, 3000);
+
+
+	// ================= CITY SUGGESTION =================
+
+	function showCitySuggestions() {
+
+	    let input = document.getElementById("cityInput").value.toLowerCase();
+	    let box = document.getElementById("citySuggestionBox");
+
+	    box.innerHTML = "";
+
+	    if (input === "") {
+	        box.style.display = "none";
+	        return;
+	    }
+
+	    let matches = cities.filter(c => c.toLowerCase().includes(input));
+
+	    matches.forEach(city => {
+	        let div = document.createElement("div");
+	        div.className = "suggestion-item";
+	        div.innerText = city;
+
+	        div.onclick = () => {
+	            document.getElementById("cityInput").value = city;
+	            box.style.display = "none";
+	        };
+
+	        box.appendChild(div);
+	    });
+
+	    box.style.display = matches.length ? "block" : "none";
+	}
+
+
+	// ================= CLICK OUTSIDE CLOSE =================
+
+	document.addEventListener("click", function (event) {
+
+	    let cityBox = document.getElementById("citySuggestionBox");
+	    let cityInput = document.getElementById("cityInput");
+
+	    let carBox = document.getElementById("suggestionBox");
+	    let carInput = document.getElementById("searchInput");
+
+	    if (!cityInput.contains(event.target) && !cityBox.contains(event.target)) {
+	        cityBox.style.display = "none";
+	    }
+
+	    if (!carInput.contains(event.target) && !carBox.contains(event.target)) {
+	        carBox.style.display = "none";
+	    }
+	});
+
+
+	// ================= CAR SEARCH (FINAL FIXED) =================
+
+	let timeout = null;
+
+	function showCarSuggestions() {
 		
-		
-		
-		let cars = ["Thar","Scorpio","Bolero","XUV300","XUV500","XUV700","Swift","Swift Dzire","Baleno","Brezza","Ertiga","Alto","WagonR","Celerio","Ignis","S-Presso","BMW","Audi","Mercedes","Fortuner","Innova","Innova Crysta","Innova Hycross","Honda City","Amaze","Civic","CR-V","Verna","Creta","Venue","i10","i20","Kia Seltos","Kia Sonet","Kia Carens","MG Hector","MG Astor","Tata Nexon","Tata Punch","Tata Harrier","Tata Safari","Tata Tiago","Tata Tigor","Skoda Slavia","Skoda Kushaq","Volkswagen Polo","Virtus","Jeep Compass","Range Rover","Land Rover","Jaguar","Mini Cooper"];
-		let cities = ["Ahmedabad","Surat","Rajkot","Vadodara","Gandhinagar","Bhavnagar","Jamnagar","Junagadh","Anand","Navsari","Mehsana","Morbi","Surendranagar","Porbandar","Palanpur","Valsad","Bharuch","Godhra","Patan","Dahod","Bhuj","Veraval","Amreli","Gondal","Kalol","Nadiad","Mumbai","Delhi","Bengaluru","Chennai","Kolkata","Hyderabad","Pune","Jaipur","Lucknow","Kanpur","Nagpur","Indore","Bhopal","Patna","Chandigarh","Coimbatore","Kochi","Visakhapatnam","Agra","Varanasi","Madurai","Nashik","Vadodara","Faridabad","Ghaziabad","Noida"];
 
-		function showCarSuggestions() {
-		    let input = document.getElementById("searchInput").value.toLowerCase();
-		    let box = document.getElementById("suggestionBox");
-		    box.innerHTML = "";
+	    clearTimeout(timeout);
 
-		    if (input === "") {
-		        box.style.display = "none";
-		        return;
-		    }
+	    timeout = setTimeout(() => {
 
-		    let matches = cars.filter(c => c.toLowerCase().includes(input));
+	        let input = document.getElementById("searchInput").value.trim();
+	        let box = document.getElementById("suggestionBox");
 
-		    matches.forEach(car => {
-		        let div = document.createElement("div");
-		        div.className = "suggestion-item";
-		        div.innerText = car;
+	        if (input.length === 0) {
+	            box.innerHTML = "";
+	            box.style.display = "none";
+	            return;
+	        }
 
-		        div.onclick = () => {
-		            document.getElementById("searchInput").value = car;
-		            box.style.display = "none";
-		        };
+	        fetch("${pageContext.request.contextPath}/search?keyword=" + encodeURIComponent(input))
+	        .then(res => {
+	            if (!res.ok) {
+	                throw new Error("Server error");
+	            }
+	            return res.json();
+	        })
+	        .then(data => {
 
-		        box.appendChild(div);
-		    });
+	            let html = "";
 
-		    box.style.display = matches.length ? "block" : "none";
-		}
+	            if (data.length === 0) {
+	                html = "<div class='item'>No cars found</div>";
+	            } else {
+	                data.forEach(car => {
+	                    html += `<div class="item" onclick="goToCar('${car.listingId}')">
+	                                ${car.modelName} ${car.variantName}
+	                             </div>`;
+	                });
+	            }
 
-		function showCitySuggestions() {
-		    let input = document.getElementById("cityInput").value.toLowerCase();
-		    let box = document.getElementById("citySuggestionBox");
-		    box.innerHTML = "";
+	            box.innerHTML = html;
+	            box.style.display = "block";
 
-		    if (input === "") {
-		        box.style.display = "none";
-		        return;
-		    }
+	        })
+	        .catch(err => {
+	            console.log("Error:", err);
+	            box.style.display = "none";
+	        });
 
-		    let matches = cities.filter(c => c.toLowerCase().includes(input));
+	    }, 300);
 
-		    matches.forEach(city => {
-		        let div = document.createElement("div");
-		        div.className = "suggestion-item";
-		        div.innerText = city;
+	}
 
-		        div.onclick = () => {
-		            document.getElementById("cityInput").value = city;
-		            box.style.display = "none";
-		        };
 
-		        box.appendChild(div);
-		    });
+	// ================= REDIRECT =================
+function goToCar(id) {
 
-		    box.style.display = matches.length ? "block" : "none";
-		}
-		
-		
-		
-		
-		document.addEventListener("click", function(event) {
+    if (id === undefined || id === null || id === "" || id === "undefined") {
+        alert("Invalid Car ID");
+        return;
+    }
 
-		    let cityBox = document.getElementById("citySuggestionBox");
-		    let cityInput = document.getElementById("cityInput");
-
-		    let carBox = document.getElementById("suggestionBox");
-		    let carInput = document.getElementById("searchInput");
-
-		    // 🔹 City
-		    if (!cityInput.contains(event.target) && !cityBox.contains(event.target)) {
-		        cityBox.style.display = "none";
-		        cityInput.value = ""; // 🔥 clear text
-		    }
-
-		    // 🔹 Car
-		    if (!carInput.contains(event.target) && !carBox.contains(event.target)) {
-		        carBox.style.display = "none";
-		        carInput.value = ""; // 🔥 clear text
-		    }
-
-		});
-		
+    window.location.href = "${pageContext.request.contextPath}/car/" + id;
+}
 	</script>
 
 </body>
@@ -896,418 +1973,4 @@ body {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page contentType="text/html;charset=UTF-8" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>AutoSphere | Buy & Sell Cars</title>
-
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f6fb;
-        }
-
-        /* ===== HEADER ===== */
-        .header {
-            display: flex;
-            align-items: center;
-            padding: 15px 40px;
-            background: white;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .logo {
-            font-size: 26px;
-            font-weight: bold;
-            color: #6a1b9a;
-        }
-
-        /* ===== CITY SELECT ===== */
-        .city-select {
-            padding: 8px 16px;
-            border-radius: 22px;
-            border: 1px solid #d1c4e9;
-            background: #f3e5f5;
-            color: #4a148c;
-            font-size: 14px;
-            font-weight: 500;
-            outline: none;
-            cursor: pointer;
-            margin: 0 20px;
-            transition: all 0.3s ease;
-        }
-
-        .city-select:hover {
-            background: #ede7f6;
-        }
-
-        .city-select:focus {
-            background: #ffffff;
-            border-color: #6a1b9a;
-            box-shadow: 0 0 0 3px rgba(106,27,154,0.15);
-        }
-
-        /* ===== SEARCH BAR ===== */
-        .search-bar {
-            display: flex;
-            align-items: center;
-            background: #f3e5f5;
-            padding: 8px 14px;
-            border-radius: 25px;
-            width: 320px;
-        }
-
-        .search-icon {
-            font-size: 16px;
-            color: #6a1b9a;
-            margin-right: 8px;
-        }
-
-        .search-bar input {
-            border: none;
-            outline: none;
-            background: transparent;
-            width: 100%;
-            font-size: 14px;
-        }
-
-        /* ===== MENU ===== */
-        .menu {
-            margin-left: auto;
-        }
-
-        .menu a {
-            margin-left: 18px;
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-        }
-
-        .menu a:hover {
-            color: #6a1b9a;
-        }
-
-        /* ===== HERO ===== */
-        .hero {
-            display: flex;
-            padding: 40px;
-            background: linear-gradient(135deg, #ede7f6, #f5f5f5);
-        }
-
-        .hero-box {
-            width: 50%;
-            padding: 30px;
-        }
-
-        .hero-box h1 {
-            font-size: 28px;
-            color: #4a148c;
-        }
-
-        .hero-box p {
-            color: #555;
-        }
-
-        .hero-img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-top: 15px;
-        }
-
-        .sell-btn {
-            padding: 12px 25px;
-            background: #e91e63;
-            color: white;
-            border: none;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        /* ===== SECTION ===== */
-        .section {
-            padding: 40px;
-            text-align: center;
-            background: white;
-        }
-
-        .cards {
-            display: flex;
-            justify-content: center;
-            margin-top: 25px;
-        }
-
-        .card {
-            width: 200px;
-            margin: 10px;
-            padding: 15px;
-            background: #fafafa;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            border-radius: 10px;
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card img {
-            width: 100%;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 10px;
-        }
-
-        /* ===== FOOTER ===== */
-        .footer {
-            background: #6a1b9a;
-            color: white;
-            text-align: center;
-            padding: 15px;
-        }
-    </style>
-</head>
-
-<body>
-
-<!-- ===== HEADER ===== -->
-<div class="header">
-
-	
-    <div class="logo">AutoSphere</div>  
-
-    <!-- City Dropdown -->
-    <!-- City Auto Suggest -->
-<div style="position:relative; margin:0 20px;">
-    <input type="text"
-           id="cityInput"
-           class="city-select"
-           placeholder="Select City">
-
-    <div id="citySuggestions"
-         style="
-            position:absolute;
-            top:42px;
-            left:0;
-            width:100%;
-            background:white;
-            border-radius:8px;
-            box-shadow:0 6px 16px rgba(0,0,0,0.15);
-            display:none;
-            z-index:999;">
-    </div>
-</div>
-
-
-    <div class="search-bar" style="position:relative;">
-    <span class="search-icon">🔍</span>
-    <input type="text" id="searchInput" placeholder="Search cars by brand or model">
-
-    <div id="searchSuggestions"
-         style="
-            position:absolute;
-            top:42px;
-            left:0;
-            width:100%;
-            background:white;
-            border-radius:8px;
-            box-shadow:0 6px 16px rgba(0,0,0,0.15);
-            display:none;
-            z-index:999;">
-    </div>
-</div>
-
-
-    <!-- Menu -->
-    <div class="menu">
-        <a href="listbrand">Car Brand</a>
-        <a href="carlist">Buy Car</a>
-        <a href="#">Sell Car</a>
-        <a href="Login">Login</a>
-        <a href="#">Register</a>
-    </div>
-
-</div>
-<script>
-const carSuggestions = [
-    "Maruti Swift","Maruti Baleno","Maruti Brezza",
-    "Hyundai i10","Hyundai i20","Hyundai Creta",
-    "Tata Nexon","Tata Punch","Tata Harrier",
-    "Mahindra Thar","Mahindra Scorpio","Mahindra XUV700",
-    "Kia Seltos","Kia Sonet",
-    "Toyota Fortuner","Toyota Innova",
-    "Honda City","Honda Amaze",
-    "Volkswagen Virtus","Skoda Slavia",
-    "MG Hector","Renault Kiger","Jeep Compass"
-];
-
-const searchInput = document.getElementById("searchInput");
-const searchBox = document.getElementById("searchSuggestions");
-
-searchInput.addEventListener("input", function () {
-    const value = this.value.toLowerCase();
-    searchBox.innerHTML = "";
-
-    if (value === "") {
-        searchBox.style.display = "none";
-        return;
-    }
-
-    const filtered = carSuggestions.filter(item =>
-        item.toLowerCase().includes(value)
-    );
-
-    filtered.forEach(item => {
-        const div = document.createElement("div");
-        div.textContent = item;
-        div.style.padding = "10px 14px";
-        div.style.cursor = "pointer";
-
-        div.onclick = () => {
-            searchInput.value = item;
-            searchBox.style.display = "none";
-        };
-
-        div.onmouseover = () => div.style.background = "#ede7f6";
-        div.onmouseout  = () => div.style.background = "white";
-
-        searchBox.appendChild(div);
-    });
-
-    searchBox.style.display = filtered.length ? "block" : "none";
-});
-
-document.addEventListener("click", function (e) {
-    if (!e.target.closest("#searchInput")) {
-        searchBox.style.display = "none";
-    }
-});
-</script>
-
-<script>
-const gujaratCities = [
-    "Ahmedabad","Amreli","Anand","Aravalli","Banaskantha","Bharuch",
-    "Bhavnagar","Botad","Chhota Udaipur","Dahod","Dang","Devbhoomi Dwarka",
-    "Gandhinagar","Gir Somnath","Jamnagar","Junagadh","Kachchh","Kheda",
-    "Mahisagar","Mehsana","Morbi","Narmada","Navsari","Panchmahal",
-    "Patan","Porbandar","Rajkot","Sabarkantha","Surat","Surendranagar",
-    "Tapi","Vadodara","Valsad","Vapi","Veraval","Vyara","Godhra",
-    "Himmatnagar","Kalol","Nadiad","Petlad","Sanand","Dholka","Unjha",
-    "Visnagar","Bhuj","Mandvi","Anjar","Dwarka","Okha","baroda"
-];
-
-const cityInput = document.getElementById("cityInput");
-const suggestionBox = document.getElementById("citySuggestions");
-
-cityInput.addEventListener("input", function () {
-    const value = this.value.toLowerCase();
-    suggestionBox.innerHTML = "";
-
-    if (value === "") {
-        suggestionBox.style.display = "none";
-        return;
-    }
-
-    const filtered = gujaratCities.filter(city =>
-        city.toLowerCase().includes(value)
-    );
-
-    filtered.forEach(city => {
-        const div = document.createElement("div");
-        div.textContent = city;
-        div.style.padding = "10px 14px";
-        div.style.cursor = "pointer";
-
-        div.onclick = () => {
-            cityInput.value = city;
-            suggestionBox.style.display = "none";
-        };
-
-        div.onmouseover = () => div.style.background = "#ede7f6";
-        div.onmouseout  = () => div.style.background = "white";
-
-        suggestionBox.appendChild(div);
-    });
-
-    suggestionBox.style.display = filtered.length ? "block" : "none";
-});
-
-document.addEventListener("click", function (e) {
-    if (!e.target.closest("#cityInput")) {
-        suggestionBox.style.display = "none";
-    }
-});
-</script>
-
-<!-- ===== HERO ===== -->
-<div class="hero">
-
-    <div class="hero-box">
-        <h1>Cars you’ll love to buy</h1>
-        <p>Verified used cars with full inspection</p>
-        <img src="https://source.unsplash.com/600x400/?car,showroom" class="hero-img">
-    </div>
-
-    <div class="hero-box">
-        <h1>Sell your car for the best price</h1>
-        <p>Instant valuation & quick payment</p>
-        <img src="https://source.unsplash.com/600x400/?car,selling" class="hero-img">
-        <br><br>
-        <button class="sell-btn">Sell My Car</button>
-    </div>
-
-</div>
-
-<!-- ===== BENEFITS ===== -->
-<div class="section">
-    <h2>AutoSphere Assured Benefits</h2>
-
-    <div class="cards">
-        <div class="card">
-            <img src="https://source.unsplash.com/400x300/?car,inspection">
-            ✔ 200+ Quality Checks
-        </div>
-
-        <div class="card">
-            <img src="https://source.unsplash.com/400x300/?car,test-drive">
-            ✔ 7 Days Trial
-        </div>
-
-        <div class="card">
-            <img src="https://source.unsplash.com/400x300/?car,warranty">
-            ✔ 1 Year Warranty
-        </div>
-
-        <div class="card">
-            <img src="https://source.unsplash.com/400x300/?car,price">
-            ✔ Fixed Price
-        </div>
-    </div>
-</div>
-
-<!-- ===== FOOTER ===== -->
-<div class="footer">
-    © 2026 AutoSphere | MCA Sem 4 Project
-</div>
-
-</body>
-</html>
  --%>

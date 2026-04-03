@@ -28,7 +28,7 @@ body {
 	background: #fff;
 	padding: 25px;
 	border-radius: 12px;
-	box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Title */
@@ -125,132 +125,122 @@ body {
 .action-btns a:hover {
 	opacity: 0.85;
 }
-
 </style>
 
 </head>
 
 <body>
 
-<div class="container-scroller">
+	<div class="container-scroller">
 
-	<jsp:include page="AdminHeader.jsp"></jsp:include>
+		<jsp:include page="AdminHeader.jsp"></jsp:include>
 
-	<div class="container-fluid page-body-wrapper">
+		<div class="container-fluid page-body-wrapper">
 
-		<jsp:include page="AdminLeftSidebar.jsp"></jsp:include>
+			<jsp:include page="AdminLeftSidebar.jsp"></jsp:include>
 
-		<div class="main-panel">
-			<div class="content-wrapper">
+			<div class="main-panel">
+				<div class="content-wrapper">
 
-				<h3 class="mb-2">Welcome ${sessionScope.user.firstName}</h3>
+					<h3 class="mb-2">Welcome ${sessionScope.user.firstName}</h3>
 
-				<div class="table-container">
-					<div class="table-card">
+					<div class="table-container">
+						<div class="table-card">
 
-						<div class="title-box">
-							<h3>List User</h3>
-						</div>
+							<div class="title-box">
+								<h3>List User</h3>
+							</div>
 
-						<table class="table table-bordered table-striped">
+							<table class="table table-bordered table-striped" id="myTable">
 
-							<thead>
-								<tr>
-									<th>SrNo</th>
-									<th>Name</th>
-									<th>Email</th>
-									<th>Role</th>
-									<th>Gender</th>
-									<th>Birth Year</th>
-									<th>Profile</th>
-									<th>Status</th>
-									<th>Action</th>
-								</tr>
-							</thead>
-
-							<tbody>
-
-								<c:forEach var="user" items="${userList}" varStatus="s">
+								<thead>
 									<tr>
+										<th>SrNo</th>
+										<th>Name</th>
+										<th>Email</th>
+										<th>Role</th>
+										<th>Gender</th>
+										<th>Birth Year</th>
+										<th>Profile</th>
+										<th>Status</th>
+										<th>Action</th>
+									</tr>
+								</thead>
 
-										<td>${s.count}</td>
+								<tbody>
 
-										<td>${user.firstName} ${user.lastName}</td>
+									<c:forEach var="user" items="${userList}" varStatus="s">
+										<tr>
 
-										<td>${user.email}</td>
+											<td>${s.count}</td>
 
-										<td>
-											<span class="badge bg-info">
-												${user.role}
-											</span>
-										</td>
+											<td>${user.firstName}${user.lastName}</td>
 
-										<td>${user.gender}</td>
+											<td>${user.email}</td>
 
-										<td>${user.birthYear}</td>
+											<td><span class="badge bg-info"> ${user.role} </span></td>
 
-										<td>
-											<c:if test="${not empty user.profilePicURL}">
-												<img src="${user.profilePicURL}" class="profile-pic"/>
-											</c:if>
-										</td>
+											<td>${user.gender}</td>
 
-										<td>
-											<c:choose>
-												<c:when test="${user.active}">
-													<span class="badge bg-success">Active</span>
-												</c:when>
-												<c:otherwise>
-													<span class="badge bg-danger">Inactive</span>
-												</c:otherwise>
-											</c:choose>
-										</td>
+											<td>${user.birthYear}</td>
 
-										<td class="action-btns">
+											<td><c:if test="${not empty user.profilePicURL}">
+													<img src="${user.profilePicURL}" class="profile-pic" />
+												</c:if></td>
 
-											<a href="editUser?userId=${user.userId}"
-												class="btn btn-warning btn-sm">
-												Edit
-											</a>
+											<td><c:choose>
+													<c:when test="${user.active}">
+														<span class="badge bg-success">Active</span>
+													</c:when>
+													<c:otherwise>
+														<span class="badge bg-danger">Inactive</span>
+													</c:otherwise>
+												</c:choose></td>
 
-											<a href="deleteUser?userId=${user.userId}"
+											<td class="action-btns"><a
+												href="editUser?userId=${user.userId}"
+												class="btn btn-warning btn-sm"> Edit </a> <a
+												href="deleteUser?userId=${user.userId}"
 												class="btn btn-danger btn-sm"
-												onclick="return confirm('Are you sure?');">
-												Delete
-											</a>
+												onclick="return confirm('Are you sure?');"> Delete </a> <a
+												href="viewUser?userId=${user.userId}"
+												class="btn btn-info btn-sm"> View </a></td>
 
-											<a href="viewUser?userId=${user.userId}"
-												class="btn btn-info btn-sm">
-												View
-											</a>
+										</tr>
+									</c:forEach>
 
-										</td>
+									<c:if test="${empty userList}">
+										<tr>
+											<td colspan="9" class="text-center text-muted">No users
+												found</td>
+										</tr>
+									</c:if>
 
-									</tr>
-								</c:forEach>
+								</tbody>
 
-								<c:if test="${empty userList}">
-									<tr>
-										<td colspan="9" class="text-center text-muted">
-											No users found
-										</td>
-									</tr>
-								</c:if>
+							</table>
 
-							</tbody>
-
-						</table>
-
+						</div>
 					</div>
+
 				</div>
 
+				<jsp:include page="AdminFooter.jsp"></jsp:include>
+
 			</div>
-
-			<jsp:include page="AdminFooter.jsp"></jsp:include>
-
 		</div>
 	</div>
-</div>
+
+	<script type="text/javascript">
+		let table = new DataTable('#myTable', {
+			responsive : true,
+			layout : {
+				topStart : {
+					buttons : [ 'copy', 'csv', 'excel', 'pdf', 'print' ]
+				}
+			}
+		});
+	</script>
 
 </body>
 </html>
@@ -466,4 +456,5 @@ body {
 	
 	<!-- End custom js for this page-->
 </body>
-</html>  --%> --%>
+</html>  --%>
+--%>

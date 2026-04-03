@@ -88,7 +88,7 @@ body {
                         <!-- Table -->
                         <div class="table-responsive">
 
-                            <table class="table table-bordered table-striped bg-white">
+                            <table class="table table-bordered table-striped bg-white" id="myTable">
 
                                 <thead class="table-dark">
                                 <tr>
@@ -142,6 +142,17 @@ body {
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+		let table = new DataTable('#myTable', {
+			responsive : true,
+			layout : {
+				topStart : {
+					buttons : [ 'copy', 'csv', 'excel', 'pdf', 'print' ]
+				}
+			}
+		});
+	</script>
 
 </body>
 </html>

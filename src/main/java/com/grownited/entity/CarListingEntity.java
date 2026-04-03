@@ -44,7 +44,7 @@ public class CarListingEntity {
 		return userId;
 	}
 	public void setUserId(Integer userId) {
-		this.userId = userId;
+		this.userId = userId; 
 	}
 	public Integer getBrandId() {
 		return brandId;

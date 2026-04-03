@@ -15,6 +15,16 @@ public interface CarListingRepository extends JpaRepository<CarListingEntity, In
 	long countByStatus(String status);
 	List<CarListingEntity> findByBrandNameIgnoreCase(String brandName);
 	
+	List<CarListingEntity> findByModelNameContainingIgnoreCase(String keyword);
+	
+	List<CarListingEntity> 
+	findByModelNameContainingIgnoreCaseOrVariantNameContainingIgnoreCaseOrBrandNameContainingIgnoreCase(
+	    String model, String variant, String brand);
+
+
+	
+	
+	
 	
 
 }
