@@ -8,103 +8,156 @@
 <head>
 <meta charset="UTF-8">
 <title>Edit Car Transaction</title>
+
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    body {
+        background: #f4f6f9;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .card {
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        border: none;
+    }
+
+    .form-title {
+        font-weight: 600;
+        color: #4b4bb7;
+    }
+
+    .btn-custom {
+        background-color: #4b4bb7;
+        color: white;
+        border-radius: 20px;
+        padding: 10px 28px;
+        border: none;
+        font-weight: 500;
+        transition: 0.3s;
+    }
+
+    .btn-custom:hover {
+        background-color: #3f3fa3;
+    }
+
+    .form-control:focus, .form-select:focus {
+        border-color: #4b4bb7;
+        box-shadow: 0 0 5px rgba(75,75,183,0.5);
+    }
+
+    .back-link {
+        text-decoration: none;
+        color: #4b4bb7;
+        font-weight: 500;
+    }
+
+    .back-link:hover {
+        color: #3f3fa3;
+        text-decoration: underline;
+    }
+
+</style>
+
 </head>
 <body>
 
-<h2>Edit Car Transaction</h2>
+<div class="container mt-5">
 
-<form action="updateCarTransaction" method="post">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
 
-    <!-- Hidden ID -->
-    <input type="hidden" name="transactionId" value="${carTransaction.transactionId}" />
+            <div class="card p-4">
 
-    <table border="1" cellpadding="10">
+                <h3 class="text-center mb-4 form-title">Edit Car Transaction</h3>
 
-        <!-- Listing -->
-        <tr>
-            <td>Car Listing</td>
-            <td>
-                <select name="listingId">
-                    <c:forEach items="${allCarList}" var="l">
-                        <option value="${l.listingId}"
-                            ${l.listingId == carTransaction.listingId ? 'selected' : ''}>
-                            ${l.brandName} - ${l.modelName}
-                        </option>
-                    </c:forEach>
-                </select>
-            </td>
-        </tr>
+                <form action="updateCarTransaction" method="post">
 
-        <!-- User -->
-        <tr>
-            <td>User</td>
-            <td>
-                <select name="userId">
-                    <c:forEach items="${allUsers}" var="u">
-                        <option value="${u.userId}"
-                            ${u.userId == carTransaction.userId ? 'selected' : ''}>
-                            ${u.firstName}
-                        </option>
-                    </c:forEach>
-                </select>
-            </td>
-        </tr>
+                    <!-- Hidden ID -->
+                    <input type="hidden" name="transactionId" value="${carTransaction.transactionId}" />
 
-        <!-- Final Price -->
-        <tr>
-            <td>Final Price</td>
-            <td>
-                <input type="number" step="0.01" name="finalPrice"
-                       value="${carTransaction.finalPrice}" />
-            </td>
-        </tr>
+                    <!-- Listing -->
+                    <div class="mb-3">
+                        <label class="form-label">Car Listing</label>
+                        <select class="form-select" name="listingId">
+                            <c:forEach items="${allCarList}" var="l">
+                                <option value="${l.listingId}"
+                                    ${l.listingId == carTransaction.listingId ? 'selected' : ''}>
+                                    ${l.brandName} - ${l.modelName}
+                                </option>
+                            </c:forEach>
+                        </select>
+                    </div>
 
-        <!-- Payment Mode -->
-        <tr>
-            <td>Payment Mode</td>
-            <td>
-                <select name="paymentMode">
-                    <option value="Cash" ${carTransaction.paymentMode == 'Cash' ? 'selected' : ''}>Cash</option>
-                    <option value="Online" ${carTransaction.paymentMode == 'Online' ? 'selected' : ''}>Online</option>
-                    <option value="Cheque" ${carTransaction.paymentMode == 'Cheque' ? 'selected' : ''}>Cheque</option>
-                </select>
-            </td>
-        </tr>
+                    <!-- User -->
+                    <div class="mb-3">
+                        <label class="form-label">User</label>
+                        <select class="form-select" name="userId">
+                            <c:forEach items="${allUsers}" var="u">
+                                <option value="${u.userId}"
+                                    ${u.userId == carTransaction.userId ? 'selected' : ''}>
+                                    ${u.firstName}
+                                </option>
+                            </c:forEach>
+                        </select>
+                    </div>
 
-        <!-- Status -->
-        <tr>
-            <td>Transaction Status</td>
-            <td>
-                <select name="transactionStatus">
-                    <option value="Pending" ${carTransaction.transactionStatus == 'Pending' ? 'selected' : ''}>Pending</option>
-                    <option value="Completed" ${carTransaction.transactionStatus == 'Completed' ? 'selected' : ''}>Completed</option>
-                    <option value="Failed" ${carTransaction.transactionStatus == 'Failed' ? 'selected' : ''}>Failed</option>
-                </select>
-            </td>
-        </tr>
+                    <!-- Final Price -->
+                    <div class="mb-3">
+                        <label class="form-label">Final Price</label>
+                        <input type="number" step="0.01" class="form-control"
+                               name="finalPrice" value="${carTransaction.finalPrice}" />
+                    </div>
 
-        <!-- Completed Date -->
-        <tr>
-            <td>Completed Date</td>
-            <td>
-                <input type="date" name="completedAt" value="${carTransaction.completedAt}" />
-            </td>
-        </tr>
+                    <!-- Payment Mode -->
+                    <div class="mb-3">
+                        <label class="form-label">Payment Mode</label>
+                        <select class="form-select" name="paymentMode">
+                            <option value="Cash" ${carTransaction.paymentMode == 'Cash' ? 'selected' : ''}>Cash</option>
+                            <option value="Online" ${carTransaction.paymentMode == 'Online' ? 'selected' : ''}>Online</option>
+                            <option value="Cheque" ${carTransaction.paymentMode == 'Cheque' ? 'selected' : ''}>Cheque</option>
+                        </select>
+                    </div>
 
-        <!-- Submit -->
-        <tr>
-            <td colspan="2" align="center">
-                <button type="submit">Update Transaction</button>
-            </td>
-        </tr>
+                    <!-- Status -->
+                    <div class="mb-3">
+                        <label class="form-label">Transaction Status</label>
+                        <select class="form-select" name="transactionStatus">
+                            <option value="Pending" ${carTransaction.transactionStatus == 'Pending' ? 'selected' : ''}>Pending</option>
+                            <option value="Completed" ${carTransaction.transactionStatus == 'Completed' ? 'selected' : ''}>Completed</option>
+                            <option value="Failed" ${carTransaction.transactionStatus == 'Failed' ? 'selected' : ''}>Failed</option>
+                        </select>
+                    </div>
 
-    </table>
+                    <!-- Date -->
+                    <div class="mb-4">
+                        <label class="form-label">Completed Date</label>
+                        <input type="date" class="form-control"
+                               name="completedAt" value="${carTransaction.completedAt}" />
+                    </div>
 
-</form>
+                    <!-- Submit -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-custom">
+                            Update Transaction
+                        </button>
+                    </div>
 
-<br>
+                </form>
 
-<a href="listCarTransaction">⬅ Back to List</a>
+            </div>
+
+            <!-- Back -->
+            <div class="text-center mt-3">
+                <a href="listCarTransaction" class="back-link">⬅ Back to List</a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
 
 </body>
 </html>

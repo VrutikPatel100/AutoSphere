@@ -6,75 +6,138 @@
 <head>
 <meta charset="UTF-8">
 <title>Edit Car Model</title>
+
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    body {
+        background: #f4f6f9;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    /* Card */
+    .card {
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        border: none;
+    }
+
+    /* Title */
+    .form-title {
+        font-weight: 600;
+        color: #4b4bb7;
+    }
+
+    /* Button (same as your image) */
+    .btn-custom {
+        background-color: #4b4bb7;
+        color: white;
+        border-radius: 20px;
+        padding: 10px 28px;
+        border: none;
+        font-weight: 500;
+        transition: 0.3s;
+    }
+
+    .btn-custom:hover {
+        background-color: #3f3fa3;
+    }
+
+    /* Input focus */
+    .form-control:focus, .form-select:focus {
+        border-color: #4b4bb7;
+        box-shadow: 0 0 5px rgba(75,75,183,0.5);
+    }
+
+    /* Back link */
+    .back-link {
+        text-decoration: none;
+        color: #4b4bb7;
+        font-weight: 500;
+    }
+
+    .back-link:hover {
+        color: #3f3fa3;
+        text-decoration: underline;
+    }
+
+</style>
+
 </head>
 <body>
 
-<h2>Edit Car Model</h2>
+<div class="container mt-5">
 
-<form action="updateCarModel" method="post">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
 
-    <!-- Hidden ID -->
-    <input type="hidden" name="modelId" value="${carModel.modelId}" />
+            <div class="card p-4">
 
-    <table border="1" cellpadding="10">
+                <h3 class="text-center mb-4 form-title">Edit Car Model</h3>
 
-        <!-- Brand ID -->
-        <tr>
-            <td>Brand ID</td>
-            <td>
-                <input type="number" name="brandId" value="${carModel.brandId}"  />
-            </td>
-        </tr>
+                <form action="updateCarModel" method="post">
 
-        <!-- Model Name -->
-        <tr>
-            <td>Model Name</td>
-            <td>
-                <input type="text" name="modelName" value="${carModel.modelName}" required />
-            </td>
-        </tr>
+                    <!-- Hidden ID -->
+                    <input type="hidden" name="modelId" value="${carModel.modelId}" />
 
-        <!-- Body Type -->
-        <tr>
-            <td>Body Type</td>
-            <td>
-                <input type="text" name="bodyType" value="${carModel.bodyType}" />
-            </td>
-        </tr>
+                    <!-- Brand ID -->
+                    <div class="mb-3">
+                        <label class="form-label">Brand ID</label>
+                        <input type="number" class="form-control" name="brandId"
+                               value="${carModel.brandId}" />
+                    </div>
 
-        <!-- Launch Year -->
-        <tr>
-            <td>Launch Year</td>
-            <td>
-                <input type="date" name="launchYear" value="${carModel.launchYear}" />
-            </td>
-        </tr>
+                    <!-- Model Name -->
+                    <div class="mb-3">
+                        <label class="form-label">Model Name</label>
+                        <input type="text" class="form-control" name="modelName"
+                               value="${carModel.modelName}" required />
+                    </div>
 
-        <!-- Active -->
-        <tr>
-            <td>Status</td>
-            <td>
-                <select name="active">
-                    <option value="true" ${carModel.active ? 'selected' : ''}>Active</option>
-                    <option value="false" ${!carModel.active ? 'selected' : ''}>Inactive</option>
-                </select>
-            </td>
-        </tr>
+                    <!-- Body Type -->
+                    <div class="mb-3">
+                        <label class="form-label">Body Type</label>
+                        <input type="text" class="form-control" name="bodyType"
+                               value="${carModel.bodyType}" />
+                    </div>
 
-        <!-- Submit -->
-        <tr>
-            <td colspan="2" align="center">
-                <button type="submit">Update Model</button>
-            </td>
-        </tr>
+                    <!-- Launch Year -->
+                    <div class="mb-3">
+                        <label class="form-label">Launch Year</label>
+                        <input type="date" class="form-control" name="launchYear"
+                               value="${carModel.launchYear}" />
+                    </div>
 
-    </table>
+                    <!-- Status -->
+                    <div class="mb-4">
+                        <label class="form-label">Status</label>
+                        <select class="form-select" name="active">
+                            <option value="true" ${carModel.active ? 'selected' : ''}>Active</option>
+                            <option value="false" ${!carModel.active ? 'selected' : ''}>Inactive</option>
+                        </select>
+                    </div>
 
-</form>
+                    <!-- Submit -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-custom">
+                            Update Model
+                        </button>
+                    </div>
 
-<br>
+                </form>
 
-<a href="listCarModel">⬅ Back to List</a>
+            </div>
+
+            <!-- Back -->
+            <div class="text-center mt-3">
+                <a href="listCarModel" class="back-link">⬅ Back to List</a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
 
 </body>
 </html>

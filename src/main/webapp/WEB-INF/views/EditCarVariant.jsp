@@ -8,130 +8,186 @@
 <head>
 <meta charset="UTF-8">
 <title>Edit Car Variant</title>
+
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    body {
+        background: #f4f6f9;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    /* Card */
+    .card {
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        border: none;
+    }
+
+    /* Title */
+    .form-title {
+        font-weight: 600;
+        color: #4b4bb7;
+    }
+
+    /* Button */
+    .btn-custom {
+        background-color: #4b4bb7;
+        color: white;
+        border-radius: 20px;
+        padding: 10px 28px;
+        border: none;
+        font-weight: 500;
+        transition: 0.3s;
+    }
+
+    .btn-custom:hover {
+        background-color: #3f3fa3;
+    }
+
+    /* Inputs */
+    .form-control:focus, .form-select:focus {
+        border-color: #4b4bb7;
+        box-shadow: 0 0 5px rgba(75,75,183,0.5);
+    }
+
+    /* Back link */
+    .back-link {
+        text-decoration: none;
+        color: #4b4bb7;
+        font-weight: 500;
+    }
+
+    .back-link:hover {
+        color: #3f3fa3;
+        text-decoration: underline;
+    }
+
+</style>
+
 </head>
 <body>
 
-<h2>Edit Car Variant</h2>
+<div class="container mt-5">
 
-<form action="updateCarVariant" method="post">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
 
-    <!-- Hidden ID -->
-    <input type="hidden" name="variantId" value="${carVariant.variantId}" />
+            <div class="card p-4">
 
-    <table border="1" cellpadding="10">
+                <h3 class="text-center mb-4 form-title">Edit Car Variant</h3>
 
-        <!-- Model Dropdown -->
-        <tr>
-            <td>Car Model</td>
-            <td>
-                <select name="modelId">
-                    <c:forEach items="${allCarType}" var="model">
-                        <option value="${model.modelId}"
-                            ${model.modelId == carVariant.modelId ? 'selected' : ''}>
-                            ${model.modelName}
-                        </option>
-                    </c:forEach>
-                </select>
-            </td>
-        </tr>
+                <form action="updateCarVariant" method="post">
 
-        <!-- Variant Name -->
-        <tr>
-            <td>Variant Name</td>
-            <td>
-                <input type="text" name="variantName" value="${carVariant.variantName}" required />
-            </td>
-        </tr>
+                    <!-- Hidden ID -->
+                    <input type="hidden" name="variantId" value="${carVariant.variantId}" />
 
-        <!-- Price -->
-        <tr>
-            <td>Ex-Showroom Price</td>
-            <td>
-                <input type="number" name="exShowroomPrice" value="${carVariant.exShowroomPrice}" />
-            </td>
-        </tr>
+                    <!-- Model Dropdown -->
+                    <div class="mb-3">
+                        <label class="form-label">Car Model</label>
+                        <select class="form-select" name="modelId">
+                            <c:forEach items="${allCarType}" var="model">
+                                <option value="${model.modelId}"
+                                    ${model.modelId == carVariant.modelId ? 'selected' : ''}>
+                                    ${model.modelName}
+                                </option>
+                            </c:forEach>
+                        </select>
+                    </div>
 
-        <!-- Mileage -->
-        <tr>
-            <td>Mileage</td>
-            <td>
-                <input type="text" name="mileage" value="${carVariant.mileage}" />
-            </td>
-        </tr>
+                    <!-- Variant Name -->
+                    <div class="mb-3">
+                        <label class="form-label">Variant Name</label>
+                        <input type="text" class="form-control" name="variantName"
+                               value="${carVariant.variantName}" required />
+                    </div>
 
-        <!-- Engine -->
-        <tr>
-            <td>Engine</td>
-            <td>
-                <input type="text" name="engine" value="${carVariant.engine}" />
-            </td>
-        </tr>
+                    <!-- Price -->
+                    <div class="mb-3">
+                        <label class="form-label">Ex-Showroom Price</label>
+                        <input type="number" class="form-control" name="exShowroomPrice"
+                               value="${carVariant.exShowroomPrice}" />
+                    </div>
 
-        <!-- Power -->
-        <tr>
-            <td>Power</td>
-            <td>
-                <input type="text" name="power" value="${carVariant.power}" />
-            </td>
-        </tr>
+                    <!-- Mileage -->
+                    <div class="mb-3">
+                        <label class="form-label">Mileage</label>
+                        <input type="text" class="form-control" name="mileage"
+                               value="${carVariant.mileage}" />
+                    </div>
 
-        <!-- Torque -->
-        <tr>
-            <td>Torque</td>
-            <td>
-                <input type="text" name="torque" value="${carVariant.torque}" />
-            </td>
-        </tr>
+                    <!-- Engine -->
+                    <div class="mb-3">
+                        <label class="form-label">Engine</label>
+                        <input type="text" class="form-control" name="engine"
+                               value="${carVariant.engine}" />
+                    </div>
 
-        <!-- Fuel Type -->
-        <tr>
-            <td>Fuel Type</td>
-            <td>
-                <select name="fuelType">
-                    <option value="Petrol" ${carVariant.fuelType == 'Petrol' ? 'selected' : ''}>Petrol</option>
-                    <option value="Diesel" ${carVariant.fuelType == 'Diesel' ? 'selected' : ''}>Diesel</option>
-                    <option value="CNG" ${carVariant.fuelType == 'CNG' ? 'selected' : ''}>CNG</option>
-                    <option value="Electric" ${carVariant.fuelType == 'Electric' ? 'selected' : ''}>Electric</option>
-                </select>
-            </td>
-        </tr>
+                    <!-- Power -->
+                    <div class="mb-3">
+                        <label class="form-label">Power</label>
+                        <input type="text" class="form-control" name="power"
+                               value="${carVariant.power}" />
+                    </div>
 
-        <!-- Transmission -->
-        <tr>
-            <td>Transmission</td>
-            <td>
-                <select name="transmission">
-                    <option value="Manual" ${carVariant.transmission == 'Manual' ? 'selected' : ''}>Manual</option>
-                    <option value="Automatic" ${carVariant.transmission == 'Automatic' ? 'selected' : ''}>Automatic</option>
-                </select>
-            </td>
-        </tr>
+                    <!-- Torque -->
+                    <div class="mb-3">
+                        <label class="form-label">Torque</label>
+                        <input type="text" class="form-control" name="torque"
+                               value="${carVariant.torque}" />
+                    </div>
 
-        <!-- Active -->
-        <tr>
-            <td>Status</td>
-            <td>
-                <select name="active">
-                    <option value="true" ${carVariant.active ? 'selected' : ''}>Active</option>
-                    <option value="false" ${!carVariant.active ? 'selected' : ''}>Inactive</option>
-                </select>
-            </td>
-        </tr>
+                    <!-- Fuel Type -->
+                    <div class="mb-3">
+                        <label class="form-label">Fuel Type</label>
+                        <select class="form-select" name="fuelType">
+                            <option value="Petrol" ${carVariant.fuelType == 'Petrol' ? 'selected' : ''}>Petrol</option>
+                            <option value="Diesel" ${carVariant.fuelType == 'Diesel' ? 'selected' : ''}>Diesel</option>
+                            <option value="CNG" ${carVariant.fuelType == 'CNG' ? 'selected' : ''}>CNG</option>
+                            <option value="Electric" ${carVariant.fuelType == 'Electric' ? 'selected' : ''}>Electric</option>
+                        </select>
+                    </div>
 
-        <!-- Submit -->
-        <tr>
-            <td colspan="2" align="center">
-                <button type="submit">Update Variant</button>
-            </td>
-        </tr>
+                    <!-- Transmission -->
+                    <div class="mb-3">
+                        <label class="form-label">Transmission</label>
+                        <select class="form-select" name="transmission">
+                            <option value="Manual" ${carVariant.transmission == 'Manual' ? 'selected' : ''}>Manual</option>
+                            <option value="Automatic" ${carVariant.transmission == 'Automatic' ? 'selected' : ''}>Automatic</option>
+                        </select>
+                    </div>
 
-    </table>
+                    <!-- Status -->
+                    <div class="mb-4">
+                        <label class="form-label">Status</label>
+                        <select class="form-select" name="active">
+                            <option value="true" ${carVariant.active ? 'selected' : ''}>Active</option>
+                            <option value="false" ${!carVariant.active ? 'selected' : ''}>Inactive</option>
+                        </select>
+                    </div>
 
-</form>
+                    <!-- Submit -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-custom">
+                            Update Variant
+                        </button>
+                    </div>
 
-<br>
+                </form>
 
-<a href="listCarVariant">⬅ Back to List</a>
+            </div>
+
+            <!-- Back -->
+            <div class="text-center mt-3">
+                <a href="listCarVariant" class="back-link">⬅ Back to List</a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
 
 </body>
 </html>
+	

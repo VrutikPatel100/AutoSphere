@@ -8,91 +8,151 @@
 <head>
 <meta charset="UTF-8">
 <title>Edit Offer</title>
+
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    body {
+        background: #f4f6f9;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    /* Card */
+    .card {
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        border: none;
+    }
+
+    /* Title */
+    .form-title {
+        font-weight: 600;
+        color: #4b4bb7;
+    }
+
+    /* Button */
+    .btn-custom {
+        background-color: #4b4bb7;
+        color: white;
+        border-radius: 20px;
+        padding: 10px 28px;
+        border: none;
+        font-weight: 500;
+        transition: 0.3s;
+    }
+
+    .btn-custom:hover {
+        background-color: #3f3fa3;
+    }
+
+    /* Inputs */
+    .form-control:focus, .form-select:focus {
+        border-color: #4b4bb7;
+        box-shadow: 0 0 5px rgba(75,75,183,0.5);
+    }
+
+    /* Back link */
+    .back-link {
+        text-decoration: none;
+        color: #4b4bb7;
+        font-weight: 500;
+    }
+
+    .back-link:hover {
+        color: #3f3fa3;
+        text-decoration: underline;
+    }
+
+</style>
+
 </head>
 <body>
 
-<h2>Edit Offer</h2>
+<div class="container mt-5">
 
-<form action="updateOffer" method="post">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
 
-    <!-- Hidden ID -->
-    <input type="hidden" name="offerId" value="${offer.offerId}" />
+            <div class="card p-4">
 
-    <table border="1" cellpadding="10">
+                <h3 class="text-center mb-4 form-title">Edit Offer</h3>
 
-        <!-- Listing -->
-        <tr>
-            <td>Car Listing</td>
-            <td>
-                <select name="listingId">
-                    <c:forEach items="${allCarList}" var="l">
-                        <option value="${l.listingId}"
-                            ${l.listingId == offer.listingId ? 'selected' : ''}>
-                            ${l.brandName} - ${l.modelName}
-                        </option>
-                    </c:forEach>
-                </select>
-            </td>
-        </tr>
+                <form action="updateOffer" method="post">
 
-        <!-- User -->
-        <tr>
-            <td>User</td>
-            <td>
-                <select name="userId">
-                    <c:forEach items="${allUser}" var="u">
-                        <option value="${u.userId}"
-                            ${u.userId == offer.userId ? 'selected' : ''}>
-                            ${u.firstName}
-                        </option>
-                    </c:forEach>
-                </select>
-            </td>
-        </tr>
+                    <!-- Hidden ID -->
+                    <input type="hidden" name="offerId" value="${offer.offerId}" />
 
-        <!-- Offered Price -->
-        <tr>
-            <td>Offered Price</td>
-            <td>
-                <input type="number" step="0.01" name="offeredPrice"
-                       value="${offer.offeredPrice}" />
-            </td>
-        </tr>
+                    <!-- Listing -->
+                    <div class="mb-3">
+                        <label class="form-label">Car Listing</label>
+                        <select class="form-select" name="listingId">
+                            <c:forEach items="${allCarList}" var="l">
+                                <option value="${l.listingId}"
+                                    ${l.listingId == offer.listingId ? 'selected' : ''}>
+                                    ${l.brandName} - ${l.modelName}
+                                </option>
+                            </c:forEach>
+                        </select>
+                    </div>
 
-        <!-- Status -->
-        <tr>
-            <td>Status</td>
-            <td>
-                <select name="offerStatus">
-                    <option value="Pending" ${offer.offerStatus == 'Pending' ? 'selected' : ''}>Pending</option>
-                    <option value="Accepted" ${offer.offerStatus == 'Accepted' ? 'selected' : ''}>Accepted</option>
-                    <option value="Rejected" ${offer.offerStatus == 'Rejected' ? 'selected' : ''}>Rejected</option>
-                </select>
-            </td>
-        </tr>
+                    <!-- User -->
+                    <div class="mb-3">
+                        <label class="form-label">User</label>
+                        <select class="form-select" name="userId">
+                            <c:forEach items="${allUser}" var="u">
+                                <option value="${u.userId}"
+                                    ${u.userId == offer.userId ? 'selected' : ''}>
+                                    ${u.firstName}
+                                </option>
+                            </c:forEach>
+                        </select>
+                    </div>
 
-        <!-- Created Date -->
-        <tr>
-            <td>Created Date</td>
-            <td>
-                <input type="date" name="createdAt" value="${offer.createdAt}" />
-            </td>
-        </tr>
+                    <!-- Offered Price -->
+                    <div class="mb-3">
+                        <label class="form-label">Offered Price</label>
+                        <input type="number" step="0.01" class="form-control"
+                               name="offeredPrice" value="${offer.offeredPrice}" />
+                    </div>
 
-        <!-- Submit -->
-        <tr>
-            <td colspan="2" align="center">
-                <button type="submit">Update Offer</button>
-            </td>
-        </tr>
+                    <!-- Status -->
+                    <div class="mb-3">
+                        <label class="form-label">Status</label>
+                        <select class="form-select" name="offerStatus">
+                            <option value="Pending" ${offer.offerStatus == 'Pending' ? 'selected' : ''}>Pending</option>
+                            <option value="Accepted" ${offer.offerStatus == 'Accepted' ? 'selected' : ''}>Accepted</option>
+                            <option value="Rejected" ${offer.offerStatus == 'Rejected' ? 'selected' : ''}>Rejected</option>
+                        </select>
+                    </div>
 
-    </table>
+                    <!-- Date -->
+                    <div class="mb-4">
+                        <label class="form-label">Created Date</label>
+                        <input type="date" class="form-control"
+                               name="createdAt" value="${offer.createdAt}" />
+                    </div>
 
-</form>
+                    <!-- Submit -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-custom">
+                            Update Offer
+                        </button>
+                    </div>
 
-<br>
+                </form>
 
-<a href="listCarOffer">⬅ Back to List</a>
+            </div>
+
+            <!-- Back -->
+            <div class="text-center mt-3">
+                <a href="listCarOffer" class="back-link">⬅ Back to List</a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
 
 </body>
 </html>

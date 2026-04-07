@@ -37,7 +37,7 @@
 	<script src="assets/js/dataTables.select.min.js"></script>
 	<!-- End plugin js for this page -->
 	<!-- inject:js -->
-@@ -34,4 +41,8 @@
+
 	<!-- Custom js for this page-->
 	<script src="assets/js/jquery.cookie.js" type="text/javascript"></script>
 	<script src="assets/js/dashboard.js"></script>

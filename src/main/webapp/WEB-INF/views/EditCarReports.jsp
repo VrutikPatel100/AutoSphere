@@ -8,90 +8,149 @@
 <head>
 <meta charset="UTF-8">
 <title>Edit Car Report</title>
+
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    body {
+        background: #f4f6f9;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .card {
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        border: none;
+    }
+
+    .form-title {
+        font-weight: 600;
+        color: #4b4bb7;
+    }
+
+    .btn-custom {
+        background-color: #4b4bb7;
+        color: white;
+        border-radius: 20px;
+        padding: 10px 28px;
+        border: none;
+        font-weight: 500;
+        transition: 0.3s;
+    }
+
+    .btn-custom:hover {
+        background-color: #3f3fa3;
+    }
+
+    .form-control:focus, .form-select:focus {
+        border-color: #4b4bb7;
+        box-shadow: 0 0 5px rgba(75,75,183,0.5);
+    }
+
+    textarea.form-control {
+        resize: none;
+    }
+
+    .back-link {
+        text-decoration: none;
+        color: #4b4bb7;
+        font-weight: 500;
+    }
+
+    .back-link:hover {
+        color: #3f3fa3;
+        text-decoration: underline;
+    }
+
+</style>
+
 </head>
 <body>
 
-<h2>Edit Car Report</h2>
+<div class="container mt-5">
 
-<form action="updateCarReports" method="post">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
 
-    <!-- Hidden ID -->
-    <input type="hidden" name="reportId" value="${report.reportId}" />
+            <div class="card p-4">
 
-    <table border="1" cellpadding="10">
+                <h3 class="text-center mb-4 form-title">Edit Car Report</h3>
 
-        <!-- User -->
-        <tr>
-            <td>User</td>
-            <td>
-                <select name="userId">
-                    <c:forEach items="${allUser}" var="u">
-                        <option value="${u.userId}"
-                            ${u.userId == report.userId ? 'selected' : ''}>
-                            ${u.firstName}
-                        </option>
-                    </c:forEach>
-                </select>
-            </td>
-        </tr>
+                <form action="updateCarReports" method="post">
 
-        <!-- Listing -->
-        <tr>
-            <td>Car Listing</td>
-            <td>
-                <select name="listingId">
-                    <c:forEach items="${allCar}" var="c">
-                        <option value="${c.listingId}"
-                            ${c.listingId == report.listingId ? 'selected' : ''}>
-                            ${c.brandName} - ${c.modelName}
-                        </option>
-                    </c:forEach>
-                </select>
-            </td>
-        </tr>
+                    <!-- Hidden ID -->
+                    <input type="hidden" name="reportId" value="${report.reportId}" />
 
-        <!-- Reason -->
-        <tr>
-            <td>Reason</td>
-            <td>
-                <textarea name="reason" rows="3" cols="40">${report.reason}</textarea>
-            </td>
-        </tr>
+                    <!-- User -->
+                    <div class="mb-3">
+                        <label class="form-label">User</label>
+                        <select class="form-select" name="userId">
+                            <c:forEach items="${allUser}" var="u">
+                                <option value="${u.userId}"
+                                    ${u.userId == report.userId ? 'selected' : ''}>
+                                    ${u.firstName}
+                                </option>
+                            </c:forEach>
+                        </select>
+                    </div>
 
-        <!-- Status -->
-        <tr>
-            <td>Status</td>
-            <td>
-                <select name="status">
-                    <option value="Pending" ${report.status == 'Pending' ? 'selected' : ''}>Pending</option>
-                    <option value="Reviewed" ${report.status == 'Reviewed' ? 'selected' : ''}>Reviewed</option>
-                    <option value="Resolved" ${report.status == 'Resolved' ? 'selected' : ''}>Resolved</option>
-                </select>
-            </td>
-        </tr>
+                    <!-- Listing -->
+                    <div class="mb-3">
+                        <label class="form-label">Car Listing</label>
+                        <select class="form-select" name="listingId">
+                            <c:forEach items="${allCar}" var="c">
+                                <option value="${c.listingId}"
+                                    ${c.listingId == report.listingId ? 'selected' : ''}>
+                                    ${c.brandName} - ${c.modelName}
+                                </option>
+                            </c:forEach>
+                        </select>
+                    </div>
 
-        <!-- Created Date -->
-        <tr>
-            <td>Created Date</td>
-            <td>
-                <input type="date" name="createdAt" value="${report.createdAt}" />
-            </td>
-        </tr>
+                    <!-- Reason -->
+                    <div class="mb-3">
+                        <label class="form-label">Reason</label>
+                        <textarea class="form-control" name="reason" rows="3">${report.reason}</textarea>
+                    </div>
 
-        <!-- Submit -->
-        <tr>
-            <td colspan="2" align="center">
-                <button type="submit">Update Report</button>
-            </td>
-        </tr>
+                    <!-- Status -->
+                    <div class="mb-3">
+                        <label class="form-label">Status</label>
+                        <select class="form-select" name="status">
+                            <option value="Pending" ${report.status == 'Pending' ? 'selected' : ''}>Pending</option>
+                            <option value="Reviewed" ${report.status == 'Reviewed' ? 'selected' : ''}>Reviewed</option>
+                            <option value="Resolved" ${report.status == 'Resolved' ? 'selected' : ''}>Resolved</option>
+                        </select>
+                    </div>
 
-    </table>
+                    <!-- Date -->
+                    <div class="mb-4">
+                        <label class="form-label">Created Date</label>
+                        <input type="date" class="form-control"
+                               name="createdAt" value="${report.createdAt}" />
+                    </div>
 
-</form>
+                    <!-- Submit -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-custom">
+                            Update Report
+                        </button>
+                    </div>
 
-<br>
+                </form>
 
-<a href="listCarReports">⬅ Back to List</a>
+            </div>
+
+            <!-- Back -->
+            <div class="text-center mt-3">
+                <a href="listCarReports" class="back-link">⬅ Back to List</a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
 
 </body>
 </html>

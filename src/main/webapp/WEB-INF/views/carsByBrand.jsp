@@ -15,7 +15,7 @@
 <style>
 
 body{
-    background: #eef2f7;
+    background: linear-gradient(135deg, #ede7f6, #f5f5f5);
     font-family: 'Segoe UI', sans-serif;
 }
 

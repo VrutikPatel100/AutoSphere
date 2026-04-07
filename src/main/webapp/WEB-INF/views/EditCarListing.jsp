@@ -8,132 +8,221 @@
 <head>
 <meta charset="UTF-8">
 <title>Edit Car Listing</title>
+
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+	body {
+		background: #f4f6f9;
+		font-family: 'Segoe UI', sans-serif;
+	}
+
+	.card {
+		border-radius: 15px;
+		box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+		border: none;
+	}
+
+	.form-title {
+		font-weight: 600;
+		color: #4b4bb7;
+	}
+
+	.btn-custom {
+		background-color: #4b4bb7;
+		color: white;
+		border-radius: 20px;
+		padding: 10px 28px;
+		border: none;
+		font-weight: 500;
+	}
+
+	.btn-custom:hover {
+		background-color: #3f3fa3;
+	}
+
+	.form-control:focus, .form-select:focus {
+		border-color: #4b4bb7;
+		box-shadow: 0 0 5px rgba(75,75,183,0.5);
+	}
+
+	.img-preview {
+		border-radius: 12px;
+		border: 2px solid #ddd;
+		padding: 6px;
+		background: #fff;
+	}
+
+	.back-link {
+		text-decoration: none;
+		color: #4b4bb7;
+		font-weight: 500;
+	}
+
+	.back-link:hover {
+		color: #3f3fa3;
+		text-decoration: underline;
+	}
+</style>
+
 </head>
 <body>
 
-	<h2>Edit Car Listing</h2>
+<div class="container mt-5">
 
-	<form action="updateCarListing" method="post"
-		enctype="multipart/form-data">
+	<div class="row justify-content-center">
+		<div class="col-md-10">
 
-		<input type="hidden" name="listingId" value="${carListing.listingId}" />
+			<div class="card p-4">
 
-		<table border="1" cellpadding="10">
+				<h3 class="text-center mb-4 form-title">Edit Car Listing</h3>
 
-			<tr>
-				<td>User</td>
-				<td><select name="userId">
-						<c:forEach items="${allUser}" var="u">
-							<option value="${u.userId}"
-								${u.userId == carListing.userId ? 'selected' : ''}>
-								${u.firstName}</option>
-						</c:forEach>
-				</select></td>
-			</tr>
+				<form action="updateCarListing" method="post" enctype="multipart/form-data">
 
-			<tr>
-				<td>Brand</td>
-				<td><select name="brandId">
-						<c:forEach items="${allCarBrand}" var="b">
-							<option value="${b.brandId}"
-								${b.brandId == carListing.brandId ? 'selected' : ''}>
-								${b.brandName}</option>
-						</c:forEach>
-				</select></td>
-			</tr>
+					<input type="hidden" name="listingId" value="${carListing.listingId}" />
 
-			<tr>
-				<td>Model</td>
-				<td><select name="modelId">
-						<c:forEach items="${allCarModel}" var="m">
-							<option value="${m.modelId}"
-								${m.modelId == carListing.modelId ? 'selected' : ''}>
-								${m.modelName}</option>
-						</c:forEach>
-				</select></td>
-			</tr>
+					<div class="row">
 
-			<tr>
-				<td>Variant</td>
-				<td><select name="variantId">
-						<c:forEach items="${allCarVariant}" var="v">
-							<option value="${v.variantId}"
-								${v.variantId == carListing.variantId ? 'selected' : ''}>
-								${v.variantName}</option>
-						</c:forEach>
-				</select></td>
-			</tr>
+						<!-- User -->
+						<div class="col-md-6 mb-3">
+							<label class="form-label">User</label>
+							<select class="form-select" name="userId">
+								<c:forEach items="${allUser}" var="u">
+									<option value="${u.userId}"
+										${u.userId == carListing.userId ? 'selected' : ''}>
+										${u.firstName}
+									</option>
+								</c:forEach>
+							</select>
+						</div>
 
-			<tr>
-				<td>City</td>
-				<td><input type="text" name="city" value="${carListing.city}" /></td>
-			</tr>
+						<!-- Brand -->
+						<div class="col-md-6 mb-3">
+							<label class="form-label">Brand</label>
+							<select class="form-select" name="brandId">
+								<c:forEach items="${allCarBrand}" var="b">
+									<option value="${b.brandId}"
+										${b.brandId == carListing.brandId ? 'selected' : ''}>
+										${b.brandName}
+									</option>
+								</c:forEach>
+							</select>
+						</div>
 
-			<tr>
-				<td>KMs Driven</td>
-				<td><input type="number" name="kmsDriven"
-					value="${carListing.kmsDriven}" /></td>
-			</tr>
+						<!-- Model -->
+						<div class="col-md-6 mb-3">
+							<label class="form-label">Model</label>
+							<select class="form-select" name="modelId">
+								<c:forEach items="${allCarModel}" var="m">
+									<option value="${m.modelId}"
+										${m.modelId == carListing.modelId ? 'selected' : ''}>
+										${m.modelName}
+									</option>
+								</c:forEach>
+							</select>
+						</div>
 
-			<tr>
-				<td>Year</td>
-				<td><input type="number" name="year" value="${carListing.year}" /></td>
-			</tr>
+						<!-- Variant -->
+						<div class="col-md-6 mb-3">
+							<label class="form-label">Variant</label>
+							<select class="form-select" name="variantId">
+								<c:forEach items="${allCarVariant}" var="v">
+									<option value="${v.variantId}"
+										${v.variantId == carListing.variantId ? 'selected' : ''}>
+										${v.variantName}
+									</option>
+								</c:forEach>
+							</select>
+						</div>
 
-			<tr>
-				<td>Ownership</td>
-				<td><input type="text" name="ownership"
-					value="${carListing.ownership}" /></td>
-			</tr>
+						<!-- City -->
+						<div class="col-md-6 mb-3">
+							<label class="form-label">City</label>
+							<input type="text" class="form-control" name="city"
+								value="${carListing.city}" />
+						</div>
 
-			<tr>
-				<td>Price</td>
-				<td><input type="number" name="price"
-					value="${carListing.price}" /></td>
-			</tr>
+						<!-- KMs -->
+						<div class="col-md-6 mb-3">
+							<label class="form-label">KMs Driven</label>
+							<input type="number" class="form-control" name="kmsDriven"
+								value="${carListing.kmsDriven}" />
+						</div>
 
-			<tr>
-				<td>Status</td>
-				<td><select name="status">
-						<option value="Available"
-							${carListing.status == 'Available' ? 'selected' : ''}>Available</option>
-						<option value="Sold"
-							${carListing.status == 'Sold' ? 'selected' : ''}>Sold</option>
-				</select></td>
-			</tr>
+						<!-- Year -->
+						<div class="col-md-6 mb-3">
+							<label class="form-label">Year</label>
+							<input type="number" class="form-control" name="year"
+								value="${carListing.year}" />
+						</div>
 
-			<!-- OLD IMAGE -->
-			<tr>
-				<td>Current Image</td>
-				<td><img src="${carListing.imageURL}" width="150" /></td>
-			</tr>
+						<!-- Ownership -->
+						<div class="col-md-6 mb-3">
+							<label class="form-label">Ownership</label>
+							<input type="text" class="form-control" name="ownership"
+								value="${carListing.ownership}" />
+						</div>
 
-			<!-- NEW IMAGE -->
-			<tr>
-				<td>Upload New Image</td>
-				<td><input type="file" name="imageFile" /></td>
-			</tr>
+						<!-- Price -->
+						<div class="col-md-6 mb-3">
+							<label class="form-label">Price</label>
+							<input type="number" class="form-control" name="price"
+								value="${carListing.price}" />
+						</div>
 
-			<tr>
-				<td>Created Date</td>
-				<td><input type="date" name="createdAt"
-					value="${carListing.createdAt}" /></td>
-			</tr>
+						<!-- Status -->
+						<div class="col-md-6 mb-3">
+							<label class="form-label">Status</label>
+							<select class="form-select" name="status">
+								<option value="Available"
+									${carListing.status == 'Available' ? 'selected' : ''}>Available</option>
+								<option value="Sold"
+									${carListing.status == 'Sold' ? 'selected' : ''}>Sold</option>
+							</select>
+						</div>
 
-			<tr>
-				<td colspan="2" align="center">
-					<button type="submit">Update Listing</button>
-				</td>
-			</tr>
+						<!-- Current Image -->
+						<div class="col-md-6 mb-3 text-center">
+							<label class="form-label d-block">Current Image</label>
+							<img src="${carListing.imageURL}" width="150" class="img-preview"/>
+						</div>
 
-		</table>
+						<!-- Upload -->
+						<div class="col-md-6 mb-3">
+							<label class="form-label">Upload New Image</label>
+							<input type="file" class="form-control" name="imageFile" />
+						</div>
 
-	</form>
+						<!-- Date -->
+						<div class="col-md-6 mb-4">
+							<label class="form-label">Created Date</label>
+							<input type="date" class="form-control" name="createdAt"
+								value="${carListing.createdAt}" />
+						</div>
 
+					</div>
 
-	<br>
+					<!-- Submit -->
+					<div class="text-center">
+						<button type="submit" class="btn btn-custom">
+							Update Listing
+						</button>
+					</div>
 
-	<a href="allCarList">⬅ Back to List</a>
+				</form>
+
+			</div>
+
+			<!-- Back -->
+			<div class="text-center mt-3">
+				<a href="allCarList" class="back-link">⬅ Back to List</a>
+			</div>
+
+		</div>
+	</div>
+
+</div>
 
 </body>
 </html>

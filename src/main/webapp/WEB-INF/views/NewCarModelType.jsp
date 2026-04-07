@@ -122,6 +122,19 @@ body {
 
 						<form action="savecartype" method="post">
 
+
+						<!-- Brand -->
+<div class="mb-3">
+    <label>Select Brand</label>
+    <select name="brandId" class="form-control" required>
+        <c:forEach items="${allBrand}" var="b">
+            <option value="${b.brandId}">
+                ${b.brandName}
+            </option>
+        </c:forEach>
+    </select>
+</div>
+						
 							<!-- Body Type -->
 							<div class="mb-3">
 								<label>Body Type</label>

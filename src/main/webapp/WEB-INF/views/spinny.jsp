@@ -8,709 +8,760 @@
 
 <style>
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: #f4f6fb;
+	font-family: Arial, sans-serif;
+	background: #f4f6fb;
 }
 
 /* HEADER */
 .header {
-    display: flex;
-    align-items: center;
-    padding: 15px 40px;
-    background: white;
-    border-bottom: 1px solid #ddd;
-    flex-wrap: wrap;
-    gap: 15px;
+	display: flex;
+	align-items: center;
+	padding: 15px 40px;
+	background: white;
+	border-bottom: 1px solid #ddd;
+	flex-wrap: wrap;
+	gap: 15px;
 }
 
 .logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 28px;
-    font-weight: 700;
-    color: #4a148c;
-    text-decoration: none;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	font-size: 28px;
+	font-weight: 700;
+	color: #4a148c;
+	text-decoration: none;
 }
 
 .logo-icon {
-    width: 40px;
-    height: 40px;
-    background: #ff4d6d;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: rotate(45deg);
-    border-radius: 10px;
+	width: 40px;
+	height: 40px;
+	background: #ff4d6d;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transform: rotate(45deg);
+	border-radius: 10px;
 }
 
 .logo-icon span {
-    color: white;
-    font-size: 20px;
-    font-weight: 700;
-    transform: rotate(-45deg);
+	color: white;
+	font-size: 20px;
+	font-weight: 700;
+	transform: rotate(-45deg);
 }
 
 .city-select {
-    padding: 8px 16px;
-    border-radius: 22px;
-    border: 1px solid #d1c4e9;
-    background: #f3e5f5;
-    width: 150px;
-    outline: none;
+	padding: 8px 16px;
+	border-radius: 22px;
+	border: 1px solid #d1c4e9;
+	background: #f3e5f5;
+	width: 150px;
+	outline: none;
 }
 
 .search-bar {
-    display: flex;
-    align-items: center;
-    background: #f3e5f5;
-    padding: 8px 14px;
-    border-radius: 25px;
-    width: 320px;
-    position: relative;
+	display: flex;
+	align-items: center;
+	background: #f3e5f5;
+	padding: 8px 14px;
+	border-radius: 25px;
+	width: 320px;
+	position: relative;
 }
 
 .search-bar input {
-    border: none;
-    background: transparent;
-    outline: none;
-    width: 100%;
+	border: none;
+	background: transparent;
+	outline: none;
+	width: 100%;
 }
 
 .menu {
-    margin-left: auto;
-    display: flex;
-    gap: 18px;
-    flex-wrap: wrap;
+	margin-left: auto;
+	display: flex;
+	gap: 18px;
+	flex-wrap: wrap;
 }
 
 .menu a {
-    text-decoration: none;
-    color: #333;
-    transition: color 0.3s;
+	text-decoration: none;
+	color: #333;
+	transition: color 0.3s;
 }
 
 .menu a:hover {
-    color: #6a1b9a;
+	color: #6a1b9a;
 }
 
 /* HERO SECTION */
 .hero {
-    padding: 40px;
-    background: linear-gradient(135deg, #ede7f6, #f5f5f5);
-    text-align: center;
+	padding: 40px;
+	background: linear-gradient(135deg, #ede7f6, #f5f5f5);
+	text-align: center;
 }
 
 .hero h1 {
-    color: #4a148c;
-    margin-bottom: 10px;
+	color: #4a148c;
+	margin-bottom: 10px;
 }
 
 .hero p {
-    color: #666;
-    margin-bottom: 30px;
+	color: #666;
+	margin-bottom: 30px;
 }
 
 /* SLIDER - FULLY WORKING */
 .slider-container {
-    position: relative;
-    max-width: 1600px; /* width vadhari */
-    width: 85%;        /* responsive banse */
-    margin: 0 auto;
-    padding: 0 50px;
+	position: relative;
+	max-width: 1600px; /* width vadhari */
+	width: 85%; /* responsive banse */
+	margin: 0 auto;
+	padding: 0 50px;
 }
 
 .slider-wrapper {
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+	overflow-x: auto;
+	scroll-behavior: smooth;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
 }
 
 .slider-wrapper::-webkit-scrollbar {
-    display: none;
+	display: none;
 }
 
 .slider {
-    display: flex;
-    gap: 15px;
-    min-width: max-content;
+	display: flex;
+	gap: 15px;
+	min-width: max-content;
 }
 
 .card-link {
-    text-decoration: none;
-    color: inherit;
-    flex: 0 0 300px;
+	text-decoration: none;
+	color: inherit;
+	flex: 0 0 300px;
 }
 
 .card {
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+	background: white;
+	border-radius: 12px;
+	overflow: hidden;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	cursor: pointer;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 25px rgba(106, 27, 154, 0.3);
+	transform: translateY(-10px);
+	box-shadow: 0 8px 25px rgba(106, 27, 154, 0.3);
 }
 
 .card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+	width: 100%;
+	height: 200px;
+	object-fit: cover;
 }
 
 .card h5 {
-    font-size: 16px;
-    margin-bottom: 5px;
-    color: #333;
+	font-size: 16px;
+	margin-bottom: 5px;
+	color: #333;
 }
 
 .card p {
-    font-weight: bold;
-    color: #4a148c;
-    margin-top: 5px;
+	font-weight: bold;
+	color: #4a148c;
+	margin-top: 5px;
 }
 
 .arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #6a1b9a;
-    color: white;
-    border: none;
-    font-size: 24px;
-    padding: 12px 18px;
-    cursor: pointer;
-    border-radius: 50%;
-    z-index: 10;
-    transition: all 0.3s ease;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background: #6a1b9a;
+	color: white;
+	border: none;
+	font-size: 24px;
+	padding: 12px 18px;
+	cursor: pointer;
+	border-radius: 50%;
+	z-index: 10;
+	transition: all 0.3s ease;
 }
 
 .arrow:hover {
-    background: #ff4d6d;
-    transform: translateY(-50%) scale(1.1);
+	background: #ff4d6d;
+	transform: translateY(-50%) scale(1.1);
 }
 
 .left {
-    left: 0;
+	left: 0;
 }
 
 .right {
-    right: 0;
+	right: 0;
 }
 
 /* DOTS INDICATOR */
 .dots-container {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	margin-top: 20px;
 }
 
 .dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #d1c4e9;
-    cursor: pointer;
-    transition: all 0.3s ease;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: #d1c4e9;
+	cursor: pointer;
+	transition: all 0.3s ease;
 }
 
 .dot.active {
-    background: #6a1b9a;
-    width: 25px;
-    border-radius: 5px;
+	background: #6a1b9a;
+	width: 25px;
+	border-radius: 5px;
 }
 
 /* BUTTON */
 .sell-btn {
-    padding: 12px 25px;
-    background: #e91e63;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-top: 30px;
-    font-size: 16px;
-    transition: all 0.3s ease;
+	padding: 12px 25px;
+	background: #e91e63;
+	color: white;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	margin-top: 30px;
+	font-size: 16px;
+	transition: all 0.3s ease;
 }
 
 .sell-btn:hover {
-    background: #c2185b;
-    transform: scale(1.05);
+	background: #c2185b;
+	transform: scale(1.05);
 }
 
 /* BENEFITS SECTION */
 .section {
-    padding: 50px;
-    text-align: center;
-    background: linear-gradient(135deg, #ede7f6, #f5f5f5);
+	padding: 50px;
+	text-align: center;
+	background: linear-gradient(135deg, #ede7f6, #f5f5f5);
 }
 
 .section h2 {
-    color: #4a148c;
-    margin-bottom: 30px;
+	color: #4a148c;
+	margin-bottom: 30px;
 }
 
 .cards {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    flex-wrap: wrap;
+	display: flex;
+	justify-content: center;
+	gap: 25px;
+	flex-wrap: wrap;
 }
 
 .cards .card {
-    width: 250px;
-    padding: 0;
+	width: 250px;
+	padding: 0;
 }
 
 .cards .card p {
-    padding: 15px;
-    margin: 0;
-    font-weight: normal;
+	padding: 15px;
+	margin: 0;
+	font-weight: normal;
 }
 
 /* HOW WORKS */
 .how-section {
-    background: #f2f2f2;
-    padding: 60px 20px;
-    text-align: center;
+	background: linear-gradient(135deg, #ede7f6, #f5f5f5);
+	padding: 60px 20px;
+	text-align: center;
 }
 
 .how-section h2 {
-    color: #4a148c;
-    margin-bottom: 40px;
+	color: #4a148c;
+	margin-bottom: 40px;
 }
 
 .how-cards {
-    display: flex;
-    justify-content: center;
-    gap: 80px;
-    flex-wrap: wrap;
+	display: flex;
+	justify-content: center;
+	gap: 80px;
+	flex-wrap: wrap;
 }
 
 .how-card {
-    width: 220px;
-    transition: transform 0.3s ease;
+	width: 220px;
+	transition: transform 0.3s ease;
 }
 
 .how-card:hover {
-    transform: translateY(-10px);
+	transform: translateY(-10px);
 }
 
 .how-card img {
-    width: 120px;
-    margin-bottom: 15px;
+	width: 120px;
+	margin-bottom: 15px;
 }
 
 .how-card h3 {
-    font-size: 18px;
-    color: #333;
+	font-size: 18px;
+	color: #333;
 }
 
 /* WATCH BUTTON */
 .watch-area {
-    margin-top: 40px;
+	margin-top: 40px;
 }
 
 .watch-btn {
-    background: linear-gradient(90deg, #7b1fa2, #6a1b9a);
-    color: white;
-    border: none;
-    padding: 16px 35px;
-    font-size: 18px;
-    border-radius: 14px;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    transition: all 0.3s ease;
+	background: linear-gradient(90deg, #7b1fa2, #6a1b9a);
+	color: white;
+	border: none;
+	padding: 16px 35px;
+	font-size: 18px;
+	border-radius: 14px;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	gap: 12px;
+	transition: all 0.3s ease;
 }
 
 .watch-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 20px rgba(106, 27, 154, 0.4);
+	transform: scale(1.05);
+	box-shadow: 0 5px 20px rgba(106, 27, 154, 0.4);
 }
 
 .play-icon {
-    background: white;
-    color: #6a1b9a;
-    width: 28px;
-    height: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    font-size: 14px;
+	background: white;
+	color: #6a1b9a;
+	width: 28px;
+	height: 28px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	font-size: 14px;
 }
 
 .learn-more {
-    margin-top: 15px;
-    color: #6a1b9a;
-    font-weight: 600;
-    cursor: pointer;
-    transition: color 0.3s;
+	margin-top: 15px;
+	color: #6a1b9a;
+	font-weight: 600;
+	cursor: pointer;
+	transition: color 0.3s;
 }
 
 .learn-more:hover {
-    color: #ff4d6d;
+	color: #ff4d6d;
 }
 
 /* BRANDS SECTION */
 .brand-section {
-    padding: 60px;
-    text-align: center;
-    background: linear-gradient(135deg, #ede7f6, #f5f5f5);
+	padding: 60px;
+	text-align: center;
+	background: linear-gradient(135deg, #ede7f6, #f5f5f5);
 }
 
 .brand-section h2 {
-    color: #4a148c;
-    margin-bottom: 40px;
+	color: #4a148c;
+	margin-bottom: 40px;
 }
 
 .brand-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 25px;
-    max-width: 1000px;
-    margin: 0 auto;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	gap: 25px;
+	max-width: 1000px;
+	margin: 0 auto;
 }
 
 .brand-card {
-    background: white;
-    padding: 20px;
-    border-radius: 18px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    transition: all 0.3s ease;
-    cursor: pointer;
-    text-align: center;
+	background: white;
+	padding: 20px;
+	border-radius: 18px;
+	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+	transition: all 0.3s ease;
+	cursor: pointer;
+	text-align: center;
 }
 
 .brand-card:hover {
-    transform: scale(1.08) translateY(-5px);
-    background: linear-gradient(135deg, #f3e5f5, #d1c4e9);
-    box-shadow: 0 12px 30px rgba(106, 27, 154, 0.5);
+	transform: scale(1.08) translateY(-5px);
+	background: linear-gradient(135deg, #f3e5f5, #d1c4e9);
+	box-shadow: 0 12px 30px rgba(106, 27, 154, 0.5);
 }
 
 .brand-card h3 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    text-transform: capitalize;
-    color: #333;
+	font-size: 16px;
+	font-weight: 600;
+	margin-bottom: 10px;
+	text-transform: capitalize;
+	color: #333;
 }
 
 .brand-card img {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    transition: transform 0.3s ease;
+	width: 80px;
+	height: 80px;
+	object-fit: contain;
+	transition: transform 0.3s ease;
 }
 
 .brand-card:hover img {
-    transform: scale(1.15);
+	transform: scale(1.15);
 }
 
 /* FOOTER */
 .footer {
-    background: #3b005a;
-    color: white;
-    padding: 50px 60px 30px;
+	background: #3b005a;
+	color: white;
+	padding: 50px 60px 30px;
 }
 
 .footer-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 30px;
-    margin-bottom: 30px;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 30px;
+	margin-bottom: 30px;
 }
 
 .footer-col {
-    flex: 1;
-    min-width: 180px;
+	flex: 1;
+	min-width: 180px;
 }
 
 .footer-col h3 {
-    margin-bottom: 15px;
-    font-size: 18px;
+	margin-bottom: 15px;
+	font-size: 18px;
 }
 
 .footer-col p {
-    font-size: 14px;
-    line-height: 1.6;
-    color: #ddd;
+	font-size: 14px;
+	line-height: 1.6;
+	color: #ddd;
 }
 
 .footer-col a {
-    display: block;
-    color: #ddd;
-    text-decoration: none;
-    margin-bottom: 8px;
-    font-size: 14px;
-    transition: color 0.3s;
+	display: block;
+	color: #ddd;
+	text-decoration: none;
+	margin-bottom: 8px;
+	font-size: 14px;
+	transition: color 0.3s;
 }
 
 .footer-col a:hover {
-    color: #ff4d6d;
+	color: #ff4d6d;
 }
 
 .footer-bottom {
-    text-align: center;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    color: #ccc;
-    font-size: 14px;
+	text-align: center;
+	padding-top: 20px;
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
+	color: #ccc;
+	font-size: 14px;
 }
 
 /* SUGGESTION BOX */
 .suggestion-box {
-    position: absolute;
-    top: 45px;
-    left: 0;
-    width: 100%;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    max-height: 200px;
-    overflow-y: auto;
-    display: none;
-    z-index: 999;
+	position: absolute;
+	top: 45px;
+	left: 0;
+	width: 100%;
+	background: white;
+	border-radius: 10px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	max-height: 200px;
+	overflow-y: auto;
+	display: none;
+	z-index: 999;
 }
 
 .suggestion-item {
-    padding: 10px 15px;
-    cursor: pointer;
-    transition: background 0.3s;
+	padding: 10px 15px;
+	cursor: pointer;
+	transition: background 0.3s;
 }
 
 .suggestion-item:hover {
-    background: #f3e5f5;
+	background: #f3e5f5;
 }
 
 /* RESPONSIVE */
-@media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    
-    .menu {
-        margin-left: 0;
-        justify-content: center;
-    }
-    
-    .search-bar {
-        width: 100%;
-    }
-    
-    .slider-container {
-        padding: 0 40px;
-    }
-    
-    .card-link {
-        flex: 0 0 250px;
-    }
-    
-    .brand-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-    
-    .footer {
-        padding: 40px 20px;
-    }
-    
-    .footer-container {
-        flex-direction: column;
-        text-align: center;
-    }
+@media ( max-width : 768px) {
+	.header {
+		flex-direction: column;
+		align-items: stretch;
+	}
+	.menu {
+		margin-left: 0;
+		justify-content: center;
+	}
+	.search-bar {
+		width: 100%;
+	}
+	.slider-container {
+		padding: 0 40px;
+	}
+	.card-link {
+		flex: 0 0 250px;
+	}
+	.brand-grid {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 15px;
+	}
+	.footer {
+		padding: 40px 20px;
+	}
+	.footer-container {
+		flex-direction: column;
+		text-align: center;
+	}
+}
+
+.video-popup {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.7);
+	justify-content: center;
+	align-items: center;
+}
+
+.video-content {
+	position: relative;
+	width: 70%;
+	max-width: 800px;
+}
+
+.video-content iframe {
+	width: 100%;
+	height: 450px;
+	border-radius: 10px;
+}
+
+.close-btn {
+	position: absolute;
+	top: -30px;
+	right: 0;
+	color: white;
+	font-size: 25px;
+	cursor: pointer;
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<div class="header">
-    <a href="customer-dashboard" class="logo">
-        <div class="logo-icon"><span>A</span></div>
-        AutoSphere
-    </a>
+	<!-- HEADER -->
+	<div class="header">
+		<a href="customer-dashboard" class="logo">
+			<div class="logo-icon">
+				<span>A</span>
+			</div> AutoSphere
+		</a>
 
-    <div style="position: relative;">
-        <input type="text" id="cityInput" class="city-select"
-            placeholder="Select City" onkeyup="showCitySuggestions()">
-        <div id="citySuggestionBox" class="suggestion-box"></div>
-    </div>
+		<div style="position: relative;">
+			<input type="text" id="cityInput" class="city-select"
+				placeholder="Select City" onkeyup="showCitySuggestions()">
+			<div id="citySuggestionBox" class="suggestion-box"></div>
+		</div>
 
-    <div class="search-bar" style="position: relative;">
-        <input type="text" id="searchInput" placeholder="Search cars..."
-            onkeyup="showCarSuggestions()">
-        <div id="suggestionBox" class="suggestion-box"></div>
-    </div>
+		<div class="search-bar" style="position: relative;">
+			<input type="text" id="searchInput" placeholder="Search cars..."
+				onkeyup="showCarSuggestions()">
+			<div id="suggestionBox" class="suggestion-box"></div>
+		</div>
 
-    <div class="menu">
-        <a href="CustomerCarList">List Car</a>
-        <a href="#brands">Car Brand</a>
-        <a href="wishlist">My Cart</a>
-        <a href="#">Buy Car</a>
-        <a href="#">Sell Car</a>
-        <a href="login">Login</a>
-        <a href="#">Register</a>
-    </div>
-</div>
+		<div class="menu">
+			<a href="CustomerCarList">List Car</a> <a href="#brands">Car
+				Brand</a> <a href="wishlist">My Cart</a> <a href="#">Buy Car</a> <a
+				href="#">Sell Car</a> <a href="login">Login</a> <a href="#">Register</a>
+		</div>
+	</div>
 
-<!-- HERO SECTION WITH SLIDER -->
-<div class="hero">
-    <h1>Cars you'll love to buy</h1>
-    <p>Verified used cars with full inspection</p>
+	<!-- HERO SECTION WITH SLIDER -->
+	<div class="hero">
+		<h1>Cars you'll love to buy</h1>
+		<p>Verified used cars with full inspection</p>
 
-    <div class="slider-container">
-        <button class="arrow left" id="prevBtn">&#10094;</button>
-        
-        <div class="slider-wrapper" id="sliderWrapper">
-            <div class="slider" id="slider">
-                <c:forEach var="car" items="${customerCarList}">
-                    <a href="customerViewCarListing1?listingId=${car.listingId}" class="card-link">
-                        <div class="card">
-                            <img src="${car.imageURL}" alt="car">
-                            <div style="padding:10px;">
-                                <h5>${car.brandName} ${car.modelName}</h5>
-                                <p style="color:#4a148c; font-weight:bold;">
-                                    &#8377; ${car.price}
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                </c:forEach>
-            </div>
-        </div>
-        
-        <button class="arrow right" id="nextBtn">&#10095;</button>
-    </div>
-    
-    <div class="dots-container" id="dotsContainer"></div>
+		<div class="slider-container">
+			<button class="arrow left" id="prevBtn">&#10094;</button>
 
-    <button class="sell-btn">Sell My Car</button>
-</div>
+			<div class="slider-wrapper" id="sliderWrapper">
+				<div class="slider" id="slider">
+					<c:forEach var="car" items="${customerCarList}">
+						<a href="customerViewCarListing1?listingId=${car.listingId}"
+							class="card-link">
+							<div class="card">
+								<img src="${car.imageURL}" alt="car">
+								<div style="padding: 10px;">
+									<h5>${car.brandName}${car.modelName}</h5>
+									<p style="color: #4a148c; font-weight: bold;">&#8377;
+										${car.price}</p>
+								</div>
+							</div>
+						</a>
+					</c:forEach>
+				</div>
+			</div>
 
-<!-- BENEFITS SECTION -->
-<div class="section">
-    <h2>AutoSphere Assured Benefits</h2>
-    <div class="cards">
-        <a href="quality-check" class="card-link">
-            <div class="card">
-                <img src="https://tse2.mm.bing.net/th/id/OIP.Dt_cmV3c7iAiI9hH3a_-oQHaHa">
-                <p>&#10004; 200+ Quality Checks</p>
-            </div>
-        </a>
-        <a href="trial" class="card-link">
-            <div class="card">
-                <img src="https://tse2.mm.bing.net/th/id/OIP.dLwwkw6ARI0Jm1Y6LMvgXwHaFL">
-                <p>&#10004; 7 Days Trial</p>
-            </div>
-        </a>
-        <a href="warranty" class="card-link">
-            <div class="card">
-                <img src="https://tse4.mm.bing.net/th/id/OIP.2-oHKJ06_H3EnJgGQQKTiQHaE8">
-                <p>&#10004; 1 Year Warranty</p>
-            </div>
-        </a>
-        <a href="fixed-price" class="card-link">
-            <div class="card">
-                <img src="https://tse3.mm.bing.net/th/id/OIP.ApW2_1cwNgxi_flgt4ZQngHaEl">
-                <p>&#10004; Fixed Price</p>
-            </div>
-        </a>
-    </div>
-</div>
+			<button class="arrow right" id="nextBtn">&#10095;</button>
+		</div>
 
-<!-- HOW AUTOSPHERE WORKS -->
-<div class="how-section">
-    <h2>How AutoSphere Works</h2>
-    <div class="how-cards">
-        <div class="how-card">
-            <img src="https://cdn-icons-png.flaticon.com/512/854/854878.png">
-            <h3>Choose your car</h3>
-        </div>
-        <div class="how-card">
-            <img src="https://tse3.mm.bing.net/th/id/OIP.3I6DIZqr146CnNMUkrljrQHaE8">
-            <h3>Book test drive</h3>
-        </div>
-        <div class="how-card">
-            <img src="https://tse2.mm.bing.net/th/id/OIP.TinBeamEG8ni7EGH1fS6NAHaHa">
-            <h3>Online payment</h3>
-        </div>
-    </div>
-    <div class="watch-area">
-        <button class="watch-btn">
-            Watch how it works <span class="play-icon">&#9654;</span>
-        </button>
-        <p class="learn-more">Learn more</p>
-    </div>
-</div>
+		<div class="dots-container" id="dotsContainer"></div>
 
-<!-- BRANDS SECTION -->
-<div class="brand-section" id="brands">
-    <h2>Explore Popular Brands</h2>
-    <div class="brand-grid">
-        <c:forEach var="brd" items="${brand}">
-            <c:url value="/cars-by-brand" var="brandUrl">
-                <c:param name="brand" value="${brd.brandName}" />
-            </c:url>
-            <a href="${brandUrl}" style="text-decoration: none; color: inherit;">
-                <div class="brand-card">
-                    <h3>${brd.brandName}</h3>
-                    <img src="${brd.logoUrl}">
-                </div>
-            </a>
-        </c:forEach>
-    </div>
-</div>
+		<button class="sell-btn">Sell My Car</button>
+	</div>
 
-<!-- FOOTER -->
-<div class="footer">
-    <div class="footer-container">
-        <div class="footer-col">
-            <h3>AutoSphere</h3>
-            <p>AutoSphere is the easiest way to buy and sell used cars online.</p>
-        </div>
-        <div class="footer-col">
-            <h3>Company</h3>
-            <a href="about">About</a>
-            <a href="Careers">Careers</a>
-            <a href="Blog">Blog</a>
-            <a href="Contact">Contact</a>
-        </div>
-        <div class="footer-col">
-            <h3>Services</h3>
-            <a href="#">Buy Car</a>
-            <a href="#">Sell Car</a>
-            <a href="#">Car Loan</a>
-            <a href="#">Insurance</a>
-        </div>
-        <div class="footer-col">
-            <h3>Support</h3>
-            <a href="#">FAQ</a>
-            <a href="#">Terms</a>
-            <a href="#">Privacy</a>
-        </div>
-    </div>
-    <div class="footer-bottom">&#169; 2026 AutoSphere | MCA Sem 4 Project</div>
-</div>
+	<!-- BENEFITS SECTION -->
+	<div class="section">
+		<h2>AutoSphere Assured Benefits</h2>
+		<div class="cards">
+			<a href="quality-check" class="card-link">
+				<div class="card">
+					<img
+						src="https://tse2.mm.bing.net/th/id/OIP.Dt_cmV3c7iAiI9hH3a_-oQHaHa">
+					<p>&#10004; 200+ Quality Checks</p>
+				</div>
+			</a> <a href="trial" class="card-link">
+				<div class="card">
+					<img
+						src="https://tse2.mm.bing.net/th/id/OIP.dLwwkw6ARI0Jm1Y6LMvgXwHaFL">
+					<p>&#10004; 7 Days Trial</p>
+				</div>
+			</a> <a href="warranty" class="card-link">
+				<div class="card">
+					<img
+						src="https://tse4.mm.bing.net/th/id/OIP.2-oHKJ06_H3EnJgGQQKTiQHaE8">
+					<p>&#10004; 1 Year Warranty</p>
+				</div>
+			</a> <a href="fixed-price" class="card-link">
+				<div class="card">
+					<img
+						src="https://tse3.mm.bing.net/th/id/OIP.ApW2_1cwNgxi_flgt4ZQngHaEl">
+					<p>&#10004; Fixed Price</p>
+				</div>
+			</a>
+		</div>
+	</div>
 
-<script>
+
+
+	<!-- HOW AUTOSPHERE WORKS -->
+	<div class="how-section">
+		<h2>How AutoSphere Works</h2>
+		<div class="how-cards">
+			<div class="how-card">
+				<img src="https://cdn-icons-png.flaticon.com/512/854/854878.png">
+				<h3>Choose your car</h3>
+			</div>
+			<div class="how-card">
+				<img
+					src="https://tse3.mm.bing.net/th/id/OIP.3I6DIZqr146CnNMUkrljrQHaE8">
+				<h3>Book test drive</h3>
+			</div>
+			<div class="how-card">
+				<img
+					src="https://tse2.mm.bing.net/th/id/OIP.TinBeamEG8ni7EGH1fS6NAHaHa">
+				<h3>Online payment</h3>
+			</div>
+		</div>
+		<div class="watch-area">
+
+
+			<!-- -----------------video button mate -------------- -->
+
+			<!-- <button class="watch-btn" onclick="openVideo()">Watch how it
+				works ▶</button> -->
+
+			<button onclick="showVideo()" class="watch-btn">Watch how it
+				works ▶</button>
+
+			<!-- 	-----------video button mate-----------  -->
+			<!-- <div id="videoPopup" class="video-popup">
+				<div class="video-content">
+					<span class="close-btn" onclick="closeVideo()">✖</span>
+					<iframe id="videoFrame" src="" frameborder="0" allowfullscreen>
+					</iframe>
+				</div>
+			</div> -->
+
+			<div id="videoContainer"
+				style="display: none; text-align: center; margin-top: 30px; position: relative;">
+
+				<!-- ❌ Close Button -->
+				<span onclick="closeVideo()"
+					style="position: absolute; right: 50px; top: -10px; font-size: 30px; cursor: pointer;">
+					✖ </span>
+
+				<iframe width="1000" height="550" src="" frameborder="0"
+					allow="autoplay" allowfullscreen> </iframe>
+
+			</div>
+		</div>
+
+		<!-- BRANDS SECTION -->
+		<div class="brand-section" id="brands">
+			<h2>Explore Popular Brands</h2>
+			<div class="brand-grid">
+				<c:forEach var="brd" items="${brand}">
+					<c:url value="/cars-by-brand" var="brandUrl">
+						<c:param name="brand" value="${brd.brandName}" />
+					</c:url>
+					<a href="${brandUrl}"
+						style="text-decoration: none; color: inherit;">
+						<div class="brand-card">
+							<h3>${brd.brandName}</h3>
+							<img src="${brd.logoUrl}">
+						</div>
+					</a>
+				</c:forEach>
+			</div>
+		</div>
+
+		<!-- FOOTER -->
+		<div class="footer">
+			<div class="footer-container">
+				<div class="footer-col">
+					<h3>AutoSphere</h3>
+					<p>AutoSphere is the easiest way to buy and sell used cars
+						online.</p>
+				</div>
+				<div class="footer-col">
+					<h3>Company</h3>
+					<a href="about">About</a> <a href="Careers">Careers</a> <a
+						href="Blog">Blog</a> <a href="Contact">Contact</a>
+				</div>
+				<div class="footer-col">
+					<h3>Services</h3>
+					<a href="#">Buy Car</a> <a href="#">Sell Car</a> <a href="#">Car
+						Loan</a> <a href="#">Insurance</a>
+				</div>
+				<div class="footer-col">
+					<h3>Support</h3>
+					<a href="#">FAQ</a> <a href="#">Terms</a> <a href="#">Privacy</a>
+				</div>
+			</div>
+			<div class="footer-bottom">&#169; 2026 AutoSphere | MCA Sem 4
+				Project</div>
+		</div>
+
+		<script>
 // ========== SLIDER CODE - 100% WORKING ==========
 const sliderWrapper = document.getElementById('sliderWrapper');
 const slider = document.getElementById('slider');
@@ -1007,8 +1058,59 @@ document.addEventListener("click", function(event) {
         carInput.value = "";
     }
 });
-</script>
 
+function loadCars(bodyType) {
+    fetch("cars-by-body?bodyType=" + bodyType)
+        .then(res => res.json())
+        .then(data => {
+
+            let html = "";
+
+            data.forEach(car => {
+                html += `
+                    <div class="card">
+                        <img src="${car.imageURL}">
+                        <div style="padding:10px;">
+                            <h5>${car.brandName} ${car.modelName}</h5>
+                            <p>₹ ${car.price}</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById("bodyCars").innerHTML = html;
+        });
+}
+
+/* ------------->>>>>>>>> video button mate --------->>>>>>>>>> */
+/* function openVideo() {
+    document.getElementById("videoPopup").style.display = "flex";
+    document.getElementById("videoFrame").src =
+        "https://www.youtube.com/embed/COl7h8BEUZA";
+}
+
+function closeVideo() {
+    document.getElementById("videoPopup").style.display = "none";
+    document.getElementById("videoFrame").src = "";
+} */
+
+function showVideo() {
+    const container = document.getElementById("videoContainer");
+    const iframe = container.querySelector("iframe");
+
+    container.style.display = "block";
+    iframe.src = "https://www.youtube.com/embed/COl7h8BEUZA?autoplay=1";
+}
+
+function closeVideo() {
+    const container = document.getElementById("videoContainer");
+    const iframe = container.querySelector("iframe");
+
+    container.style.display = "none";
+    iframe.src = ""; // video stop
+}
+
+</script>
 </body>
 </html>
 
