@@ -61,42 +61,60 @@ public class CarListingController {
 
     // ================== SAVE ==================
     @PostMapping("/saveListing")
-    public String saveCarListing(CarListingEntity carListingEntity,
-                                 @RequestParam("imageFile") MultipartFile file) {
+    public String saveCarList(CarListingEntity carListingEntity,
+                             @RequestParam("imageFile") MultipartFile file) {
 
         try {
-            if (file != null && !file.isEmpty()) {
-
-                Map uploadResult = cloudinary.uploader().upload(file.getBytes(), null);
-                String imageUrl = uploadResult.get("secure_url").toString();
-
-                carListingEntity.setImageURL(imageUrl);
-            }
-
+            Map uploadResult = cloudinary.uploader().upload(file.getBytes(), null);
+            String imageUrl = uploadResult.get("secure_url").toString();
+            carListingEntity.setImageURL(imageUrl);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        // Brand
-        Optional<CarBrandEntity> brand =
-                carBrandRepository.findById(carListingEntity.getBrandId());
-        brand.ifPresent(b -> carListingEntity.setBrandName(b.getBrandName()));
+        // IMPORTANT: First get the model to fetch body_type
+        if (carListingEntity.getModelId() != null) {
+            Optional<CarModelTypeEntity> modelOpt = carModelTypeRepository.findById(carListingEntity.getModelId());
+            if (modelOpt.isPresent()) {
+                CarModelTypeEntity model = modelOpt.get();
+                carListingEntity.setModelName(model.getModelName());
+                
+                // CRITICAL: Set body_type from CarModelType
+                String bodyType = model.getBodyType();
+                if (bodyType != null && !bodyType.isEmpty()) {
+                    carListingEntity.setBodyType(bodyType.toUpperCase()); // Store in uppercase for consistency
+                    System.out.println("Body type set from model: " + bodyType);
+                } else {
+                    carListingEntity.setBodyType("UNKNOWN");
+                    System.out.println("Model had no body type, set default: UNKNOWN");
+                }
+            }
+        }
 
-        // Model
-        Optional<CarModelTypeEntity> model =
-                carModelTypeRepository.findById(carListingEntity.getModelId());
-        model.ifPresent(m -> carListingEntity.setModelName(m.getModelName()));
+        // Set brand name
+        if (carListingEntity.getBrandId() != null) {
+            Optional<CarBrandEntity> brandOpt = carBrandRepository.findById(carListingEntity.getBrandId());
+            if (brandOpt.isPresent()) {
+                carListingEntity.setBrandName(brandOpt.get().getBrandName());
+            }
+        }
 
-        // Variant
-        Optional<CarVariantEntity> variant =
-                carVariantRepository.findById(carListingEntity.getVariantId());
-        variant.ifPresent(v -> carListingEntity.setVariantName(v.getVariantName()));
+        // Set variant name
+        if (carListingEntity.getVariantId() != null) {
+            Optional<CarVariantEntity> variantOpt = carVariantRepository.findById(carListingEntity.getVariantId());
+            if (variantOpt.isPresent()) {
+                carListingEntity.setVariantName(variantOpt.get().getVariantName());
+            }
+        }
+
+        // Final fallback
+        if (carListingEntity.getBodyType() == null || carListingEntity.getBodyType().isEmpty()) {
+            carListingEntity.setBodyType("UNKNOWN");
+        }
 
         carListingRepository.save(carListingEntity);
-
         return "redirect:/allCarList";
     }
-
 
     // ================== LIST ==================
     @GetMapping("/allCarList")

@@ -12,7 +12,7 @@
 
 <!-- Font Awesome -->
 <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 
@@ -32,7 +32,7 @@ body {
 	background: #fff;
 	padding: 25px;
 	border-radius: 12px;
-	box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* Title box */
@@ -91,107 +91,99 @@ body {
 	pointer-events: none;
 	color: #555;
 }
-
 </style>
 
 </head>
 
 <body>
 
-<div class="container-scroller">
+	<div class="container-scroller">
 
-	<jsp:include page="AdminHeader.jsp"></jsp:include>
+		<jsp:include page="AdminHeader.jsp"></jsp:include>
 
-	<div class="container-fluid page-body-wrapper">
+		<div class="container-fluid page-body-wrapper">
 
-		<jsp:include page="AdminLeftSidebar.jsp"></jsp:include>
+			<jsp:include page="AdminLeftSidebar.jsp"></jsp:include>
 
-		<div class="main-panel">
-			<div class="content-wrapper">
+			<div class="main-panel">
+				<div class="content-wrapper">
 
-				<h3 class="mb-3">Welcome ${sessionScope.user.firstName}</h3>
+					<h3 class="mb-3">Welcome ${sessionScope.user.firstName}</h3>
 
-				<!-- Compact Form -->
-				<div class="form-container">
-					<div class="form-card">
+					<!-- Compact Form -->
+					<div class="form-container">
+						<div class="form-card">
 
-						<!-- Title -->
-						<div class="title-box">
-							<h3>Add Car Feature</h3>
-						</div>
+							<!-- Title -->
+							<div class="title-box">
+								<h3>Add Car Feature</h3>
+							</div>
 
-						<form action="saveCarFeature" method="post">
+							<form action="saveCarFeature" method="post">
 
-							<div class="row">
+								<div class="row">
 
-								<!-- Variant Dropdown -->
-								<div class="col-md-6 mb-3">
-									<label>Car Variant</label>
-									<div class="custom-select-wrapper">
-										<select class="form-control" name="variantId" required>
-											<option value="">-- Select Variant --</option>
-											<c:forEach items="${allCarType}" var="v">
-												<option value="${v.modelId}">
-													${v.modelName}
-												</option>
-											</c:forEach>
-										</select>
+									<!-- Variant Dropdown -->
+									<div class="col-md-6 mb-3">
+										<label>Car Variant</label>
+										<div class="custom-select-wrapper">
+											<select class="form-control" name="variantId" required>
+												<option value="">-- Select Variant --</option>
+												<c:forEach items="${allVariants}" var="v">
+													<option value="${v.variantId}">${v.variantName}</option>
+												</c:forEach>
+											</select>
+										</div>
 									</div>
+
+									<!-- Safety -->
+									<div class="col-md-6 mb-3">
+										<label>Safety Features</label> <input type="text"
+											class="form-control" name="safetyFeatures"
+											placeholder="Airbags, ABS">
+									</div>
+
+									<!-- Comfort -->
+									<div class="col-md-6 mb-3">
+										<label>Comfort Features</label> <input type="text"
+											class="form-control" name="comfortFeatures"
+											placeholder="AC, Power Steering">
+									</div>
+
+									<!-- Entertainment -->
+									<div class="col-md-6 mb-3">
+										<label>Entertainment Features</label> <input type="text"
+											class="form-control" name="entertainmentFeatures"
+											placeholder="Music System, Bluetooth">
+									</div>
+
+									<!-- Exterior -->
+									<div class="col-md-6 mb-3">
+										<label>Exterior Features</label> <input type="text"
+											class="form-control" name="exteriorFeatures"
+											placeholder="Alloy Wheels, LED Lamps">
+									</div>
+
 								</div>
 
-								<!-- Safety -->
-								<div class="col-md-6 mb-3">
-									<label>Safety Features</label>
-									<input type="text" class="form-control"
-										name="safetyFeatures"
-										placeholder="Airbags, ABS">
+								<!-- Button -->
+								<div class="mt-3">
+									<button type="submit" class="btn-purple">Save Features
+									</button>
 								</div>
 
-								<!-- Comfort -->
-								<div class="col-md-6 mb-3">
-									<label>Comfort Features</label>
-									<input type="text" class="form-control"
-										name="comfortFeatures"
-										placeholder="AC, Power Steering">
-								</div>
+							</form>
 
-								<!-- Entertainment -->
-								<div class="col-md-6 mb-3">
-									<label>Entertainment Features</label>
-									<input type="text" class="form-control"
-										name="entertainmentFeatures"
-										placeholder="Music System, Bluetooth">
-								</div>
-
-								<!-- Exterior -->
-								<div class="col-md-6 mb-3">
-									<label>Exterior Features</label>
-									<input type="text" class="form-control"
-										name="exteriorFeatures"
-										placeholder="Alloy Wheels, LED Lamps">
-								</div>
-
-							</div>
-
-							<!-- Button -->
-							<div class="mt-3">
-								<button type="submit" class="btn-purple">
-									Save Features
-								</button>
-							</div>
-
-						</form>
-
+						</div>
 					</div>
+
 				</div>
 
+				<jsp:include page="AdminFooter.jsp"></jsp:include>
+
 			</div>
-
-			<jsp:include page="AdminFooter.jsp"></jsp:include>
-
 		</div>
 	</div>
-</div>
 
 </body>
 </html>

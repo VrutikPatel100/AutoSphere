@@ -130,19 +130,31 @@ public class SpinnyController {
 //	    return "buyNow";
 //	}
 	
-	@GetMapping("/buyNow")
-	public String buyNow(@RequestParam("listingId") Integer listingId,
-	                     Model model) {
+	// ⭐ BUY NOW PAGE
+		@GetMapping("/buyNow")
+		public String buyNow(@RequestParam("listingId") Integer listingId,
+		                     Model model,
+		                     HttpSession session) {
 
-	    // 🔥 ID thi car fetch karo
-	    CarListingEntity car = carListingRepository.findById(listingId).orElse(null);
+		    // 🔒 Check if user logged in
+		    if (session.getAttribute("user") == null) {
+		        return "redirect:/login";
+		    }
 
-	    // 🔥 JSP ma moklo
-	    model.addAttribute("carListing", car);
+		    // 🚗 Fetch car by ID
+		    CarListingEntity car = carListingRepository.findById(listingId).orElse(null);
 
-	    // 🔥 BuyNow.jsp open karo
-	    return "buyNow";
-	}
+		    // ❌ If car not found
+		    if (car == null) {
+		        return "redirect:/CustomerCarList";
+		    }
+
+		    // 📦 Send to JSP
+		    model.addAttribute("carListing", car);
+
+		    // 📄 Open JSP (IMPORTANT: path correct rakho)
+		    return "buyNow";   // <-- agar tumhari JSP folder me hai
+		}
 
 
 		

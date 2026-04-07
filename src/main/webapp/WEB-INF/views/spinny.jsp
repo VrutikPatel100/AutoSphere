@@ -120,8 +120,7 @@ body {
 /* SLIDER - FULLY WORKING */
 .slider-container {
 	position: relative;
-	max-width: 1600px; /* width vadhari */
-	width: 85%; /* responsive banse */
+	max-width: 1240px;
 	margin: 0 auto;
 	padding: 0 50px;
 }
@@ -140,7 +139,6 @@ body {
 .slider {
 	display: flex;
 	gap: 15px;
-	min-width: max-content;
 }
 
 .card-link {
@@ -165,8 +163,11 @@ body {
 
 .card img {
 	width: 100%;
-	height: 200px;
+	height: 180px;
 	object-fit: cover;
+}
+.card-link {
+    flex: 0 0 265px;   /* was 300px */
 }
 
 .card h5 {
@@ -282,7 +283,7 @@ body {
 
 /* HOW WORKS */
 .how-section {
-	background: linear-gradient(135deg, #ede7f6, #f5f5f5);
+	background: #f2f2f2;
 	padding: 60px 20px;
 	text-align: center;
 }
@@ -318,9 +319,42 @@ body {
 	color: #333;
 }
 
+.filter-btn {
+	padding: 10px 20px;
+	border: none;
+	margin: 5px;
+	border-radius: 20px;
+	background: #e1bee7;
+	cursor: pointer;
+	font-weight: 600;
+	transition: 0.3s;
+}
+
+.filter-btn:hover {
+	background: #ba68c8;
+	color: white;
+}
+
+.filter-btn.active {
+	background: #6a1b9a;
+	color: white;
+}
 /* WATCH BUTTON */
 .watch-area {
 	margin-top: 40px;
+}
+
+.filter-car .card {
+	border-radius: 16px;
+	overflow: hidden;
+	background: white;
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+	transition: 0.3s;
+}
+
+.filter-car .card:hover {
+	transform: translateY(-8px);
+	box-shadow: 0 12px 30px rgba(106, 27, 154, 0.3);
 }
 
 .watch-btn {
@@ -335,6 +369,28 @@ body {
 	align-items: center;
 	gap: 12px;
 	transition: all 0.3s ease;
+}
+
+.filter-car .card div {
+	padding: 15px;
+}
+
+.filter-car h5 {
+	font-size: 17px;
+	margin-bottom: 5px;
+}
+
+.filter-car p {
+	font-size: 16px;
+	font-weight: bold;
+	color: #6a1b9a;
+}
+
+.filter-car img {
+	width: 100%;
+	height: 220px;
+	object-fit: contain; /* 🔥 IMPORTANT */
+	background: #f8f8f8;
 }
 
 .watch-btn:hover {
@@ -530,38 +586,7 @@ body {
 	}
 }
 
-.video-popup {
-	display: none;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 0.7);
-	justify-content: center;
-	align-items: center;
-}
 
-.video-content {
-	position: relative;
-	width: 70%;
-	max-width: 800px;
-}
-
-.video-content iframe {
-	width: 100%;
-	height: 450px;
-	border-radius: 10px;
-}
-
-.close-btn {
-	position: absolute;
-	top: -30px;
-	right: 0;
-	color: white;
-	font-size: 25px;
-	cursor: pointer;
-}
 </style>
 </head>
 
@@ -606,7 +631,7 @@ body {
 				<div class="slider" id="slider">
 					<c:forEach var="car" items="${customerCarList}">
 						<a href="customerViewCarListing1?listingId=${car.listingId}"
-							class="card-link">
+							class="card-link car-item">
 							<div class="card">
 								<img src="${car.imageURL}" alt="car">
 								<div style="padding: 10px;">
@@ -660,8 +685,6 @@ body {
 		</div>
 	</div>
 
-
-
 	<!-- HOW AUTOSPHERE WORKS -->
 	<div class="how-section">
 		<h2>How AutoSphere Works</h2>
@@ -682,25 +705,8 @@ body {
 			</div>
 		</div>
 		<div class="watch-area">
-
-
-			<!-- -----------------video button mate -------------- -->
-
-			<!-- <button class="watch-btn" onclick="openVideo()">Watch how it
-				works ▶</button> -->
-
 			<button onclick="showVideo()" class="watch-btn">Watch how it
-				works ▶</button>
-
-			<!-- 	-----------video button mate-----------  -->
-			<!-- <div id="videoPopup" class="video-popup">
-				<div class="video-content">
-					<span class="close-btn" onclick="closeVideo()">✖</span>
-					<iframe id="videoFrame" src="" frameborder="0" allowfullscreen>
-					</iframe>
-				</div>
-			</div> -->
-
+				works ▶️</button>
 			<div id="videoContainer"
 				style="display: none; text-align: center; margin-top: 30px; position: relative;">
 
@@ -713,55 +719,95 @@ body {
 					allow="autoplay" allowfullscreen> </iframe>
 
 			</div>
+			<p class="learn-more">Learn more</p>
 		</div>
+	</div>
+	
+	
+	<!-- BODY TYPE FILTER -->
+	<div  style="text-align: center; margin: 40px 0;">
+		<h2 style="color: #4a148c;">Explore by Body Type</h2>
+		<div style="margin-top: 20px;">
+			<button class="filter-btn active" onclick="filterCars('ALL', this)">All</button>
+			<button class="filter-btn" onclick="filterCars('SUV', this)">SUV</button>
+			<button class="filter-btn" onclick="filterCars('SEDAN', this)">Sedan</button>
+			<button class="filter-btn" onclick="filterCars('HATCHBACK', this)">Hatchback</button>
+			<button class="filter-btn" onclick="filterCars('MUV', this)">MUV</button>
+		</div>
+	</div>
 
-		<!-- BRANDS SECTION -->
-		<div class="brand-section" id="brands">
-			<h2>Explore Popular Brands</h2>
-			<div class="brand-grid">
-				<c:forEach var="brd" items="${brand}">
-					<c:url value="/cars-by-brand" var="brandUrl">
-						<c:param name="brand" value="${brd.brandName}" />
-					</c:url>
-					<a href="${brandUrl}"
-						style="text-decoration: none; color: inherit;">
-						<div class="brand-card">
-							<h3>${brd.brandName}</h3>
-							<img src="${brd.logoUrl}">
+	<!-- FILTERED CARS SECTION -->
+	<div id="filteredCarsContainer" 
+		style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding: 20px;">
+		<c:forEach var="car" items="${customerCarList}">
+			<div class="filter-car"
+				data-type="${car.bodyType != null ? car.bodyType.toUpperCase() : 'UNKNOWN'}"
+				style="width: 250px;">
+				<a href="customerViewCarListing1?listingId=${car.listingId}"
+					class="card-link" style="text-decoration: none; color: inherit;">
+					<div class="card">
+						<img src="${car.imageURL}" alt="${car.brandName} ${car.modelName}"
+							style="width: 100%; height: 180px; object-fit: cover;">
+						<div style="padding: 15px;">
+							<h5 style="font-size: 16px; margin-bottom: 8px; color: #333;">${car.brandName}
+								${car.modelName}</h5>
+							<p
+								style="color: #4a148c; font-weight: bold; font-size: 18px; margin: 0;">&#8377;
+								${car.price}</p>
+							<p style="color: #888; font-size: 12px; margin-top: 5px;">${car.bodyType != null ? car.bodyType : 'Car'}</p>
 						</div>
-					</a>
-				</c:forEach>
+					</div>
+				</a>
+			</div>
+		</c:forEach>
+	</div>
+	
+	<!-- BRANDS SECTION -->
+	<div class="brand-section" id="brands">
+		<h2>Explore Popular Brands</h2>
+		<div class="brand-grid">
+			<c:forEach var="brd" items="${brand}">
+				<c:url value="/cars-by-brand" var="brandUrl">
+					<c:param name="brand" value="${brd.brandName}" />
+				</c:url>
+				<a href="${brandUrl}" style="text-decoration: none; color: inherit;">
+					<div class="brand-card">
+						<h3>${brd.brandName}</h3>
+						<img src="${brd.logoUrl}">
+					</div>
+				</a>
+			</c:forEach>
+		</div>
+	</div>
+
+	<!-- FOOTER -->
+	<div class="footer">
+		<div class="footer-container">
+			<div class="footer-col">
+				<h3>AutoSphere</h3>
+				<p>AutoSphere is the easiest way to buy and sell used cars
+					online.</p>
+			</div>
+			<div class="footer-col">
+				<h3>Company</h3>
+				<a href="about">About</a> <a href="Careers">Careers</a> <a
+					href="Blog">Blog</a> <a href="Contact">Contact</a>
+			</div>
+			<div class="footer-col">
+				<h3>Services</h3>
+				<a href="#">Buy Car</a> <a href="#">Sell Car</a> <a href="#">Car
+					Loan</a> <a href="#">Insurance</a>
+			</div>
+			<div class="footer-col">
+				<h3>Support</h3>
+				<a href="#">FAQ</a> <a href="#">Terms</a> <a href="#">Privacy</a>
 			</div>
 		</div>
+		<div class="footer-bottom">&#169; 2026 AutoSphere | MCA Sem 4
+			Project</div>
+	</div>
 
-		<!-- FOOTER -->
-		<div class="footer">
-			<div class="footer-container">
-				<div class="footer-col">
-					<h3>AutoSphere</h3>
-					<p>AutoSphere is the easiest way to buy and sell used cars
-						online.</p>
-				</div>
-				<div class="footer-col">
-					<h3>Company</h3>
-					<a href="about">About</a> <a href="Careers">Careers</a> <a
-						href="Blog">Blog</a> <a href="Contact">Contact</a>
-				</div>
-				<div class="footer-col">
-					<h3>Services</h3>
-					<a href="#">Buy Car</a> <a href="#">Sell Car</a> <a href="#">Car
-						Loan</a> <a href="#">Insurance</a>
-				</div>
-				<div class="footer-col">
-					<h3>Support</h3>
-					<a href="#">FAQ</a> <a href="#">Terms</a> <a href="#">Privacy</a>
-				</div>
-			</div>
-			<div class="footer-bottom">&#169; 2026 AutoSphere | MCA Sem 4
-				Project</div>
-		</div>
-
-		<script>
+	<script>
 // ========== SLIDER CODE - 100% WORKING ==========
 const sliderWrapper = document.getElementById('sliderWrapper');
 const slider = document.getElementById('slider');
@@ -790,18 +836,19 @@ function getCardWidth() {
 
 //->>>>>>>>>>>>>>>>>> image niche dot mate 
 
-// Update slider position
+//Update slider position
 /* function updateSliderPosition(animate = true) {
-    if (animate) {
-        sliderWrapper.style.scrollBehavior = 'smooth';
-    } else {
-        sliderWrapper.style.scrollBehavior = 'auto';
-    }
-    const cardWidth = getCardWidth();
-    sliderWrapper.scrollLeft = currentIndex * cardWidth;
+ if (animate) {
+     sliderWrapper.style.scrollBehavior = 'smooth';
+ } else {
+     sliderWrapper.style.scrollBehavior = 'auto';
+ }
+ const cardWidth = getCardWidth();
+ sliderWrapper.scrollLeft = currentIndex * cardWidth;
 } */
 
 
+// Update slider position
 function updateSliderPosition(animate = true) {
     if (animate) {
         sliderWrapper.style.scrollBehavior = 'smooth';
@@ -814,6 +861,7 @@ function updateSliderPosition(animate = true) {
 
     sliderWrapper.scrollLeft = currentIndex * (cardWidth * visibleCards);
 }
+
 
 // Go to specific slide
 function goToSlide(index) {
@@ -909,7 +957,6 @@ function setupHoverPause() {
     }
 }
 
-// Handle scroll event to update current index
 
 //->>>>>>>>>>>>>>>>>> image niche dot mate 
 
@@ -924,6 +971,7 @@ function setupHoverPause() {
     }
 } */
 
+// Handle scroll event to update current index
 function handleScroll() {
     const cardWidth = getCardWidth();
     const visibleCards = getVisibleCards();
@@ -937,6 +985,7 @@ function handleScroll() {
     }
 }
 
+
 /* ------>>>>>>>>>>>>>add this ->>>>>>>mage niche dot mate */
 function getVisibleCards() {
     const containerWidth = sliderWrapper.offsetWidth;
@@ -944,13 +993,16 @@ function getVisibleCards() {
     return Math.floor(containerWidth / cardWidth);
 }
 
+
+
+
 // Initialize slider
 function initSlider() {
-	
     slides = getSlides();
+    
     /* totalSlides = slides.length; */ /*->>>>>>>>>>>>> image niche dot mate  */   
     const visibleCards = getVisibleCards();
-totalSlides = Math.ceil(slides.length / visibleCards);
+    totalSlides = Math.ceil(slides.length / visibleCards);
     
     if (totalSlides === 0) return;
     
@@ -1059,41 +1111,61 @@ document.addEventListener("click", function(event) {
     }
 });
 
-function loadCars(bodyType) {
-    fetch("cars-by-body?bodyType=" + bodyType)
-        .then(res => res.json())
-        .then(data => {
-
-            let html = "";
-
-            data.forEach(car => {
-                html += `
-                    <div class="card">
-                        <img src="${car.imageURL}">
-                        <div style="padding:10px;">
-                            <h5>${car.brandName} ${car.modelName}</h5>
-                            <p>₹ ${car.price}</p>
-                        </div>
-                    </div>
-                `;
-            });
-
-            document.getElementById("bodyCars").innerHTML = html;
-        });
+function filterCars(type, btn) {
+    let cars = document.querySelectorAll(".filter-car");
+    
+    console.log("Filtering by: " + type);
+    console.log("Total cars found: " + cars.length);
+    
+    let visibleCount = 0;
+    
+    cars.forEach(car => {
+        let carType = car.getAttribute("data-type");
+        
+        // Clean up: trim and convert to uppercase for comparison
+        if (carType) {
+            carType = carType.trim().toUpperCase();
+        } else {
+            carType = "UNKNOWN";
+        }
+        
+        console.log("Car type after cleanup: " + carType);
+        
+        // Show based on filter
+        if (type === "ALL") {
+            car.style.display = "block";
+            visibleCount++;
+        } else if (carType === type.toUpperCase()) {
+            car.style.display = "block";
+            visibleCount++;
+        } else {
+            car.style.display = "none";
+        }
+    });
+    
+    console.log("Visible cars after filter: " + visibleCount);
+    
+    // Update active button styling
+    document.querySelectorAll(".filter-btn").forEach(b => {
+        b.classList.remove("active");
+    });
+    btn.classList.add("active");
+}
+// Also add this function to debug and see what body types are available
+function showAvailableBodyTypes() {
+    let cars = document.querySelectorAll(".filter-car");
+    let types = new Set();
+    cars.forEach(car => {
+        let type = car.getAttribute("data-type");
+        types.add(type);
+    });
+    console.log("Available body types in DOM:", Array.from(types));
 }
 
-/* ------------->>>>>>>>> video button mate --------->>>>>>>>>> */
-/* function openVideo() {
-    document.getElementById("videoPopup").style.display = "flex";
-    document.getElementById("videoFrame").src =
-        "https://www.youtube.com/embed/COl7h8BEUZA";
-}
-
-function closeVideo() {
-    document.getElementById("videoPopup").style.display = "none";
-    document.getElementById("videoFrame").src = "";
-} */
-
+// Call this on page load to debug
+window.addEventListener('load', function() {
+    showAvailableBodyTypes();
+});
 function showVideo() {
     const container = document.getElementById("videoContainer");
     const iframe = container.querySelector("iframe");
@@ -1109,8 +1181,8 @@ function closeVideo() {
     container.style.display = "none";
     iframe.src = ""; // video stop
 }
-
 </script>
+
 </body>
 </html>
 

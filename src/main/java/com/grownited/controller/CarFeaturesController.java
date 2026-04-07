@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.grownited.entity.CarFeaturesEntity;
 import com.grownited.entity.CarModelTypeEntity;
+import com.grownited.entity.CarVariantEntity;
 import com.grownited.repository.CarFeaturesRepository;
 import com.grownited.repository.CarModelTypeRepository;
+import com.grownited.repository.CarVariantRepository;
 
 @Controller
 public class CarFeaturesController {
@@ -21,12 +23,18 @@ public class CarFeaturesController {
 	CarFeaturesRepository carFeaturesRepository;
 	
 	@Autowired
+	CarVariantRepository carVariantRepository;
+	
+	@Autowired
 	CarModelTypeRepository carModelTypeRepository; 
 	
 	@GetMapping("/carFeatures")
 	public String carFeatures(Model model) {
-		List<CarModelTypeEntity> allCarType =  carModelTypeRepository.findAll();
-		model.addAttribute("allCarType",allCarType);
+//		List<CarModelTypeEntity> allCarType =  carModelTypeRepository.findAll();
+//		model.addAttribute("allCarType",allCarType);
+		List<CarVariantEntity> allVariants = carVariantRepository.findAll();
+	    model.addAttribute("allVariants", allVariants);
+
 		return"CarFeatures";
 	}
 	

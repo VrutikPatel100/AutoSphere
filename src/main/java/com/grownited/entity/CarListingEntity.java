@@ -34,6 +34,7 @@ public class CarListingEntity {
 	private String status;  //Enum
 	private String imageURL;
 	private LocalDate createdAt;
+	private String bodyType;
 	public Integer getListingId() {
 		return listingId;
 	}
@@ -130,6 +131,13 @@ public class CarListingEntity {
 	public void setImageURL(String imageURL) {
 		this.imageURL = imageURL;
 	}
+	public String getBodyType() {
+		return bodyType;
+	}
+	public void setBodyType(String bodyType) {
+		this.bodyType = bodyType;
+	}
+	
 	
 	
 	
