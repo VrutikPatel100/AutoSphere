@@ -82,6 +82,21 @@ public class SpinnyController {
 	public String aboutPage() {
 	    return "About";
 	}
+	@GetMapping("/qualitychecks")
+	public String qualityChecks() {
+	    return "QualityChecks";
+	}
+	
+	@GetMapping("/7daystrial")
+	public String daystrial() {
+		return "7DaysTrial";
+	}
+	
+	@GetMapping("fixedprice")
+	public String fixedprice() {
+		return "FixedPrice";
+	}
+
 
 	
 	@GetMapping("/CustomerCarList")

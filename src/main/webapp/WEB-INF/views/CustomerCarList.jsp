@@ -131,6 +131,25 @@ body {
 	padding: 6px 16px;
 }
 
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    color: #4a148c;
+    font-size: 28px;
+    margin-bottom: 40px;
+}
+
+/* left & right line */
+.section-title::before,
+.section-title::after {
+    content: "";
+    flex: 0.3;   /* 🔥 pehla 1 htu → have ochhu */
+    height: 1px;
+    background: #ddd;
+}
+
 </style>
 
 </head>
@@ -146,8 +165,9 @@ body {
 	<!-- CONTENT -->
 
 	<div class="content">
+	
 
-		<h3 class="fw-bold mb-4">🚗 List Of All Cars</h3>
+		<h3 class="section-title" class="fw-bold mb-4" style="text-align: center;" class="section-title">🚗 List Of All Cars</h3>
 
 		<div class="row g-4">
 

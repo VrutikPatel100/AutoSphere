@@ -122,6 +122,25 @@ body{
     color:#777;
 }
 
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    color: #4a148c;
+    font-size: 28px;
+    margin-bottom: 40px;
+}
+
+/* left & right line */
+.section-title::before,
+.section-title::after {
+    content: "";
+    flex: 0.3;   /* 🔥 pehla 1 htu → have ochhu */
+    height: 1px;
+    background: #ddd;
+}
+
 </style>
 
 </head>
@@ -136,7 +155,7 @@ body{
     <a href="customer-dashboard#brands" class="btn btn-secondary back-btn">← Back</a>
 
     <!-- TITLE -->
-    <h2 class="title">${brand} Cars</h2>
+    <h2 class="section-title" class="title" >${brand} Cars</h2>
 
     <!-- GRID -->
     <div class="car-grid">
