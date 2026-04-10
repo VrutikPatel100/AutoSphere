@@ -240,9 +240,8 @@ transform:rotate(-45deg);
 		</div>
 
 		<div class="menu">
-			<a href="CustomerCarList">List Car</a> <a href="#">Car Brand</a> <a
-				href="wishlist">My Cart</a> <a href="#">Buy Car</a> <a href="#">Sell
-				Car</a> <a href="#">Login</a> <a href="#">Register</a>
+			<a href="CustomerCarList">List Car</a>  <a
+				href="wishlist">My Cart</a> <a href="#">Login</a> <a href="#">Register</a>
 		</div>
 
 	</div>

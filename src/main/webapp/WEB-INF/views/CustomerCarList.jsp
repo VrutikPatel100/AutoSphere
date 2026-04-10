@@ -158,8 +158,31 @@ body {
 
 
 	<!-- HEADER -->
+<div class="header">
 
-	<jsp:include page="CustomerHeader.jsp"></jsp:include>
+    <a href="customer-dashboard" class="logo">
+        <div class="logo-icon">
+            <span>A</span>
+        </div>
+        AutoSphere
+    </a>
+
+    <input type="text" class="city-select" placeholder="Select City">
+
+    <div class="search-bar">
+        <input type="text" id="searchInput"
+               placeholder="Search cars by brand or model"
+               onkeyup="searchCars()">
+    </div>
+
+    <div class="menu">
+        <a href="CustomerCarList">List Car</a>
+        <a href="wishlist">My Cart</a>
+        <a href="login">Login</a>
+        <a href="#">Register</a>
+    </div>
+
+</div>
 
 
 	<!-- CONTENT -->

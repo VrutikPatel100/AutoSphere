@@ -22,8 +22,6 @@
         <a href="CustomerCarList">List Car</a>
         <a href="#brands">Car Brand</a>
         <a href="wishlist">My Cart</a>
-        <a href="#">Buy Car</a>
-        <a href="#">Sell Car</a>
         <a href="login">Login</a>
         <a href="#">Register</a>
     </div>

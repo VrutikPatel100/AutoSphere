@@ -482,14 +482,19 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: center;
 
-    height: 520px;         /* 🔥 FIXED height (important) */
-    overflow-y: scroll;    /* 🔥 scrollbar always visible */
+    height: 520px;
+    overflow-y: auto;
     overflow-x: hidden;
 
     padding: 20px;
+
+    width: 1100px;   /* 🔥 aa karo */
+    margin: 0 auto;
+    justify-content: center;
 }
+
+
 .scroll-container::-webkit-scrollbar {
     width: 12px;
 }
@@ -918,7 +923,10 @@ body {
 	</div>
 
 	<!-- FILTERED CARS SECTION -->
-	<div id="filteredCarsContainer" class="scroll-container">
+	<!-- FILTERED CARS SECTION -->
+<div style="display:flex; justify-content:center;">
+    <div id="filteredCarsContainer" class="scroll-container">
+
 		<c:forEach var="car" items="${customerCarList}">
 			<div class="filter-car"
 				data-type="${car.bodyType != null ? car.bodyType.toUpperCase() : 'UNKNOWN'}"
@@ -941,6 +949,7 @@ body {
 			</div>
 		</c:forEach>
 	</div>
+</div>
 	
 	<!-- BRANDS SECTION -->
 	<div class="brand-section" id="brands">

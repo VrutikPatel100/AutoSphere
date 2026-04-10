@@ -24,7 +24,6 @@ body {
 	margin: 0;
 }
 
-
 /* CONTAINER */
 .container {
 	max-width: 1100px;
@@ -119,17 +118,34 @@ body {
 	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 	gap: 25px;
 }
-
-
 </style>
 
 </head>
 
 <body>
 
-	<!-- HEADER -->
 
-	<jsp:include page="CustomerHeader.jsp"></jsp:include>
+	<!-- HEADER -->
+	<div class="header">
+
+		<a href="customer-dashboard" class="logo">
+			<div class="logo-icon">
+				<span>A</span>
+			</div> AutoSphere
+		</a> <input type="text" class="city-select" placeholder="Select City">
+
+		<div class="search-bar">
+			<input type="text" id="searchInput"
+				placeholder="Search cars by brand or model" onkeyup="searchCars()">
+		</div>
+
+		<div class="menu">
+			<a href="CustomerCarList">List Car</a> <a href="wishlist">My Cart</a> <a href="login">Login</a> <a
+				href="#">Register</a>
+		</div>
+
+	</div>
+
 	<!-- MAIN -->
 
 	<div class="container">
@@ -184,8 +200,8 @@ body {
 
 				<div style="grid-column: 1/-1; text-align: center; color: #777">
 
-					<i class="fas fa-cart-arrow-down fa-2x"></i> <br>
-					<br> No cars in wishlist
+					<i class="fas fa-cart-arrow-down fa-2x"></i> <br> <br> No
+					cars in wishlist
 
 				</div>
 
