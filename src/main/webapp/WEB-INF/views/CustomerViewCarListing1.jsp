@@ -111,13 +111,15 @@ body {
 								<div class="price mb-2">₹ ${carListing.price}</div>
 
 								<c:choose>
-									<c:when test="${carListing.status == 'AVAILABLE'}">
+									<c:when
+										test="${carListing.status != null && carListing.status.equalsIgnoreCase('AVAILABLE')}">
 										<span class="badge bg-success mb-3">Available</span>
 									</c:when>
 									<c:otherwise>
 										<span class="badge bg-danger mb-3">Sold</span>
 									</c:otherwise>
 								</c:choose>
+
 
 								<hr>
 
