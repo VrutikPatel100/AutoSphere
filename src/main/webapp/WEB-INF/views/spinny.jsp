@@ -942,7 +942,7 @@ body {
 							<p
 								style="color: #4a148c; font-weight: bold; font-size: 18px; margin: 0;">&#8377;
 								${car.price}</p>
-							<p style="color: #888; font-size: 12px; margin-top: 5px;">${car.bodyType != null ? car.bodyType : 'Car'}</p>
+							<p>${car.bodyType}</p>
 						</div>
 					</div>
 				</a>
@@ -974,7 +974,7 @@ body {
 		<div class="footer-container">
 			<div class="footer-col">
 				<h3>AutoSphere</h3>
-				<p>AutoSphere is the easiest way to buy and sell used cars
+				<p>AutoSphere is the easiest way to buy cars
 					online.</p>
 			</div>
 			<div class="footer-col">
@@ -982,14 +982,10 @@ body {
 				<a href="about">About</a> <a href="Careers">Careers</a> <a
 					href="Blog">Blog</a> <a href="Contact">Contact</a>
 			</div>
-			<div class="footer-col">
-				<h3>Services</h3>
-				<a href="#">Buy Car</a> <a href="#">Sell Car</a> <a href="#">Car
-					Loan</a> <a href="#">Insurance</a>
-			</div>
+			
 			<div class="footer-col">
 				<h3>Support</h3>
-				<a href="#">FAQ</a> <a href="#">Terms</a> <a href="#">Privacy</a>
+				<a href="faq">FAQ</a> <a href="terms">Terms</a> <a href="privacy">Privacy</a>
 			</div>
 		</div>
 		<div class="footer-bottom">&#169; 2026 AutoSphere | MCA Sem 4

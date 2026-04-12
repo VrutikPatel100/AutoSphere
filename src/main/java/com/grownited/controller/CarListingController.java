@@ -143,10 +143,7 @@ public class CarListingController {
     }
     
     
-    @GetMapping("/warranty")
-    public String warrantyPage() {
-        return "warranty";
-    }
+   
 
     @GetMapping("/cars-by-brand")
     public String getCarsByBrand(@RequestParam("brand") String brand, Model model) {
@@ -254,7 +251,21 @@ public class CarListingController {
         // Model
         Optional<CarModelTypeEntity> model =
                 carModelTypeRepository.findById(carListingEntity.getModelId());
-        model.ifPresent(m -> carListingEntity.setModelName(m.getModelName()));
+        if (model.isPresent()) {
+            CarModelTypeEntity m = model.get();
+
+            carListingEntity.setModelName(m.getModelName());
+
+            // 🔥 IMPORTANT: bodyType pan set karo
+            String bodyType = m.getBodyType();
+
+            if (bodyType != null && !bodyType.isEmpty()) {
+                carListingEntity.setBodyType(bodyType.toUpperCase());
+            } else {
+                carListingEntity.setBodyType("UNKNOWN");
+            }
+        }
+
 
         // Variant
         Optional<CarVariantEntity> variant =

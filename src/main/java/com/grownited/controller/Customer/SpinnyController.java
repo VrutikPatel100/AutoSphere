@@ -29,101 +29,109 @@ import com.grownited.repository.CarImageRepository;
 @Controller
 public class SpinnyController {
 
-    
-
 	@Autowired
 	CarImageRepository carImageRepository;
-	
+
 	@Autowired
 	CarListingRepository carListingRepository;
 
 	@Autowired
 	Cloudinary cloudinary;
-	
+
 	@Autowired
 	CarTransactionRepository carTransactionRepository;
-	
+
 	@Autowired
 	CarBrandRepository carBrandRepository;
-	
-	
 
-
-
-	@GetMapping ("/customer-dashboard")
-	public String spinny(Model model)
-	{
+	@GetMapping("/customer-dashboard")
+	public String spinny(Model model) {
 		List<CarImageEntity> image = carImageRepository.findAll();
 		List<CarBrandEntity> brand = carBrandRepository.findAll();
 		List<CarListingEntity> customerCarList = carListingRepository.findAll();
-			
+
 		model.addAttribute("image", image);
-		model.addAttribute("brand",brand);
-		model.addAttribute("customerCarList",customerCarList);
+		model.addAttribute("brand", brand);
+		model.addAttribute("customerCarList", customerCarList);
 		return "spinny";
 	}
-	
+
 	@GetMapping("Careers")
 	public String Careers() {
-		return"Careers";
+		return "Careers";
 	}
 
 	@GetMapping("Contact")
 	public String Contact() {
-		return"Contact";
+		return "Contact";
 	}
-	
+
 	@GetMapping("Blog")
 	public String blog() {
-		return"Blog";
+		return "Blog";
 	}
-	
+
 	@GetMapping("/about")
 	public String aboutPage() {
-	    return "About";
+		return "About";
 	}
+
 	@GetMapping("/qualitychecks")
 	public String qualityChecks() {
-	    return "QualityChecks";
+		return "QualityChecks";
 	}
-	
+
 	@GetMapping("/7daystrial")
 	public String daystrial() {
 		return "7DaysTrial";
 	}
-	
+
+	@GetMapping("/warranty")
+	public String warrantyPage() {
+		return "warranty";
+	}
+
 	@GetMapping("fixedprice")
 	public String fixedprice() {
 		return "FixedPrice";
 	}
-
-
 	
+	@GetMapping("faq")
+	public String faq() {
+		return "Faq";
+	}
+	@GetMapping("terms")
+	public String terms() {
+		return "Terms";
+	}
+	@GetMapping("privacy")
+	public String privacy() {
+		return "Privacy";
+	}
+	
+
 	@GetMapping("/CustomerCarList")
-	public String customerCarList(Model model){
+	public String customerCarList(Model model) {
 
-	    List<CarListingEntity> customerCarList = carListingRepository.findAll();
+		List<CarListingEntity> customerCarList = carListingRepository.findAll();
 
-	    model.addAttribute("customerCarList", customerCarList);
+		model.addAttribute("customerCarList", customerCarList);
 
-	    return "CustomerCarList";
+		return "CustomerCarList";
 	}
-	
+
 	@GetMapping("/customerViewCarListing")
-	public String customerViewCarListing(Integer listingId, Model model){
+	public String customerViewCarListing(Integer listingId, Model model) {
 
-	    Optional<CarListingEntity> op = carListingRepository.findById(listingId);
+		Optional<CarListingEntity> op = carListingRepository.findById(listingId);
 
-	    if(op.isPresent()){
-	        model.addAttribute("carListing", op.get());
-	    }
+		if (op.isPresent()) {
+			model.addAttribute("carListing", op.get());
+		}
 
-	    return "CustomerViewCarListing"; 
+		return "CustomerViewCarListing";
 	}
-	
-	
-	
-	
+
 //	// ⭐ BUY NOW PAGE
 //	@GetMapping("/buyNow")
 //	public String buyNow(@RequestParam("listingId") Integer listingId, Model model, HttpSession session) {
@@ -144,54 +152,49 @@ public class SpinnyController {
 //
 //	    return "buyNow";
 //	}
-	
+
 	// ⭐ BUY NOW PAGE
-		@GetMapping("/buyNow")
-		public String buyNow(@RequestParam("listingId") Integer listingId,
-		                     Model model,
-		                     HttpSession session) {
+	@GetMapping("/buyNow")
+	public String buyNow(@RequestParam("listingId") Integer listingId, Model model, HttpSession session) {
 
-		    // 🔒 Check if user logged in
-		    if (session.getAttribute("user") == null) {
-		        return "redirect:/login";
-		    }
-
-		    // 🚗 Fetch car by ID
-		    CarListingEntity car = carListingRepository.findById(listingId).orElse(null);
-
-		    // ❌ If car not found
-		    if (car == null) {
-		        return "redirect:/CustomerCarList";
-		    }
-
-		    // 📦 Send to JSP
-		    model.addAttribute("carListing", car);
-
-		    // 📄 Open JSP (IMPORTANT: path correct rakho)
-		    return "buyNow";   // <-- agar tumhari JSP folder me hai
+		// 🔒 Check if user logged in
+		if (session.getAttribute("user") == null) {
+			return "redirect:/login";
 		}
 
+		// 🚗 Fetch car by ID
+		CarListingEntity car = carListingRepository.findById(listingId).orElse(null);
 
-		
-		@PostMapping("/confirmBooking")
-		public String confirmBooking(CarTransactionEntity transaction) {
-
-		    carTransactionRepository.save(transaction);
-
-		    return "bookingSuccess";
-		}
-		
-		@GetMapping("/customerViewCarListing1")
-		public String customerViewCarListing1(@RequestParam("listingId") Integer listingId, Model model) {
-
-		    Optional<CarListingEntity> op = carListingRepository.findById(listingId);
-
-		    if(op.isPresent()) {
-		        model.addAttribute("carListing", op.get());
-		    }
-
-		    return "CustomerViewCarListing1"; // 🔥 aa change karo
+		// ❌ If car not found
+		if (car == null) {
+			return "redirect:/CustomerCarList";
 		}
 
+		// 📦 Send to JSP
+		model.addAttribute("carListing", car);
+
+		// 📄 Open JSP (IMPORTANT: path correct rakho)
+		return "buyNow"; // <-- agar tumhari JSP folder me hai
+	}
+
+	@PostMapping("/confirmBooking")
+	public String confirmBooking(CarTransactionEntity transaction) {
+
+		carTransactionRepository.save(transaction);
+
+		return "bookingSuccess";
+	}
+
+	@GetMapping("/customerViewCarListing1")
+	public String customerViewCarListing1(@RequestParam("listingId") Integer listingId, Model model) {
+
+		Optional<CarListingEntity> op = carListingRepository.findById(listingId);
+
+		if (op.isPresent()) {
+			model.addAttribute("carListing", op.get());
+		}
+
+		return "CustomerViewCarListing1"; // 🔥 aa change karo
+	}
 
 }
