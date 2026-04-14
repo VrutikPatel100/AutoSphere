@@ -9,115 +9,148 @@
 
 <style>
 body {
-    background: #f4f6fb;
+	background: #f4f6fb;
 }
 
 .custom-box {
-    max-width: 1200px;
-    margin: 30px auto;
+	max-width: 1200px;
+	margin: 30px auto;
 }
 
 .custom-card {
-    background: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+	background: #fff;
+	padding: 20px;
+	border-radius: 12px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .title-box {
-    background: #e9e9e9;
-    border-radius: 10px;
-    padding: 12px;
-    text-align: center;
-    margin-bottom: 20px;
+	background: #e9e9e9;
+	border-radius: 10px;
+	padding: 12px;
+	text-align: center;
+	margin-bottom: 20px;
 }
 
 .title-box h3 {
-    color: #4e4bb5;
-    margin: 0;
+	color: #4e4bb5;
+	margin: 0;
 }
 
 .table-responsive {
-    overflow-x: auto;
+	overflow-x: auto;
 }
 
 .table {
-    min-width: 100%;
-    word-break: break-word;
+	min-width: 100%;
+	word-break: break-word;
 }
 </style>
 </head>
 
 <body>
-<div class="container-scroller">
+	<div class="container-scroller">
 
-    <!-- Header -->
-    <jsp:include page="AdminHeader.jsp"></jsp:include>
+		<!-- Header -->
+		<jsp:include page="AdminHeader.jsp"></jsp:include>
 
-    <div class="container-fluid page-body-wrapper">
-        <!-- Sidebar -->
-        <jsp:include page="AdminLeftSidebar.jsp"></jsp:include>
+		<div class="container-fluid page-body-wrapper">
+			<!-- Sidebar -->
+			<jsp:include page="AdminLeftSidebar.jsp"></jsp:include>
 
-        <div class="main-panel">
-            <div class="content-wrapper">
+			<div class="main-panel">
+				<div class="content-wrapper">
 
-                <h3 class="mb-3">Welcome ${sessionScope.user.firstName}</h3>
+					<h3 class="mb-3">Welcome ${sessionScope.user.firstName}</h3>
 
-                <!-- Centered card -->
-                <div class="custom-box">
-                    <div class="custom-card">
+					<!-- Centered card -->
+					<div class="custom-box">
+						<div class="custom-card">
 
-                        <!-- Title -->
-                        <div class="title-box">
-                            <h3>List Review Ratings</h3>
-                        </div>
+							<!-- Title -->
+							<div class="title-box">
+								<h3>List Review Ratings</h3>
+							</div>
 
-                        <!-- Table -->
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-hover table-striped">
-                                <thead class="table-dark">
-                                    <tr>
-                                        <th>Review ID</th>
-                                        <th>User ID</th>
-                                        <th>Rating</th>
-                                        <th>Comment</th>
-                                        <th>Created Date</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <c:forEach items="${allCarReview}" var="r">
-                                        <tr>
-                                            <td>${r.reviewId}</td>
-                                            <td>${r.userId}</td>
-                                            <td>⭐ ${r.rating}/5</td>
-                                            <td>${r.comment}</td>
-                                            <td>${r.createdAt}</td>
-                                            <td>
-                                                <a href="viewReviewRating?reviewId=${r.reviewId}" class="btn btn-primary btn-sm mb-1">View</a>
-                                                <a href="editReviewRating?reviewId=${r.reviewId}" class="btn btn-primary btn-sm mb-1">Edit</a>
-                                                <a href="deleteReviewRating?reviewId=${r.reviewId}" class="btn btn-danger btn-sm mb-1" onclick="return confirm('Are you sure you want to delete this review?')">Delete</a>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-                                    <c:if test="${empty allCarReview}">
-                                        <tr>
-                                            <td colspan="6" class="text-center">No review ratings found</td>
-                                        </tr>
-                                    </c:if>
-                                </tbody>
-                            </table>
-                        </div>
+							<!-- Table -->
+							<div class="table-responsive">
+								<table class="table table-bordered table-hover table-striped" id="myTable">
+									<thead class="table-dark">
+										<tr>
+											<th>Review ID</th>
+											<th>User ID</th>
+											<th>Rating</th>
+											<th>Comment</th>
+											<th>Created Date</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach items="${allCarReview}" var="r">
+											<tr>
+												<td>${r.reviewId}</td>
+												<td>${r.userId}</td>
+												<td>&#11088; ${r.rating}/5</td>
 
-                    </div>
-                </div>
+												<td>${r.comment}</td>
+												<td>${r.createdAt}</td>
+												<td><a href="viewReviewRating?reviewId=${r.reviewId}"
+													class="btn btn-primary btn-sm mb-1">View</a> <a
+													href="editReviewRating?reviewId=${r.reviewId}"
+													class="btn btn-primary btn-sm mb-1">Edit</a> <a
+													href="deleteReviewRating?reviewId=${r.reviewId}"
+													class="btn btn-danger btn-sm mb-1"
+													onclick="return confirm('Are you sure you want to delete this review?')">Delete</a>
+												</td>
+											</tr>
+										</c:forEach>
+										<c:if test="${empty allCarReview}">
+											<tr>
+												<td colspan="6" class="text-center">No review ratings
+													found</td>
+											</tr>
+										</c:if>
+									</tbody>
+								</table>
+							</div>
 
-            </div>
-            <!-- Footer -->
-            <jsp:include page="AdminFooter.jsp"></jsp:include>
-        </div>
-    </div>
-</div>
+						</div>
+					</div>
+
+				</div>
+				<!-- Footer -->
+				<jsp:include page="AdminFooter.jsp"></jsp:include>
+			</div>
+		</div>
+	</div>
+	<script>
+$(document).ready(function() {
+    $('#myTable').DataTable({
+        dom: 'Bfrtip',
+        scrollX: true,
+        buttons: [
+            'copy',
+            'csv',
+            'excel',
+            {
+                extend: 'pdf',
+                text: 'PDF',
+                orientation: 'landscape',   // 🔥 FIX
+                pageSize: 'A3',             // 🔥 FIX
+                exportOptions: {
+                    columns: ':visible'
+                },
+                customize: function (doc) {
+                    doc.defaultStyle.fontSize = 8;
+                    doc.styles.tableHeader.fontSize = 9;
+                    doc.pageMargins = [10,10,10,10];
+                }
+            },
+            'print'
+        ]
+    });
+});
+</script>
 </body>
 </html>
 

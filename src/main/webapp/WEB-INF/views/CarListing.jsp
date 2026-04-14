@@ -128,7 +128,7 @@ body {
 								<div class="col-md-6 mb-3">
 									<label>Seller</label>
 									<div class="custom-select-wrapper">
-										<select class="form-control" name="sellerId">
+										<select class="form-control" name="userId">
 											<option value="">Select Seller</option>
 											<c:forEach items="${allUser}" var="s">
 												<option value="${s.userId}">

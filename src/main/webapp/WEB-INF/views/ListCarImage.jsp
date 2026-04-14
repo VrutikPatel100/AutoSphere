@@ -76,7 +76,7 @@ body {
 							</div>
 
 							<div class="table-responsive">
-								<table class="table table-bordered table-hover">
+								<table class="table table-bordered table-hover" id="myTable">
 									<thead class="table-dark">
 										<tr>
 											<th>ID</th>
@@ -101,16 +101,14 @@ body {
 															<span class="badge bg-secondary">No</span>
 														</c:otherwise>
 													</c:choose></td>
-												<td>
-													<!-- Buttons unchanged --> <a
-													href="viewCarImage?imageId=${img.imageId}"
-													class="btn btn-sm btn-info">View</a> <a
+												<td><a href="viewCarImage?imageId=${img.imageId}"
+													class="btn btn-sm btn-primary">View</a> <a
 													href="editCarImage?imageId=${img.imageId}"
-													class="btn btn-sm btn-info">EDIT</a> <a
+													class="btn btn-sm btn-primary">Edit</a> <a
 													href="deleteCarImage?imageId=${img.imageId}"
 													class="btn btn-sm btn-danger"
-													onclick="return confirm('Are you sure?')">Delete</a>
-												</td>
+													onclick="return confirm('Are you sure?')">Delete</a></td>
+
 											</tr>
 										</c:forEach>
 
@@ -134,6 +132,34 @@ body {
 		</div>
 	</div>
 
+<script>
+$(document).ready(function() {
+    $('#myTable').DataTable({
+        dom: 'Bfrtip',
+        scrollX: true,
+        buttons: [
+            'copy',
+            'csv',
+            'excel',
+            {
+                extend: 'pdf',
+                text: 'PDF',
+                orientation: 'landscape',   // 🔥 FIX
+                pageSize: 'A3',             // 🔥 FIX
+                exportOptions: {
+                    columns: ':visible'
+                },
+                customize: function (doc) {
+                    doc.defaultStyle.fontSize = 8;
+                    doc.styles.tableHeader.fontSize = 9;
+                    doc.pageMargins = [10,10,10,10];
+                }
+            },
+            'print'
+        ]
+    });
+});
+</script>
 </body>
 </html>
 

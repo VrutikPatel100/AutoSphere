@@ -78,7 +78,7 @@ body {
 
                         <!-- Table -->
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
+                            <table class="table table-bordered table-hover" id="myTable">
                                 <thead class="table-dark">
                                     <tr>
                                         <th>ID</th>
@@ -140,6 +140,36 @@ body {
         </div>
     </div>
 </div>
+
+<script>
+$(document).ready(function() {
+    $('#myTable').DataTable({
+        dom: 'Bfrtip',
+        scrollX: true,
+        buttons: [
+            'copy',
+            'csv',
+            'excel',
+            {
+                extend: 'pdf',
+                text: 'PDF',
+                orientation: 'landscape',   // 🔥 FIX
+                pageSize: 'A3',             // 🔥 FIX
+                exportOptions: {
+                    columns: ':visible'
+                },
+                customize: function (doc) {
+                    doc.defaultStyle.fontSize = 8;
+                    doc.styles.tableHeader.fontSize = 9;
+                    doc.pageMargins = [10,10,10,10];
+                }
+            },
+            'print'
+        ]
+    });
+});
+</script>
+
 </body>
 </html>
 

@@ -231,16 +231,34 @@ body {
 		</div>
 	</div>
 
-	<script type="text/javascript">
-		let table = new DataTable('#myTable', {
-			responsive : true,
-			layout : {
-				topStart : {
-					buttons : [ 'copy', 'csv', 'excel', 'pdf', 'print' ]
-				}
-			}
-		});
-	</script>
+	<script>
+$(document).ready(function() {
+    $('#myTable').DataTable({
+        dom: 'Bfrtip',
+        scrollX: true,
+        buttons: [
+            'copy',
+            'csv',
+            'excel',
+            {
+                extend: 'pdf',
+                text: 'PDF',
+                orientation: 'landscape',   // 🔥 FIX
+                pageSize: 'A3',             // 🔥 FIX
+                exportOptions: {
+                    columns: ':visible'
+                },
+                customize: function (doc) {
+                    doc.defaultStyle.fontSize = 8;
+                    doc.styles.tableHeader.fontSize = 9;
+                    doc.pageMargins = [10,10,10,10];
+                }
+            },
+            'print'
+        ]
+    });
+});
+</script>
 
 </body>
 </html>

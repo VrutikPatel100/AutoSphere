@@ -166,8 +166,9 @@ body {
 	height: 180px;
 	object-fit: cover;
 }
+
 .card-link {
-    flex: 0 0 265px;   /* was 300px */
+	flex: 0 0 265px; /* was 300px */
 }
 
 .card h5 {
@@ -477,59 +478,56 @@ body {
 	transform: scale(1.15);
 }
 /* photo scroller */
-
 .scroll-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-
-    height: 520px;
-    overflow-y: auto;
-    overflow-x: hidden;
-
-    padding: 20px;
-
-    width: 1100px;   /* 🔥 aa karo */
-    margin: 0 auto;
-    justify-content: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	height: 520px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding: 20px;
+	width: 1100px; /* 🔥 aa karo */
+	margin: 0 auto;
+	justify-content: center;
 }
 
-
 .scroll-container::-webkit-scrollbar {
-    width: 12px;
+	width: 12px;
 }
 
 .scroll-container::-webkit-scrollbar-track {
-    background: #f1f1f1;
+	background: #f1f1f1;
 }
 
 .scroll-container::-webkit-scrollbar-thumb {
-    background: #6a1b9a;
-    border-radius: 10px;
+	background: #6a1b9a;
+	border-radius: 10px;
 }
 
 .scroll-container::-webkit-scrollbar-thumb:hover {
-    background: #ff4d6d;
+	background: #ff4d6d;
 }
 
 /* Optional scrollbar */
 .scroll-container::-webkit-scrollbar {
-    width: 8px;
+	width: 8px;
 }
+
 .filter-car {
-    width: 230px;          /* 🔥 thodu balance size */
-    flex: 0 0 230px;       /* 🔥 IMPORTANT (overlap fix) */
+	width: 230px; /* 🔥 thodu balance size */
+	flex: 0 0 230px; /* 🔥 IMPORTANT (overlap fix) */
 }
+
 .filter-car img {
-    width: 100%;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 10px 10px 0 0;
+	width: 100%;
+	height: 160px;
+	object-fit: cover;
+	border-radius: 10px 10px 0 0;
 }
 
 .scroll-container::-webkit-scrollbar-thumb {
-    background: #b39ddb;
-    border-radius: 10px;
+	background: #b39ddb;
+	border-radius: 10px;
 }
 
 /* FOOTER */
@@ -643,84 +641,78 @@ body {
 
 /* INSIGHTS SECTION */
 .insight-section {
-    padding: 60px 40px;
-    text-align: center;
-    background: #f4f6fb;
+	padding: 60px 40px;
+	text-align: center;
+	background: #f4f6fb;
 }
 
 .insight-section h2 {
-    color: #4a148c;
-    margin-bottom: 40px;
-    font-size: 28px;
+	color: #4a148c;
+	margin-bottom: 40px;
+	font-size: 28px;
 }
 
 /* container */
 .insight-container {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    flex-wrap: wrap;
+	display: flex;
+	justify-content: center;
+	gap: 25px;
+	flex-wrap: wrap;
 }
 
 /* card */
 .insight-card {
-    width: 280px;
-    padding: 25px;
-    border-radius: 18px;
-
-    /* 🔥 PERFECT BALANCE PURPLE (thodu j light) */
-    background: linear-gradient(135deg, #7e57c2, #6a1b9a);
-
-    color: white;
-    text-align: left;
-    transition: 0.3s;
+	width: 280px;
+	padding: 25px;
+	border-radius: 18px;
+	/* 🔥 PERFECT BALANCE PURPLE (thodu j light) */
+	background: linear-gradient(135deg, #7e57c2, #6a1b9a);
+	color: white;
+	text-align: left;
+	transition: 0.3s;
 }
 
 /* hover */
 .insight-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 25px rgba(106, 27, 154, 0.4);
+	transform: translateY(-8px);
+	box-shadow: 0 10px 25px rgba(106, 27, 154, 0.4);
 }
 
 /* icon */
 .insight-card img {
-    width: 70px;
-    margin-bottom: 15px;
+	width: 70px;
+	margin-bottom: 15px;
 }
 
 /* number */
 .insight-card h3 {
-    font-size: 28px;
-    margin-bottom: 10px;
+	font-size: 28px;
+	margin-bottom: 10px;
 }
 
 /* text */
 .insight-card p {
-    font-size: 14px;
-    line-height: 1.5;
+	font-size: 14px;
+	line-height: 1.5;
 }
 
 .section-title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    color: #4a148c;
-    font-size: 28px;
-    margin-bottom: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+	color: #4a148c;
+	font-size: 28px;
+	margin-bottom: 40px;
 }
 
 /* left & right line */
-.section-title::before,
-.section-title::after {
-    content: "";
-    flex: 0.3;   /* 🔥 pehla 1 htu → have ochhu */
-    height: 1px;
-    background: #ddd;
+.section-title::before, .section-title::after {
+	content: "";
+	flex: 0.3; /* 🔥 pehla 1 htu → have ochhu */
+	height: 1px;
+	background: #ddd;
 }
-
-
-
 </style>
 </head>
 
@@ -734,21 +726,38 @@ body {
 			</div> AutoSphere
 		</a>
 
-		<div style="position: relative;">
-			<input type="text" id="cityInput" class="city-select"
-				placeholder="Select City" onkeyup="showCitySuggestions()">
-			<div id="citySuggestionBox" class="suggestion-box"></div>
-		</div>
+		<!-- CITY SEARCH -->
+		<form action="searchCity" method="post" class="search-bar">
+			<input type="text" name="city" placeholder="Select City" required>
+			<input type="submit" value="Search">
+		</form>
 
-		<div class="search-bar" style="position: relative;">
-			<input type="text" id="searchInput" placeholder="Search cars..."
-				onkeyup="showCarSuggestions()">
-			<div id="suggestionBox" class="suggestion-box"></div>
-		</div>
+		<!-- CAR SEARCH -->
+		<form action="searchCar" method="post" class="search-bar">
+			<input type="text" name="car" placeholder="Search cars..." required>
+			<input type="submit" value="Search">
+		</form>
+
 
 		<div class="menu">
 			<a href="CustomerCarList">List Car</a> <a href="#brands">Car
-				Brand</a> <a href="wishlist">My Cart</a>  <a href="login">Login</a> <a href="#">Register</a>
+				Brand</a> <a href="wishlist">My Cart</a> <a href="login">Login</a> <a
+				href="#">Register</a>
+		</div>
+	</div>
+	<div
+		style="background: #f5f3f9; padding: 18px 0; border-bottom: 1px solid #e0e0e0;">
+		<div class="container" style="text-align: center;">
+
+			<h3
+				style="font-weight: 700; color: #6f42c1; margin: 0; letter-spacing: 0.5px;">
+				👋 Welcome, ${sessionScope.user.firstName}
+				${sessionScope.user.lastName}</h3>
+
+			<!-- Stylish underline -->
+			<div
+				style="width: 60px; height: 3px; background: #6f42c1; margin: 8px auto 0; border-radius: 5px;"></div>
+
 		</div>
 	</div>
 
@@ -782,11 +791,11 @@ body {
 		</div>
 
 		<div class="dots-container" id="dotsContainer"></div>
-		
+
 
 		<a href="CustomerCarList">
-    <button class="sell-btn">View My Car</button>
-</a>
+			<button class="sell-btn">View My Car</button>
+		</a>
 	</div>
 
 	<!-- BENEFITS SECTION -->
@@ -820,39 +829,39 @@ body {
 			</a>
 		</div>
 	</div>
-	
+
 	<!-- INSIGHTS SECTION -->
-<div class="insight-section" >
-    <h2 class="section-title">Insights That Drive Us</h2>
+	<div class="insight-section">
+		<h2 class="section-title">Insights That Drive Us</h2>
 
-    <div class="insight-container" class="how-section">
+		<div class="insight-container" class="how-section">
 
-        <div class="insight-card">
-            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png">
-            <h3>4.8/5</h3>
-            <p>Our average review rating on Google and on Social platforms</p>
-        </div>
+			<div class="insight-card">
+				<img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png">
+				<h3>4.8/5</h3>
+				<p>Our average review rating on Google and on Social platforms</p>
+			</div>
 
-        <div class="insight-card">
-            <img src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png">
-            <h3>35%</h3>
-            <p>The number of Spinny customers that are referrals</p>
-        </div>
+			<div class="insight-card">
+				<img src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png">
+				<h3>35%</h3>
+				<p>The number of Spinny customers that are referrals</p>
+			</div>
 
-        <div class="insight-card">
-            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
-            <h3>&gt; 70%</h3>
-            <p>People who've become customers after their first test drive</p>
-        </div>
+			<div class="insight-card">
+				<img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
+				<h3>&gt; 70%</h3>
+				<p>People who've become customers after their first test drive</p>
+			</div>
 
-        <div class="insight-card">
-            <img src="https://cdn-icons-png.flaticon.com/512/4140/4140051.png">
-            <h3>32%</h3>
-            <p>Our women customer quotient</p>
-        </div>
+			<div class="insight-card">
+				<img src="https://cdn-icons-png.flaticon.com/512/4140/4140051.png">
+				<h3>32%</h3>
+				<p>Our women customer quotient</p>
+			</div>
 
-    </div>
-    <div class="watch-area">
+		</div>
+		<div class="watch-area">
 			<button onclick="showVideo()" class="watch-btn">Watch how it
 				works ▶️</button>
 			<div id="videoContainer"
@@ -867,9 +876,9 @@ body {
 					allow="autoplay" allowfullscreen> </iframe>
 
 			</div>
-			
+
 		</div>
-</div>
+	</div>
 
 	<!-- HOW AUTOSPHERE WORKS -->
 	<!-- <div class="how-section">
@@ -908,11 +917,12 @@ body {
 			<p class="learn-more">Learn more</p>
 		</div>
 	</div> -->
-	
-	
+
+
 	<!-- BODY TYPE FILTER -->
-	<div  style="text-align: center; margin: 40px 0;">
-		<h2 class="section-title" style="color: #4a148c;" >Explore by Body Type</h2>
+	<div style="text-align: center; margin: 40px 0;">
+		<h2 class="section-title" style="color: #4a148c;">Explore by Body
+			Type</h2>
 		<div style="margin-top: 20px;">
 			<button class="filter-btn active" onclick="filterCars('ALL', this)">All</button>
 			<button class="filter-btn" onclick="filterCars('SUV', this)">SUV</button>
@@ -924,33 +934,34 @@ body {
 
 	<!-- FILTERED CARS SECTION -->
 	<!-- FILTERED CARS SECTION -->
-<div style="display:flex; justify-content:center;">
-    <div id="filteredCarsContainer" class="scroll-container">
+	<div style="display: flex; justify-content: center;">
+		<div id="filteredCarsContainer" class="scroll-container">
 
-		<c:forEach var="car" items="${customerCarList}">
-			<div class="filter-car"
-				data-type="${car.bodyType != null ? car.bodyType.toUpperCase() : 'UNKNOWN'}"
-				style="width: 250px;">
-				<a href="customerViewCarListing1?listingId=${car.listingId}"
-					class="card-link" style="text-decoration: none; color: inherit;">
-					<div class="card">
-						<img src="${car.imageURL}" alt="${car.brandName} ${car.modelName}"
-							style="width: 100%; height: 180px; object-fit: cover;">
-						<div style="padding: 15px;">
-							<h5 style="font-size: 16px; margin-bottom: 8px; color: #333;">${car.brandName}
-								${car.modelName}</h5>
-							<p
-								style="color: #4a148c; font-weight: bold; font-size: 18px; margin: 0;">&#8377;
-								${car.price}</p>
-							<p>${car.bodyType}</p>
+			<c:forEach var="car" items="${customerCarList}">
+				<div class="filter-car"
+					data-type="${car.bodyType != null ? car.bodyType.toUpperCase() : 'UNKNOWN'}"
+					style="width: 250px;">
+					<a href="customerViewCarListing1?listingId=${car.listingId}"
+						class="card-link" style="text-decoration: none; color: inherit;">
+						<div class="card">
+							<img src="${car.imageURL}"
+								alt="${car.brandName} ${car.modelName}"
+								style="width: 100%; height: 180px; object-fit: cover;">
+							<div style="padding: 15px;">
+								<h5 style="font-size: 16px; margin-bottom: 8px; color: #333;">${car.brandName}
+									${car.modelName}</h5>
+								<p
+									style="color: #4a148c; font-weight: bold; font-size: 18px; margin: 0;">&#8377;
+									${car.price}</p>
+								<p>${car.bodyType}</p>
+							</div>
 						</div>
-					</div>
-				</a>
-			</div>
-		</c:forEach>
+					</a>
+				</div>
+			</c:forEach>
+		</div>
 	</div>
-</div>
-	
+
 	<!-- BRANDS SECTION -->
 	<div class="brand-section" id="brands">
 		<h2 class="section-title">Explore Popular Brands</h2>
@@ -974,15 +985,14 @@ body {
 		<div class="footer-container">
 			<div class="footer-col">
 				<h3>AutoSphere</h3>
-				<p>AutoSphere is the easiest way to buy cars
-					online.</p>
+				<p>AutoSphere is the easiest way to buy cars online.</p>
 			</div>
 			<div class="footer-col">
 				<h3>Company</h3>
 				<a href="about">About</a> <a href="Careers">Careers</a> <a
 					href="Blog">Blog</a> <a href="Contact">Contact</a>
 			</div>
-			
+
 			<div class="footer-col">
 				<h3>Support</h3>
 				<a href="faq">FAQ</a> <a href="terms">Terms</a> <a href="privacy">Privacy</a>

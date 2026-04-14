@@ -88,13 +88,15 @@
                         <td class="label">Status</td>
                         <td>
                             <c:choose>
-                                <c:when test="${carListing.status}">
-                                    <span class="badge bg-success">Active</span>
-                                </c:when>
-                                <c:otherwise>
-                                    <span class="badge bg-danger">Inactive</span>
-                                </c:otherwise>
-                            </c:choose>
+    <c:when test="${carListing.status == 'Available'}">
+        <span class="badge bg-success">Available</span>
+    </c:when>
+   
+    <c:otherwise>
+        <span class="badge bg-secondary">Unknown</span>
+    </c:otherwise>
+</c:choose>
+
                         </td>
                     </tr>
 

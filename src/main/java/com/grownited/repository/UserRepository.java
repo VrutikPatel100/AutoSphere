@@ -9,17 +9,9 @@ import org.springframework.stereotype.Repository;
 import com.grownited.entity.UserEntity;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserEntity, Integer>{
+public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
-	
-	Optional<UserEntity> findByEmail(String email);
-	List<UserEntity> findByRole(String role);
-//	List<UserEntity> findByemail(String email);
-	
-	 UserEntity findByemail(String email);
-	 
-//	 long countByRole(String role);
-	
+    Optional<UserEntity> findByEmail(String email); // ✅ unique
+
+    List<UserEntity> findByRole(String role); // ✅ multiple allowed
 }
-
-

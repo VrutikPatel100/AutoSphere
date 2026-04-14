@@ -74,7 +74,7 @@ body {
 
                         <!-- Table -->
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-hover">
+                            <table class="table table-bordered table-striped table-hover" id="myTable">
                                 <thead class="table-dark">
                                     <tr>
                                         <th>Wishlist ID</th>
@@ -98,10 +98,12 @@ body {
                                             <td>${s.listingId}</td>
                                             <td>${s.addedAt}</td>
                                             <td>
-                                                <a href="viewSavedListing?wishlistId=${s.wishlistId}" class="btn btn-info btn-sm mb-1">View</a>
-                                                <a href="editSavedListing?wishlistId=${s.wishlistId}" class="btn btn-info btn-sm mb-1">Edit</a>
-                                                <a href="deleteSavedListing?wishlistId=${s.wishlistId}" class="btn btn-danger btn-sm mb-1" onclick="return confirm('Are you sure?')">Delete</a>
-                                            </td>
+    <a href="viewSavedListing?wishlistId=${s.wishlistId}" class="btn btn-primary btn-sm mb-1">View</a>
+    <a href="editSavedListing?wishlistId=${s.wishlistId}" class="btn btn-primary btn-sm mb-1">Edit</a>
+    <a href="deleteSavedListing?wishlistId=${s.wishlistId}" class="btn btn-danger btn-sm mb-1"
+       onclick="return confirm('Are you sure?')">Delete</a>
+</td>
+
                                         </tr>
                                     </c:forEach>
 
@@ -118,6 +120,34 @@ body {
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function() {
+    $('#myTable').DataTable({
+        dom: 'Bfrtip',
+        scrollX: true,
+        buttons: [
+            'copy',
+            'csv',
+            'excel',
+            {
+                extend: 'pdf',
+                text: 'PDF',
+                orientation: 'landscape',   // 🔥 FIX
+                pageSize: 'A3',             // 🔥 FIX
+                exportOptions: {
+                    columns: ':visible'
+                },
+                customize: function (doc) {
+                    doc.defaultStyle.fontSize = 8;
+                    doc.styles.tableHeader.fontSize = 9;
+                    doc.pageMargins = [10,10,10,10];
+                }
+            },
+            'print'
+        ]
+    });
+});
+</script>
 </body>
 </html>
 

@@ -15,274 +15,249 @@ import com.grownited.entity.*;
 import com.grownited.repository.*;
 import com.grownited.entity.CarListingEntity;
 
-
 @Controller
 public class CarListingController {
 
-    private final SessionController sessionController;
+	private final SessionController sessionController;
 
-    @Autowired
-    CarListingRepository carListingRepository;
+	@Autowired
+	CarListingRepository carListingRepository;
 
-    @Autowired
-    CarBrandRepository carBrandRepository;
+	@Autowired
+	CarBrandRepository carBrandRepository;
 
-    @Autowired
-    CarModelTypeRepository carModelTypeRepository;
+	@Autowired
+	CarModelTypeRepository carModelTypeRepository;
 
-    @Autowired
-    CarVariantRepository carVariantRepository;
+	@Autowired
+	CarVariantRepository carVariantRepository;
 
-    @Autowired
-    UserRepository userRepository;
+	@Autowired
+	UserRepository userRepository;
 
-    @Autowired
-    Cloudinary cloudinary;
+	@Autowired
+	Cloudinary cloudinary;
 
+	CarListingController(SessionController sessionController) {
+		this.sessionController = sessionController;
+	}
 
-    CarListingController(SessionController sessionController) {
-        this.sessionController = sessionController;
-    }
-    
-    
+	// ================== ADD PAGE ==================
+	@GetMapping("/carListing")
+	public String carListing(Model model) {
 
+		model.addAttribute("allUser", userRepository.findAll());
+		model.addAttribute("allCarBrand", carBrandRepository.findAll());
+		model.addAttribute("allCarModel", carModelTypeRepository.findAll());
+		model.addAttribute("allCarVariant", carVariantRepository.findAll());
 
-    // ================== ADD PAGE ==================
-    @GetMapping("/carListing")
-    public String carListing(Model model) {
+		return "CarListing";
+	}
 
-        model.addAttribute("allUser", userRepository.findAll());
-        model.addAttribute("allCarBrand", carBrandRepository.findAll());
-        model.addAttribute("allCarModel", carModelTypeRepository.findAll());
-        model.addAttribute("allCarVariant", carVariantRepository.findAll());
+	// ================== SAVE ==================
+	@PostMapping("/saveListing")
+	public String saveCarList(CarListingEntity carListingEntity, @RequestParam("imageFile") MultipartFile file) {
 
-        return "CarListing";
-    }
+		try {
+			Map uploadResult = cloudinary.uploader().upload(file.getBytes(), null);
+			String imageUrl = uploadResult.get("secure_url").toString();
+			carListingEntity.setImageURL(imageUrl);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-    // ================== SAVE ==================
-    @PostMapping("/saveListing")
-    public String saveCarList(CarListingEntity carListingEntity,
-                             @RequestParam("imageFile") MultipartFile file) {
+		// IMPORTANT: First get the model to fetch body_type
+		if (carListingEntity.getModelId() != null) {
+			Optional<CarModelTypeEntity> modelOpt = carModelTypeRepository.findById(carListingEntity.getModelId());
+			if (modelOpt.isPresent()) {
+				CarModelTypeEntity model = modelOpt.get();
+				carListingEntity.setModelName(model.getModelName());
 
-        try {
-            Map uploadResult = cloudinary.uploader().upload(file.getBytes(), null);
-            String imageUrl = uploadResult.get("secure_url").toString();
-            carListingEntity.setImageURL(imageUrl);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+				// CRITICAL: Set body_type from CarModelType
+				String bodyType = model.getBodyType();
+				if (bodyType != null && !bodyType.isEmpty()) {
+					carListingEntity.setBodyType(bodyType.toUpperCase()); // Store in uppercase for consistency
+					System.out.println("Body type set from model: " + bodyType);
+				} else {
+					carListingEntity.setBodyType("UNKNOWN");
+					System.out.println("Model had no body type, set default: UNKNOWN");
+				}
+			}
+		}
 
-        // IMPORTANT: First get the model to fetch body_type
-        if (carListingEntity.getModelId() != null) {
-            Optional<CarModelTypeEntity> modelOpt = carModelTypeRepository.findById(carListingEntity.getModelId());
-            if (modelOpt.isPresent()) {
-                CarModelTypeEntity model = modelOpt.get();
-                carListingEntity.setModelName(model.getModelName());
-                
-                // CRITICAL: Set body_type from CarModelType
-                String bodyType = model.getBodyType();
-                if (bodyType != null && !bodyType.isEmpty()) {
-                    carListingEntity.setBodyType(bodyType.toUpperCase()); // Store in uppercase for consistency
-                    System.out.println("Body type set from model: " + bodyType);
-                } else {
-                    carListingEntity.setBodyType("UNKNOWN");
-                    System.out.println("Model had no body type, set default: UNKNOWN");
-                }
-            }
-        }
+		// Set brand name
+		if (carListingEntity.getBrandId() != null) {
+			Optional<CarBrandEntity> brandOpt = carBrandRepository.findById(carListingEntity.getBrandId());
+			if (brandOpt.isPresent()) {
+				carListingEntity.setBrandName(brandOpt.get().getBrandName());
+			}
+		}
 
-        // Set brand name
-        if (carListingEntity.getBrandId() != null) {
-            Optional<CarBrandEntity> brandOpt = carBrandRepository.findById(carListingEntity.getBrandId());
-            if (brandOpt.isPresent()) {
-                carListingEntity.setBrandName(brandOpt.get().getBrandName());
-            }
-        }
+		// Set variant name
+		if (carListingEntity.getVariantId() != null) {
+			Optional<CarVariantEntity> variantOpt = carVariantRepository.findById(carListingEntity.getVariantId());
+			if (variantOpt.isPresent()) {
+				carListingEntity.setVariantName(variantOpt.get().getVariantName());
+			}
+		}
 
-        // Set variant name
-        if (carListingEntity.getVariantId() != null) {
-            Optional<CarVariantEntity> variantOpt = carVariantRepository.findById(carListingEntity.getVariantId());
-            if (variantOpt.isPresent()) {
-                carListingEntity.setVariantName(variantOpt.get().getVariantName());
-            }
-        }
+		// Final fallback
+		if (carListingEntity.getBodyType() == null || carListingEntity.getBodyType().isEmpty()) {
+			carListingEntity.setBodyType("UNKNOWN");
+		}
 
-        // Final fallback
-        if (carListingEntity.getBodyType() == null || carListingEntity.getBodyType().isEmpty()) {
-            carListingEntity.setBodyType("UNKNOWN");
-        }
+		carListingRepository.save(carListingEntity);
+		return "redirect:/allCarList";
+	}
 
-        carListingRepository.save(carListingEntity);
-        return "redirect:/allCarList";
-    }
+	// ================== LIST ==================
+	@GetMapping("/allCarList")
+	public String allCarList(Model model) {
+		model.addAttribute("allCarList", carListingRepository.findAll());
+		return "AllCarList";
+	}
 
-    // ================== LIST ==================
-    @GetMapping("/allCarList")
-    public String allCarList(Model model) {
-        model.addAttribute("allCarList", carListingRepository.findAll());
-        return "AllCarList";
-    }
+	// ================== DELETE ==================
+	@GetMapping("/deleteCarListing")
+	public String deleteCarListing(@RequestParam("listingId") Integer listingId) {
+		carListingRepository.deleteById(listingId);
+		return "redirect:/allCarList";
+	}
 
-    // ================== DELETE ==================
-    @GetMapping("/deleteCarListing")
-    public String deleteCarListing(@RequestParam("listingId") Integer listingId) {
-        carListingRepository.deleteById(listingId);
-        return "redirect:/allCarList";
-    }
+	// ================== VIEW ==================
+	@GetMapping("/viewCarListing")
+	public String viewCarListing(@RequestParam("listingId") Integer listingId, Model model) {
 
-    // ================== VIEW ==================
-    @GetMapping("/viewCarListing")
-    public String viewCarListing(@RequestParam("listingId") Integer listingId, Model model) {
+		Optional<CarListingEntity> car = carListingRepository.findById(listingId);
 
-        Optional<CarListingEntity> car =
-                carListingRepository.findById(listingId);
+		car.ifPresent(c -> model.addAttribute("carListing", c));
 
-        car.ifPresent(c -> model.addAttribute("carListing", c));
+		return "ViewCarListing";
+	}
 
-        return "ViewCarListing";
-    }
-    
-    
-   
+	@GetMapping("/cars-by-brand")
+	public String getCarsByBrand(@RequestParam("brand") String brand, Model model) {
 
-    @GetMapping("/cars-by-brand")
-    public String getCarsByBrand(@RequestParam("brand") String brand, Model model) {
+		List<CarListingEntity> cars = carListingRepository.findByBrandNameIgnoreCase(brand);
 
-        List<CarListingEntity> cars = carListingRepository.findByBrandNameIgnoreCase(brand);
+		model.addAttribute("cars", cars);
+		model.addAttribute("brand", brand);
 
-        model.addAttribute("cars", cars);
-        model.addAttribute("brand", brand);
+		return "carsByBrand";
+	}
 
-        return "carsByBrand";
-    }
-     
-    @GetMapping("/car-details")
-    public String carDetails(@RequestParam("id") Integer id, Model model) {
+	@GetMapping("/car-details")
+	public String carDetails(@RequestParam("id") Integer id, Model model) {
 
-        CarListingEntity car = carListingRepository.findById(id).orElse(null);
+		CarListingEntity car = carListingRepository.findById(id).orElse(null);
 
-        model.addAttribute("car", car);
+		model.addAttribute("car", car);
 
-        return "CustomerViewCarListing"; // JSP name
-    }
-    
-    @GetMapping("/car/{id}")
-    public String carDetailsById(@PathVariable Integer id, Model model) {
+		return "CustomerViewCarListing"; // JSP name
+	}
 
-        Optional<CarListingEntity> car = carListingRepository.findById(id);
+	@GetMapping("/car/{id}")
+	public String carDetailsById(@PathVariable Integer id, Model model) {
 
-        if (car.isPresent()) {
-            model.addAttribute("car", car.get());
-            return "carDetails";
-        } else {
-            return "notfound";
-        }
-    }
-    @GetMapping("/search")
-    @ResponseBody
-    public List<CarListingEntity> searchCars(@RequestParam("keyword") String keyword) {
+		Optional<CarListingEntity> car = carListingRepository.findById(id);
 
-        try {
+		if (car.isPresent()) {
+			model.addAttribute("car", car.get());
+			return "carDetails";
+		} else {
+			return "notfound";
+		}
+	}
 
-            if (keyword == null || keyword.trim().isEmpty()) {
-                return List.of();
-            }
+	@GetMapping("/search")
+	@ResponseBody
+	public List<CarListingEntity> searchCars(@RequestParam("keyword") String keyword) {
 
-            return carListingRepository
-                .findByModelNameContainingIgnoreCaseOrVariantNameContainingIgnoreCaseOrBrandNameContainingIgnoreCase(
-                    keyword, keyword, keyword);
+		try {
 
-        } catch (Exception e) {
-            e.printStackTrace(); // 🔥 console ma error dekhashe
-            return List.of(); // 🔥 ALWAYS JSON return
-        }
-    }
-    
-    
-    @GetMapping("/editCarListing")
-    public String editCarListing(@RequestParam("listingId") Integer listingId, Model model) {
+			if (keyword == null || keyword.trim().isEmpty()) {
+				return List.of();
+			}
 
-        Optional<CarListingEntity> car = carListingRepository.findById(listingId);
+			return carListingRepository
+					.findByModelNameContainingIgnoreCaseOrVariantNameContainingIgnoreCaseOrBrandNameContainingIgnoreCase(
+							keyword, keyword, keyword);
 
-        model.addAttribute("carListing", car.get());
+		} catch (Exception e) {
+			e.printStackTrace(); // 🔥 console ma error dekhashe
+			return List.of(); // 🔥 ALWAYS JSON return
+		}
+	}
 
-        model.addAttribute("allUser", userRepository.findAll());
-        model.addAttribute("allCarBrand", carBrandRepository.findAll());
-        model.addAttribute("allCarModel", carModelTypeRepository.findAll());
-        model.addAttribute("allCarVariant", carVariantRepository.findAll());
+	@GetMapping("/editCarListing")
+	public String editCarListing(@RequestParam("listingId") Integer listingId, Model model) {
 
-        return "EditCarListing";
-    }
+		Optional<CarListingEntity> car = carListingRepository.findById(listingId);
 
-    
-    @PostMapping("/updateCarListing")
-    public String updateCarListing(CarListingEntity carListingEntity,
-                                   @RequestParam("imageFile") MultipartFile file) {
+		model.addAttribute("carListing", car.get());
 
-        try {
-            // Existing record fetch
-            CarListingEntity existingCar =
-                    carListingRepository.findById(carListingEntity.getListingId()).orElse(null);
+		model.addAttribute("allUser", userRepository.findAll());
+		model.addAttribute("allCarBrand", carBrandRepository.findAll());
+		model.addAttribute("allCarModel", carModelTypeRepository.findAll());
+		model.addAttribute("allCarVariant", carVariantRepository.findAll());
 
-            if (existingCar == null) {
-                return "redirect:/allCarList";
-            }
+		return "EditCarListing";
+	}
 
-            // Image update (optional)
-            if (file != null && !file.isEmpty()) {
+	@PostMapping("/updateCarListing")
+	public String updateCarListing(CarListingEntity carListingEntity, @RequestParam("imageFile") MultipartFile file) {
 
-                Map uploadResult = cloudinary.uploader().upload(file.getBytes(), null);
-                String imageUrl = uploadResult.get("secure_url").toString();
+		try {
+			// Existing record fetch
+			CarListingEntity existingCar = carListingRepository.findById(carListingEntity.getListingId()).orElse(null);
 
-                carListingEntity.setImageURL(imageUrl);
-            } else {
-                carListingEntity.setImageURL(existingCar.getImageURL());
-            }
+			if (existingCar == null) {
+				return "redirect:/allCarList";
+			}
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+			// Image update (optional)
+			if (file != null && !file.isEmpty()) {
 
-        // Brand
-        Optional<CarBrandEntity> brand =
-                carBrandRepository.findById(carListingEntity.getBrandId());
-        brand.ifPresent(b -> carListingEntity.setBrandName(b.getBrandName()));
+				Map uploadResult = cloudinary.uploader().upload(file.getBytes(), null);
+				String imageUrl = uploadResult.get("secure_url").toString();
 
-        // Model
-        Optional<CarModelTypeEntity> model =
-                carModelTypeRepository.findById(carListingEntity.getModelId());
-        if (model.isPresent()) {
-            CarModelTypeEntity m = model.get();
+				carListingEntity.setImageURL(imageUrl);
+			} else {
+				carListingEntity.setImageURL(existingCar.getImageURL());
+			}
 
-            carListingEntity.setModelName(m.getModelName());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-            // 🔥 IMPORTANT: bodyType pan set karo
-            String bodyType = m.getBodyType();
+		// Brand
+		Optional<CarBrandEntity> brand = carBrandRepository.findById(carListingEntity.getBrandId());
+		brand.ifPresent(b -> carListingEntity.setBrandName(b.getBrandName()));
 
-            if (bodyType != null && !bodyType.isEmpty()) {
-                carListingEntity.setBodyType(bodyType.toUpperCase());
-            } else {
-                carListingEntity.setBodyType("UNKNOWN");
-            }
-        }
+		// Model
+		Optional<CarModelTypeEntity> model = carModelTypeRepository.findById(carListingEntity.getModelId());
+		if (model.isPresent()) {
+			CarModelTypeEntity m = model.get();
 
+			carListingEntity.setModelName(m.getModelName());
 
-        // Variant
-        Optional<CarVariantEntity> variant =
-                carVariantRepository.findById(carListingEntity.getVariantId());
-        variant.ifPresent(v -> carListingEntity.setVariantName(v.getVariantName()));
+			// 🔥 IMPORTANT: bodyType pan set karo
+			String bodyType = m.getBodyType();
 
-        carListingRepository.save(carListingEntity);
+			if (bodyType != null && !bodyType.isEmpty()) {
+				carListingEntity.setBodyType(bodyType.toUpperCase());
+			} else {
+				carListingEntity.setBodyType("UNKNOWN");
+			}
+		}
 
-        return "redirect:/allCarList";
-    }
+		// Variant
+		Optional<CarVariantEntity> variant = carVariantRepository.findById(carListingEntity.getVariantId());
+		variant.ifPresent(v -> carListingEntity.setVariantName(v.getVariantName()));
 
-    
-    
-    
+		carListingRepository.save(carListingEntity);
 
+		return "redirect:/allCarList";
+	}
 
-
-    
-    
 }

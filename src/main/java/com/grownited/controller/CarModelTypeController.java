@@ -38,9 +38,13 @@ public class CarModelTypeController {
 		
 		@PostMapping("savecartype")
 		public String savecartype(CarModelTypeEntity carModelTypeEntity) {
-			carModelTypeRepository.save(carModelTypeEntity);
-			return "AdminDashboard"; 
+
+		    carModelTypeEntity.setActive(true); // 👈 default active
+
+		    carModelTypeRepository.save(carModelTypeEntity);
+		    return "AdminDashboard"; 
 		}
+
 		
 		@GetMapping("listCarModel")
 		public String listCarModel(Model model) {		

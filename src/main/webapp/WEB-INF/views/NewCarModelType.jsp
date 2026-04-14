@@ -28,7 +28,7 @@ body {
 	background: #fff;
 	padding: 25px;
 	border-radius: 12px;
-	box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* Title box */
@@ -91,102 +91,96 @@ body {
 	gap: 10px;
 	margin-top: 15px;
 }
-
 </style>
 
 </head>
 
 <body>
 
-<div class="container-scroller">
+	<div class="container-scroller">
 
-	<jsp:include page="AdminHeader.jsp"></jsp:include>
+		<jsp:include page="AdminHeader.jsp"></jsp:include>
 
-	<div class="container-fluid page-body-wrapper">
+		<div class="container-fluid page-body-wrapper">
 
-		<jsp:include page="AdminLeftSidebar.jsp"></jsp:include>
+			<jsp:include page="AdminLeftSidebar.jsp"></jsp:include>
 
-		<div class="main-panel">
-			<div class="content-wrapper">
+			<div class="main-panel">
+				<div class="content-wrapper">
 
-				<h3 class="mb-3">Welcome ${sessionScope.user.firstName}</h3>
+					<h3 class="mb-3">Welcome ${sessionScope.user.firstName}</h3>
 
-				<!-- Compact Form -->
-				<div class="form-container">
-					<div class="form-card">
+					<!-- Compact Form -->
+					<div class="form-container">
+						<div class="form-card">
 
-						<!-- Title -->
-						<div class="title-box">
-							<h3>New Car Model</h3>
+							<!-- Title -->
+							<div class="title-box">
+								<h3>New Car Model</h3>
+							</div>
+
+							<form action="savecartype" method="post">
+
+
+								<!-- Brand -->
+								<div class="mb-3">
+									<label>Select Brand</label> <select name="brandId"
+										class="form-control" required>
+										<c:forEach items="${allBrand}" var="b">
+											<option value="${b.brandId}">${b.brandName}</option>
+										</c:forEach>
+									</select>
+								</div>
+
+								<!-- Body Type -->
+								<div class="mb-3">
+									<label>Body Type</label> <input type="text" name="bodyType"
+										class="form-control" placeholder="Enter body type (e.g., SUV)"
+										required>
+								</div>
+
+								<!-- Model Name -->
+								<div class="mb-3">
+									<label>Model Name</label> <input type="text" name="modelName"
+										class="form-control" placeholder="Enter model name (optional)">
+								</div>
+								<div class="mb-3">
+									<label>Status</label> <select name="active"
+										class="form-control">
+										<option value="true">Active</option>
+										<option value="false">Inactive</option>
+									</select>
+								</div>
+
+
+								<!-- Launch Year -->
+								<div class="mb-3">
+									<label>Launch Year</label> <input type="date" name="launchYear"
+										class="form-control">
+								</div>
+
+								<!-- Buttons -->
+								<div class="button-group">
+
+									<button type="submit" class="btn-purple">Save Car
+										Model Type</button>
+
+									<a href="admin-dashboard" class="btn-cancel"> Cancel </a>
+
+								</div>
+
+							</form>
+
 						</div>
-
-						<form action="savecartype" method="post">
-
-
-						<!-- Brand -->
-<div class="mb-3">
-    <label>Select Brand</label>
-    <select name="brandId" class="form-control" required>
-        <c:forEach items="${allBrand}" var="b">
-            <option value="${b.brandId}">
-                ${b.brandName}
-            </option>
-        </c:forEach>
-    </select>
-</div>
-						
-							<!-- Body Type -->
-							<div class="mb-3">
-								<label>Body Type</label>
-								<input type="text"
-									name="bodyType"
-									class="form-control"
-									placeholder="Enter body type (e.g., SUV)"
-									required>
-							</div>
-
-							<!-- Model Name -->
-							<div class="mb-3">
-								<label>Model Name</label>
-								<input type="text"
-									name="modelName"
-									class="form-control"
-									placeholder="Enter model name (optional)">
-							</div>
-
-							<!-- Launch Year -->
-							<div class="mb-3">
-								<label>Launch Year</label>
-								<input type="date"
-									name="launchYear"
-									class="form-control">
-							</div>
-
-							<!-- Buttons -->
-							<div class="button-group">
-
-								<button type="submit" class="btn-purple">
-									Save Car Model Type
-								</button>
-
-								<a href="admin-dashboard" class="btn-cancel">
-									Cancel
-								</a>
-
-							</div>
-
-						</form>
-
 					</div>
+
 				</div>
 
+				<jsp:include page="AdminFooter.jsp"></jsp:include>
+
 			</div>
-
-			<jsp:include page="AdminFooter.jsp"></jsp:include>
-
 		</div>
 	</div>
-</div>
 
 </body>
 </html>

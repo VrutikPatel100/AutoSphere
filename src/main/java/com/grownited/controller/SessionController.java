@@ -110,56 +110,114 @@ public class SessionController {
 		return "ForgetPassword";
 	}
 	
+//	@PostMapping("/forgot-password")
+//	public String forgotPassword(@RequestParam String email) {
+//
+//	    // 1️⃣ Find user
+//	    Optional<UserEntity> user = userRepository.findByEmail(email);
+//
+//	    if (user == null) {
+//	        return "Email not found";
+//	    }
+//
+//	    // 2️⃣ Call your existing method
+//	    String otp = mailerService.sendForgotPasswordOtp(email);
+//
+//	    // 3️⃣ Save OTP in database
+//	    user.setOtp(otp);
+//	    userRepository.save(user);
+//
+//	    return "ResetPassword";
+//	}
+	
 	@PostMapping("/forgot-password")
-	public String forgotPassword(@RequestParam String email) {
+	public String forgotPassword(@RequestParam String email, Model model) {
 
-	    // 1️⃣ Find user
-	    UserEntity user = userRepository.findByemail(email);
+	    Optional<UserEntity> optionalUser = userRepository.findByEmail(email);
 
-	    if (user == null) {
-	        return "Email not found";
+	    if (optionalUser.isEmpty()) {
+	        model.addAttribute("error", "Email not found");
+	        return "ForgetPassword";
 	    }
 
-	    // 2️⃣ Call your existing method
+	    UserEntity user = optionalUser.get();
+
+	    // Send OTP
 	    String otp = mailerService.sendForgotPasswordOtp(email);
 
-	    // 3️⃣ Save OTP in database
+	    // Save OTP
 	    user.setOtp(otp);
 	    userRepository.save(user);
 
+	    model.addAttribute("email", email); // pass email to next page
 	    return "ResetPassword";
 	}
 	
+//	@PostMapping("/reset-password")
+//	public String resetPassword(
+//	        @RequestParam String email,
+//	        @RequestParam String otp,
+//	        @RequestParam String newPassword) {
+//		
+//
+//	    UserEntity user = userRepository.findByEmail(email);
+//
+//	    if (user == null) {
+//	        return "User not found";
+//	    }
+//
+//	    if (!user.getOtp().equals(otp)) {
+//	    	
+//	        return "ResetPassword";
+//	        
+//	    }
+//
+//	    // Encode new password
+//	    String encodedPassword = passwordEncoder.encode(newPassword);
+//	    user.setPassword(encodedPassword);
+//
+//	    // Clear OTP after use
+//	    user.setOtp(null);
+//
+//	    userRepository.save(user);
+//
+//	    return "Login";
+//	}
+
 	@PostMapping("/reset-password")
 	public String resetPassword(
 	        @RequestParam String email,
 	        @RequestParam String otp,
-	        @RequestParam String newPassword) {
+	        @RequestParam String newPassword,
+	        Model model) {
 
-	    UserEntity user = userRepository.findByemail(email);
+	    Optional<UserEntity> optionalUser = userRepository.findByEmail(email);
 
-	    if (user == null) {
-	        return "User not found";
-	    }
-
-	    if (!user.getOtp().equals(otp)) {
-	    	
+	    if (optionalUser.isEmpty()) {
+	        model.addAttribute("error", "User not found");
 	        return "ResetPassword";
-	        
 	    }
 
-	    // Encode new password
+	    UserEntity user = optionalUser.get();
+
+	    // Check OTP
+	    if (user.getOtp() == null || !user.getOtp().equals(otp)) {
+	        model.addAttribute("error", "Invalid OTP");
+	        return "ResetPassword";
+	    }
+
+	    // Encode password
 	    String encodedPassword = passwordEncoder.encode(newPassword);
 	    user.setPassword(encodedPassword);
 
-	    // Clear OTP after use
+	    // Clear OTP
 	    user.setOtp(null);
 
 	    userRepository.save(user);
 
 	    return "Login";
 	}
-	
+
 	@PostMapping("/register")
 	public String register(UserEntity userEntity, UserDetailEntity userDetailEntity,MultipartFile profilePic) {
 		

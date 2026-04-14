@@ -71,6 +71,7 @@ public class WishlistController {
                 wishlistRepository.findByUser_UserId(userId);
 
         model.addAttribute("wishlist", wishlist);
+        model.addAttribute("username", user.getFirstName());
 
         return "wishlist";
     }

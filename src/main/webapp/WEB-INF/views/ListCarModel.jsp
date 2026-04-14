@@ -77,7 +77,7 @@ body {
                         </div>
 
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
+                            <table class="table table-bordered table-hover" id="myTable">
                                 <thead class="table-dark">
                                     <tr>
                                         <th>ID</th>
@@ -110,7 +110,7 @@ body {
                                             <td>
                                                 <!-- Buttons unchanged -->
                                                 <a href="viewCarModel?modelId=${m.modelId}" class="btn btn-primary btn-sm">View</a>
-                                                <a href="editCarModel?modelId=${m.modelId}" class="btn btn-warning btn-sm">Edit</a>
+                                                <a href="editCarModel?modelId=${m.modelId}" class="btn btn-primary btn-sm">Edit</a>
                                                 <a href="deleteCarModel?modelId=${m.modelId}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
                                             </td>
                                         </tr>
@@ -135,6 +135,34 @@ body {
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function() {
+    $('#myTable').DataTable({
+        dom: 'Bfrtip',
+        scrollX: true,
+        buttons: [
+            'copy',
+            'csv',
+            'excel',
+            {
+                extend: 'pdf',
+                text: 'PDF',
+                orientation: 'landscape',   // 🔥 FIX
+                pageSize: 'A3',             // 🔥 FIX
+                exportOptions: {
+                    columns: ':visible'
+                },
+                customize: function (doc) {
+                    doc.defaultStyle.fontSize = 8;
+                    doc.styles.tableHeader.fontSize = 9;
+                    doc.pageMargins = [10,10,10,10];
+                }
+            },
+            'print'
+        ]
+    });
+});
+</script>
 
 </body>
 </html>

@@ -19,7 +19,8 @@ public class CarModelTypeEntity {
     private String modelName;
     private String bodyType;
     private LocalDate launchYear;
-    private boolean active;
+    private boolean active = true;
+
 	public Integer getModelId() {
 		return modelId;
 	}

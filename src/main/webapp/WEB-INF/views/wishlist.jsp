@@ -152,9 +152,7 @@ body {
 
 		<div class="page-title">
 
-			<h3 class="wishlist-title">
-				<i class="fas fa-cart-plus"></i> My Wishlist
-			</h3>
+			<h3>❤️ ${username}'s Wishlist</h3>
 
 			<a href="CustomerCarList" class="btn btn-buy"> <i
 				class="fas fa-arrow-left"></i> Back
