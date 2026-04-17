@@ -10,9 +10,9 @@
 
         <div class="footer-col">
             <h3>Company</h3>
-            <a href="#">About</a>
+            <a href="about">About</a>
             <a href="Careers">Careers</a>
-            <a href="#">Blog</a>
+            <a href="Blog">Blog</a>
             <a href="Contact">Contact</a>
         </div>
 

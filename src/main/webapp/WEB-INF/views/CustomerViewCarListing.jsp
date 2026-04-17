@@ -146,16 +146,49 @@ body {
 }
 </style>
 
+<!-- PRICE FORMATTING JAVASCRIPT (USING HTML ENTITY FOR RUPEE) -->
+<script>
+    function formatIndianPrice(price) {
+        // Remove any non-digit characters (₹, commas, spaces, etc.)
+        let num = parseInt(price.toString().replace(/[^0-9]/g, ''));
+        if (isNaN(num)) return '0';
+        let str = num.toString();
+        let len = str.length;
+        if (len <= 3) return str;
+        let last3 = str.slice(-3);
+        let remaining = str.slice(0, -3);
+        let formatted = '';
+        while (remaining.length > 2) {
+            formatted = ',' + remaining.slice(-2) + formatted;
+            remaining = remaining.slice(0, -2);
+        }
+        if (remaining.length > 0) {
+            formatted = remaining + formatted;
+        }
+        return formatted + ',' + last3;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        let priceElement = document.getElementById('formattedPrice');
+        if (priceElement) {
+            let rawPrice = priceElement.getAttribute('data-price');
+            if (rawPrice) {
+                let formattedPrice = formatIndianPrice(rawPrice);
+                // Use HTML entity for rupee symbol to avoid encoding issues
+                priceElement.innerHTML = '&#8377; ' + formattedPrice;
+            }
+        }
+    });
+</script>
+
 </head>
 
 <body>
 
 	<!-- HEADER -->
-
 	<jsp:include page="CustomerHeader.jsp"></jsp:include>
 
 	<!-- MAIN -->
-
 	<div class="container">
 
 		<div class="detail-card">
@@ -260,45 +293,39 @@ body {
 							</div>
 						</div>
 
+						<!-- PRICE - FIXED: JavaScript with HTML entity for rupee -->
 						<div class="detail-item">
 							<div class="detail-icon">
 								<i class="fas fa-rupee-sign"></i>
 							</div>
 							<div>
 								<div class="detail-label">Price</div>
-								<div class="detail-value price-value">${carListing.price}</div>
+								<!-- The price element has an ID and a data-price attribute containing the raw price -->
+								<div class="detail-value price-value" id="formattedPrice" data-price="${carListing.price}"></div>
 							</div>
 						</div>
 
 						<!-- STATUS -->
-
 						<div class="detail-item">
 							<div class="detail-icon">
 								<i class="fas fa-check-circle"></i>
 							</div>
 							<div>
 								<div class="detail-label">Status</div>
-
 								<div class="detail-value">
-
 									<c:choose>
-
 										<c:when test="${carListing.status == 'Available'}">
 											<span class="status-badge-available">Available</span>
 										</c:when>
-
 										<c:otherwise>
 											<span class="status-badge-sold">Sold</span>
 										</c:otherwise>
-
 									</c:choose>
-
 								</div>
 							</div>
 						</div>
 
 						<!-- CREATED AT -->
-
 						<div class="detail-item">
 							<div class="detail-icon">
 								<i class="fas fa-clock"></i>
@@ -323,17 +350,15 @@ body {
 			</div>
 
 			<div class="card-footer-custom">
-
 				<a href="CustomerCarList" class="btn-modern btn-back"> <i
 					class="fas fa-arrow-left"></i> Back
-				</a> <a href="addToWishlist?listingId=${carListing.listingId}"
-					class="btn-modern btn-cart"> <i class="fas fa-cart-plus"></i>
-					Add To Cart
-				</a> <a href="buyNow?listingId=${carListing.listingId}"
-					class="btn-modern btn-cart"> <i class="fas fa-cart-plus"></i>
-					Buy
+				</a> 
+				<a href="addToWishlist?listingId=${carListing.listingId}" class="btn-modern btn-cart"> 
+					<i class="fas fa-cart-plus"></i> Add To Cart
+				</a> 
+				<a href="buyNow?listingId=${carListing.listingId}" class="btn-modern btn-cart"> 
+					<i class="fas fa-cart-plus"></i> Buy
 				</a>
-
 			</div>
 
 		</div>
@@ -341,12 +366,10 @@ body {
 	</div>
 
 	<!-- FOOTER -->
-
 	<jsp:include page="CustomerFooter.jsp"></jsp:include>
 
 </body>
 </html>
-
 
 
 

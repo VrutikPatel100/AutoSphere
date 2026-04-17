@@ -741,8 +741,8 @@ body {
 
 		<div class="menu">
 			<a href="CustomerCarList">List Car</a> <a href="#brands">Car
-				Brand</a> <a href="wishlist">My Cart</a> <a href="login">Login</a> <a
-				href="#">Register</a>
+				Brand</a> <a href="wishlist">My Cart</a> <a href="customerLogin">Login</a> <a
+				href="customerSignup">Register</a>
 		</div>
 	</div>
 	<div
@@ -778,8 +778,7 @@ body {
 								<img src="${car.imageURL}" alt="car">
 								<div style="padding: 10px;">
 									<h5>${car.brandName}${car.modelName}</h5>
-									<p style="color: #4a148c; font-weight: bold;">&#8377;
-										${car.price}</p>
+									<p class="price-format" data-price="${car.price}" style="color: #4a148c; font-weight: bold;"></p>
 								</div>
 							</div>
 						</a>
@@ -950,9 +949,7 @@ body {
 							<div style="padding: 15px;">
 								<h5 style="font-size: 16px; margin-bottom: 8px; color: #333;">${car.brandName}
 									${car.modelName}</h5>
-								<p
-									style="color: #4a148c; font-weight: bold; font-size: 18px; margin: 0;">&#8377;
-									${car.price}</p>
+								<p class="price-format" data-price="${car.price}" style="color: #4a148c; font-weight: bold; font-size: 18px; margin: 0;"></p>
 								<p>${car.bodyType}</p>
 							</div>
 						</div>
@@ -1376,6 +1373,32 @@ function closeVideo() {
     container.style.display = "none";
     iframe.src = ""; // video stop
 }
+
+//indian price
+
+function formatIndianPrice(price) {
+    let num = parseInt(price.toString().replace(/[^0-9]/g, ''));
+    if (isNaN(num)) return '0';
+    let str = num.toString();
+    let len = str.length;
+    if (len <= 3) return str;
+    let last3 = str.slice(-3);
+    let remaining = str.slice(0, -3);
+    let formatted = '';
+    while (remaining.length > 2) {
+        formatted = ',' + remaining.slice(-2) + formatted;
+        remaining = remaining.slice(0, -2);
+    }
+    if (remaining.length > 0) formatted = remaining + formatted;
+    return formatted + ',' + last3;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.price-format').forEach(el => {
+        let raw = el.getAttribute('data-price');
+        if (raw) el.innerHTML = '&#8377; ' + formatIndianPrice(raw);
+    });
+});
 </script>
 
 </body>

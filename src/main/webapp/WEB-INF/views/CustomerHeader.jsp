@@ -10,13 +10,16 @@
         AutoSphere
     </a>
 
-    <input type="text" class="city-select" placeholder="Select City">
+   <form action="searchCity" method="post" class="search-bar">
+			<input type="text" name="city" placeholder="Select City" required>
+			<input type="submit" value="Search">
+		</form>
 
-    <div class="search-bar">
-        <input type="text" id="searchInput"
-               placeholder="Search cars by brand or model"
-               onkeyup="searchCars()">
-    </div>
+		<!-- CAR SEARCH -->
+		<form action="searchCar" method="post" class="search-bar">
+			<input type="text" name="car" placeholder="Search cars..." required>
+			<input type="submit" value="Search">
+		</form>
 
     <div class="menu">
         <a href="CustomerCarList">List Car</a>

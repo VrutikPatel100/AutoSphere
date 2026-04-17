@@ -145,17 +145,47 @@ body {
 .section-title::before,
 .section-title::after {
     content: "";
-    flex: 0.3;   /* 🔥 pehla 1 htu → have ochhu */
+    flex: 0.3;
     height: 1px;
     background: #ddd;
 }
-
 </style>
+
+<!-- PRICE FORMATTING JAVASCRIPT (ONLY ADDITION) -->
+<script>
+    function formatIndianPrice(price) {
+        let num = parseInt(price);
+        if (isNaN(num)) return price;
+        let str = num.toString();
+        let len = str.length;
+        if (len <= 3) return str;
+        let last3 = str.slice(-3);
+        let remaining = str.slice(0, -3);
+        let formatted = '';
+        while (remaining.length > 2) {
+            formatted = ',' + remaining.slice(-2) + formatted;
+            remaining = remaining.slice(0, -2);
+        }
+        if (remaining.length > 0) {
+            formatted = remaining + formatted;
+        }
+        return formatted + ',' + last3;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        let priceElements = document.querySelectorAll('.price-format');
+        priceElements.forEach(function(el) {
+            let rawPrice = el.getAttribute('data-price');
+            if (rawPrice) {
+                el.innerHTML = '₹ ' + formatIndianPrice(rawPrice);
+            }
+        });
+    });
+</script>
 
 </head>
 
 <body>
-
 
 	<!-- HEADER -->
 <div class="header">
@@ -167,13 +197,16 @@ body {
         AutoSphere
     </a>
 
-    <input type="text" class="city-select" placeholder="Select City">
+    <form action="searchCity" method="post" class="search-bar">
+			<input type="text" name="city" placeholder="Select City" required>
+			<input type="submit" value="Search">
+		</form>
 
-    <div class="search-bar">
-        <input type="text" id="searchInput"
-               placeholder="Search cars by brand or model"
-               onkeyup="searchCars()">
-    </div>
+		<!-- CAR SEARCH -->
+		<form action="searchCar" method="post" class="search-bar">
+			<input type="text" name="car" placeholder="Search cars..." required>
+			<input type="submit" value="Search">
+		</form>
 
     <div class="menu">
         <a href="CustomerCarList">List Car</a>
@@ -184,11 +217,9 @@ body {
 
 </div>
 
-
 	<!-- CONTENT -->
 
 	<div class="content">
-	
 
 		<h3 class="section-title" class="fw-bold mb-4" style="text-align: center;" class="section-title">🚗 List Of All Cars</h3>
 
@@ -200,7 +231,7 @@ body {
 
 	<div class="car-card">
 
-		<!-- ✅ IMAGE (SAFE ADD - DESIGN BREAK NAI THAY) -->
+		<!-- IMAGE -->
 		<img src="${c.imageURL}" 
 		     style="width:100%; height:200px; object-fit:cover; border-radius:12px; margin-bottom:10px;">
 
@@ -243,7 +274,8 @@ body {
 			<span class="chip city">City: ${c.city}</span>
 		</div>
 
-		<div class="price">₹ ${c.price}</div>
+		<!-- 🔥 PRICE ELEMENT WITH FORMATTING (ONLY CHANGE) -->
+		<div class="price price-format" data-price="${c.price}">₹ ${c.price}</div>
 
 		<hr>
 
@@ -276,10 +308,7 @@ body {
 
 	</div>
 
-
-
 	<!-- FOOTER -->
-
 	<jsp:include page="CustomerFooter.jsp"></jsp:include>
 
 </body>

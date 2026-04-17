@@ -81,6 +81,20 @@ public class SessionController {
 		return "Login";
 	}
 	
+	@GetMapping("/customerSignup")
+	public String customersignup(Model model) {
+
+		List<CarModelTypeEntity> allCarModelType = carModelTypeRepository.findAll();
+		model.addAttribute("allCarModelType", allCarModelType);
+
+		return "CustomerSignup";
+	}
+	
+	@GetMapping("/customerLogin")
+	public String customerLogin() {
+		return "CustomerLogin";
+	}
+	
 	@PostMapping("/authenticate")
 	public String authenticate(String email,String password,Model model,HttpSession session) {
 	Optional<UserEntity> op = userRepository.findByEmail(email);

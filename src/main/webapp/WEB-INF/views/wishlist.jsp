@@ -120,10 +120,43 @@ body {
 }
 </style>
 
+<!-- PRICE FORMATTING JAVASCRIPT (ONLY ADDITION) -->
+<script>
+    function formatIndianPrice(price) {
+        let num = parseInt(price.toString().replace(/[^0-9]/g, ''));
+        if (isNaN(num)) return '0';
+        let str = num.toString();
+        let len = str.length;
+        if (len <= 3) return str;
+        let last3 = str.slice(-3);
+        let remaining = str.slice(0, -3);
+        let formatted = '';
+        while (remaining.length > 2) {
+            formatted = ',' + remaining.slice(-2) + formatted;
+            remaining = remaining.slice(0, -2);
+        }
+        if (remaining.length > 0) {
+            formatted = remaining + formatted;
+        }
+        return formatted + ',' + last3;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Select all elements with class 'price' that have the 'data-price' attribute
+        document.querySelectorAll('.price').forEach(function(el) {
+            let rawPrice = el.getAttribute('data-price');
+            if (rawPrice) {
+                let formattedPrice = formatIndianPrice(rawPrice);
+                // Use HTML entity for rupee to avoid encoding issues
+                el.innerHTML = '&#8377; ' + formattedPrice;
+            }
+        });
+    });
+</script>
+
 </head>
 
 <body>
-
 
 	<!-- HEADER -->
 	<div class="header">
@@ -132,12 +165,16 @@ body {
 			<div class="logo-icon">
 				<span>A</span>
 			</div> AutoSphere
-		</a> <input type="text" class="city-select" placeholder="Select City">
+		<form action="searchCity" method="post" class="search-bar">
+			<input type="text" name="city" placeholder="Select City" required>
+			<input type="submit" value="Search">
+		</form>
 
-		<div class="search-bar">
-			<input type="text" id="searchInput"
-				placeholder="Search cars by brand or model" onkeyup="searchCars()">
-		</div>
+		<!-- CAR SEARCH -->
+		<form action="searchCar" method="post" class="search-bar">
+			<input type="text" name="car" placeholder="Search cars..." required>
+			<input type="submit" value="Search">
+		</form>
 
 		<div class="menu">
 			<a href="CustomerCarList">List Car</a> <a href="wishlist">My Cart</a> <a href="login">Login</a> <a
@@ -147,7 +184,6 @@ body {
 	</div>
 
 	<!-- MAIN -->
-
 	<div class="container">
 
 		<div class="page-title">
@@ -178,13 +214,15 @@ body {
 					<div class="car-meta">KMS Driven : ${w.carListing.kmsDriven}
 						KM</div>
 
-					<div class="price">₹ ${w.carListing.price}</div>
+					<!-- 🔥 PRICE ELEMENT MODIFIED: added data-price attribute, removed inline ₹ fallback -->
+					<div class="price" data-price="${w.carListing.price}"></div>
 
 					<div style="margin-top: 15px">
 
 						<a href="removeWishlist?wishlistId=${w.wishlistId}"
 							class="btn btn-remove"> <i class="fas fa-trash"></i> Remove
-						</a> <a href="buyNow?listingId=${w.carListing.listingId}"
+						</a> 
+						<a href="buyNow?listingId=${w.carListing.listingId}"
 							class="btn btn-buy"> <i class="fas fa-shopping-cart"></i> Buy
 						</a>
 
@@ -209,14 +247,11 @@ body {
 
 	</div>
 
-
 	<!-- FOOTER -->
-
 	<jsp:include page="CustomerFooter.jsp"></jsp:include>
 
 </body>
 </html>
-
 
 <%-- <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>

@@ -176,6 +176,37 @@ body {
 }
 </style>
 
+<script>
+    // Only price formatting function - no other changes
+    function formatIndianPrice(price) {
+        let num = parseInt(price);
+        if (isNaN(num)) return price;
+        let str = num.toString();
+        let len = str.length;
+        if (len <= 3) return str;
+        let last3 = str.slice(-3);
+        let remaining = str.slice(0, -3);
+        let formatted = '';
+        while (remaining.length > 2) {
+            formatted = ',' + remaining.slice(-2) + formatted;
+            remaining = remaining.slice(0, -2);
+        }
+        if (remaining.length > 0) {
+            formatted = remaining + formatted;
+        }
+        return formatted + ',' + last3;
+    }
+
+    // Format price when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        let priceElement = document.querySelector('.price');
+        if (priceElement && priceElement.getAttribute('data-price')) {
+            let rawPrice = priceElement.getAttribute('data-price');
+            priceElement.innerHTML = '₹ ' + formatIndianPrice(rawPrice);
+        }
+    });
+</script>
+
 </head>
 
 <body>
@@ -189,17 +220,16 @@ body {
 			</div> AutoSphere
 		</a>
 
-		<div style="position: relative;">
-			<input type="text" id="cityInput" class="city-select"
-				placeholder="Select City" onkeyup="showCitySuggestions()">
-			<div id="citySuggestionBox" class="suggestion-box"></div>
-		</div>
+		<form action="searchCity" method="post" class="search-bar">
+			<input type="text" name="city" placeholder="Select City" required>
+			<input type="submit" value="Search">
+		</form>
 
-		<div class="search-bar" style="position: relative;">
-			<input type="text" id="searchInput" placeholder="Search cars..."
-				onkeyup="showCarSuggestions()">
-			<div id="suggestionBox" class="suggestion-box"></div>
-		</div>
+		<!-- CAR SEARCH -->
+		<form action="searchCar" method="post" class="search-bar">
+			<input type="text" name="car" placeholder="Search cars..." required>
+			<input type="submit" value="Search">
+		</form>
 
 		<div class="menu">
 			<a href="CustomerCarList">List Car</a> <a href="wishlist">My Cart</a> <a href="login">Login</a> <a
@@ -231,7 +261,8 @@ body {
 								<i class="bi bi-geo-alt"></i> ${carListing.city}
 							</p>
 
-							<div class="price">₹ ${carListing.price}</div>
+							<!-- Price with data attribute for formatting (original raw value preserved) -->
+							<div class="price" data-price="${carListing.price}">₹ ${carListing.price}</div>
 
 							<span class="badge bg-success mt-2">${carListing.status}</span>
 

@@ -8,7 +8,6 @@
 <title>${brand} Cars</title>
 <jsp:include page="CustomerCSS.jsp"></jsp:include>
 
-
 <link rel="stylesheet"
  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
 
@@ -136,12 +135,43 @@ body{
 .section-title::before,
 .section-title::after {
     content: "";
-    flex: 0.3;   /* 🔥 pehla 1 htu → have ochhu */
+    flex: 0.3;
     height: 1px;
     background: #ddd;
 }
 
 </style>
+
+<!-- PRICE FORMATTING JAVASCRIPT (ONLY ADDITION) -->
+<script>
+    function formatIndianPrice(price) {
+        let num = parseInt(price.toString().replace(/[^0-9]/g, ''));
+        if (isNaN(num)) return '0';
+        let str = num.toString();
+        let len = str.length;
+        if (len <= 3) return str;
+        let last3 = str.slice(-3);
+        let remaining = str.slice(0, -3);
+        let formatted = '';
+        while (remaining.length > 2) {
+            formatted = ',' + remaining.slice(-2) + formatted;
+            remaining = remaining.slice(0, -2);
+        }
+        if (remaining.length > 0) {
+            formatted = remaining + formatted;
+        }
+        return formatted + ',' + last3;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.price-format').forEach(function(el) {
+            let rawPrice = el.getAttribute('data-price');
+            if (rawPrice) {
+                el.innerHTML = '&#8377; ' + formatIndianPrice(rawPrice);
+            }
+        });
+    });
+</script>
 
 </head>
 
@@ -155,7 +185,7 @@ body{
     <a href="customer-dashboard#brands" class="btn btn-secondary back-btn">← Back</a>
 
     <!-- TITLE -->
-    <h2 class="section-title" class="title" >${brand} Cars</h2>
+    <h2 class="section-title">${brand} Cars</h2>
 
     <!-- GRID -->
     <div class="car-grid">
@@ -173,8 +203,8 @@ body{
 
                 <div>${car.variantName}</div>
 
-                <!-- PRICE -->
-                <div class="price">₹ ${car.price}</div>
+                <!-- PRICE (modified for formatting) -->
+                <div class="price price-format" data-price="${car.price}"></div>
 
                 <!-- DETAILS -->
                 <div class="details">
@@ -198,9 +228,9 @@ body{
 
                 <!-- BUTTON -->
                 <a href="buyNow?listingId=${car.listingId}" 
-   class="btn btn-success view-btn">
-   Buy Now →
-</a>
+                   class="btn btn-success view-btn">
+                   Buy Now →
+                </a>
 
             </div>
         </c:forEach>
@@ -215,6 +245,8 @@ body{
     </c:if>
 
 </div>
+
 <jsp:include page="CustomerFooter.jsp"></jsp:include>
+
 </body>
 </html>
