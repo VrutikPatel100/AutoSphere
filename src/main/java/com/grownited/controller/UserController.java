@@ -1,5 +1,7 @@
 package com.grownited.controller;
 
+import com.cloudinary.utils.ObjectUtils;
+import java.util.Map;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -11,10 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cloudinary.Cloudinary;
 import com.grownited.entity.UserDetailEntity;
 import com.grownited.entity.UserEntity;
 import com.grownited.repository.UserDetailRepository;
 import com.grownited.repository.UserRepository;
+
+
 
 @Controller
 public class UserController {
@@ -27,18 +32,18 @@ public class UserController {
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+    
+    @Autowired
+    private Cloudinary cloudinary;
 
     // ---------- Helper for Cloudinary upload (adjust to your actual implementation) ----------
     private String uploadToCloudinary(MultipartFile file) throws IOException {
-        // Replace with your actual Cloudinary upload logic
-        // For example:
-        // Cloudinary cloudinary = new Cloudinary(...);
-        // Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
-        // return uploadResult.get("url").toString();
-        
-        // Temporary dummy – you MUST implement your real upload
-        return "https://res.cloudinary.com/your-cloud-name/image/upload/sample.jpg";
+
+        Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
+
+        return uploadResult.get("secure_url").toString();
     }
+
     // ----------------------------------------------------------------------------------------
 
     @GetMapping("listUser")
